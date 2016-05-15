@@ -1,4 +1,4 @@
 # Blood-Care Mobile Application
 
-*Frontend:* Ionic Framework
-*Backend:* Firebase
+* Frontend: Ionic Framework
+* Backend: Firebase
