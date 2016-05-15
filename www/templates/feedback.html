@@ -1,0 +1,33 @@
+<ion-pane>
+    <ion-header-bar class="custom-bar-bg">
+        <div class="buttons">
+            <button class="button button-icon ion-ios-arrow-back" ui-sref="tab.settings">
+            </button>
+        </div>
+        <h1 class="title">Feedback</h1>
+    </ion-header-bar>
+    <ion-content class="padding">
+        <div class="card custom-card">
+            <div class="item">
+                <span>Message</span>
+            </div>
+            <div class="item">
+                <label class="item-input">
+                    <textarea placeholder="Write here.." rows="5"></textarea>
+                </label>
+            </div>
+        </div>
+        <div class="card custom-card">
+            <div class="item">
+                <span>Rate the App</span>
+            </div>
+            <div class="item">
+                <div class="custom-rating">
+                    <a class="padding" ng-repeat="r in ratingArr" style="text-decoration:none;">
+                        <i class="icon {{r.icon}}" ng-click="setRating(r.value)"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-pane>

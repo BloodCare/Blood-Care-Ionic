@@ -1,0 +1,125 @@
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+
+For example, you might change some of the default colors:
+
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #387ef5 !default;
+$calm:                            #11c1f3 !default;
+$balanced:                        #33cd5f !default;
+$energized:                       #ffc900 !default;
+$assertive:                       #ef473a !default;
+$royal:                           #886aea !default;
+$dark:                            #444 !default;
+*/
+$bar-stable-text: #C30000;
+$tabs-stable-text: #C30000;
+$tabs-stable-bg: #D6D6D6;
+$bar-title-font-size: 20px;
+$tabs-text-font-size-side-icon: 11px;
+$button-stable-text: #C30000;
+$light: #000;
+$item-default-active-bg: #C30000;
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+
+.tab-item{
+    color: #C30000;
+}
+.title{
+    color: #C30000;
+}
+.scroll-content {
+    background: #C30000;
+    background: -webkit-radial-gradient(circle at top right, #FA0000, #C30000);
+    background: -o-radial-gradient(circle at top right, #FA0000, #C30000);
+    background: -moz-radial-gradient(circle at top right, #FA0000, #C30000);
+    background: radial-gradient(circle at top right, #FA0000, #C30000);     
+}
+.card a, .card div{
+    text-decoration: none;
+    color: #C30000;
+    font-size: 18px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.item{
+    background: #D6D6D6;
+    background: linear-gradient(#D6D6D6, #E6E6E6);
+    background: -webkit-linear-gradient(#D6D6D6, #E6E6E6);
+    background: -o-linear-gradient(#D6D6D6, #E6E6E6);
+    background: -moz-linear-gradient(#D6D6D6, #E6E6E6);
+}
+.card{
+    width: 70%; 
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-bottom: 30px !important;
+    border-radius: 10px !important;
+}
+.custom-bar-bg{
+    background: #D6D6D6; 
+    background: linear-gradient(#D6D6D6, #E6E6E6);
+    background: -webkit-linear-gradient(#D6D6D6, #E6E6E6);
+    background: -o-linear-gradient(#D6D6D6, #E6E6E6);
+    background: -moz-linear-gradient(#D6D6D6, #E6E6E6);
+    font-size: 20px;
+}
+.tabs-custom-bg{
+    background: #D6D6D6; 
+    background: linear-gradient(#D6D6D6, #E6E6E6);
+    background: -webkit-linear-gradient(#D6D6D6, #E6E6E6);
+    background: -o-linear-gradient(#D6D6D6, #E6E6E6);
+    background: -moz-linear-gradient(#D6D6D6, #E6E6E6);
+    font-size: 11px;
+}
+.custom-icon{
+    font-size: 24px;
+    color: #D6D6D6;
+    padding-right: 20px;
+}
+.custom-item{
+    color: #D6D6D6;
+    font-size: 18px;
+}
+.list label{
+    width: 90%;
+    margin-top: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    height: 50px;
+    border-radius: 10px;
+}
+.list span, .list input, .list select{
+    color: #C30000;
+}
+.item span{
+    color: #C30000;
+    font-size: 16px;
+}
+.item textarea{
+    background: #D6D6D6; 
+    background: linear-gradient(#D6D6D6, #E6E6E6);
+    background: -webkit-linear-gradient(#D6D6D6, #E6E6E6);
+    background: -o-linear-gradient(#D6D6D6, #E6E6E6);
+    background: -moz-linear-gradient(#D6D6D6, #E6E6E6); 
+    color: #C30000;
+}
+.item label{
+    padding: 1px;
+}
+.custom-card{
+    width: 90% !important;
+}
+.custom-rating{
+    text-align: center;
+}
+.custom-rating a{
+    font-size: 20px;
+}
