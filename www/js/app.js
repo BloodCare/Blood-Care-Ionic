@@ -23,6 +23,9 @@ angular.module('starter', ['ionic'])
   });
 })
 
+.constant("genderActiveClass", "enable-gender")
+.constant("genderClass", "custom-gender")
+
 .config(function($stateProvider, $urlRouterProvider){
   
   $stateProvider
@@ -100,8 +103,10 @@ angular.module('starter', ['ionic'])
   $urlRouterProvider.otherwise('/tab/home');
 })
 
-.controller('HomeCtrl', function($scope){
-  
+.controller('HomeCtrl', function($scope, $ionicSlideBoxDelegate){
+  $scope.navSlide = function (index) {
+    $ionicSlideBoxDelegate.slide(index, 500);
+  }
 })
 
 .controller('ManagerCtrl', function($scope){
@@ -112,8 +117,8 @@ angular.module('starter', ['ionic'])
   
 })
 
-.controller('ProfileCtrl', function($scope){
-  
+.controller('ProfileCtrl', function($scope, genderActiveClass, genderClass){
+ 
 })
 
 .controller('FeedbackCtrl', function($scope){
