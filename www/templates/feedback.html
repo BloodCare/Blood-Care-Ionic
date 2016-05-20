@@ -1,10 +1,15 @@
 <ion-pane>
     <ion-header-bar class="custom-bar-bg">
         <div class="buttons">
-            <button class="button button-icon ion-ios-arrow-back" ui-sref="tab.settings">
+            <button class="button button-icon ion-ios-arrow-back" ui-sref="app.settings">
             </button>
         </div>
         <h1 class="title">Feedback</h1>
+        <div class="buttons">
+            <button class="button button-icon ion-checkmark-circled"
+                    ng-click="showConfirm()">
+            </button>
+        </div>
     </ion-header-bar>
     <ion-content class="padding">
         <div class="card custom-card">

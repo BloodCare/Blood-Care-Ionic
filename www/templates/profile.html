@@ -1,38 +1,84 @@
 <ion-pane>
+    
     <ion-header-bar class="custom-bar-bg">
         <div class="buttons">
-            <button class="button button-icon ion-ios-arrow-back" ui-sref="tab.settings">
+            <button class="button button-icon ion-ios-arrow-back" ui-sref="app.settings">
             </button>
         </div>
         <h1 class="title">Profile</h1>
-    </ion-header-bar>
-    <ion-content class="padding">
-        <div class="list">
-            <label class="item item-input">
-                <span class="input-label">Name</span>
-                <input type="text" placeholder="Name">
-            </label>
-            <label class="item item-input">
-                <span class="input-label">Email</span>
-                <input type="email" placeholder="Email">
-            </label>
-            <label class="item item-input">
-                <span class="input-label">Gender</span>
-                <input type="text" placeholder="Male / Female / Other">
-                
-            </label>
-            <label class="item item-input">
-                <span class="input-label">Date of Birth</span>
-                <input type="date">
-            </label>
-            <label class="item item-input">
-                <span class="input-label">Diabetes Type</span>
-                <input type="text" placeholder="Type A / Type B">
-            </label>
-            <label class="item item-input">
-                <span class="input-label">Weight</span>
-                <input type="text" placeholder="50">
-            </label>
+        <div class="buttons">
+            <button class="button button-icon ion-checkmark-circled" 
+                    ng-click="showConfirm()">
+            </button>
         </div>
+    </ion-header-bar>
+    
+    <ion-content class="padding">
+        
+        <div class="card custom-card">
+            <div class="item">
+                <span>Name</span>
+            </div>
+            <div class="item custom-input">
+                <label class="item-input">
+                   <input type="text" placeholder="eg. Alpana Chaphalkar"> 
+                </label>
+            </div>
+        </div>
+        
+        <div class="card custom-card">
+            <div class="item">
+                <span>Email</span>
+            </div>
+            <div class="item custom-input">
+                <label class="item-input">
+                   <input type="email" placeholder="eg. alpana@example.com"> 
+                </label>
+            </div>
+        </div>
+        
+        <div class="card custom-card">
+            <div class="item">
+                <span>Date of Birth</span>
+            </div>
+            <div class="item custom-input">
+                <label class="item-input">
+                   <input ui-date="dateOptions" name="DateOfBirth" placeholder="dd-mm-yyyy">
+                </label>
+            </div>
+        </div>
+        
+        <div class="card custom-card">
+            <div class="item">
+                <span>Gender</span>
+            </div>
+            <div class="item button-bar">
+                <a grouped-radio="'male'" ng-model="profileData.gender" class="option">Male</a>
+                <a grouped-radio="'female'" ng-model="profileData.gender" class="option">Female</a>
+                <a grouped-radio="'other'" ng-model="profileData.gender" class="option">Other</a>
+            </div>
+        </div>
+        
+        <div class="card custom-card">
+            <div class="item">
+                <span>Diabetes Type</span>
+            </div>
+            <div class="item button-bar">
+                <a grouped-radio="'type1'" ng-model="profileData.diabetes" class="option">Type 1</a>
+                <a grouped-radio="'type2'" ng-model="profileData.diabetes" class="option">Type 2</a>
+            </div>
+        </div>
+        
+        <div class="card custom-card">
+            <div class="item">
+                <span>Weight</span>
+            </div>
+            <div class="item button-bar custom-weight">
+                <input type="number" ng-model="profileData.weight" placeholder="60"> 
+                <a grouped-radio="'kgs'" ng-model="profileData.weightUnit" class="unit">Kgs</a>
+                <a grouped-radio="'pounds'" ng-model="profileData.weightUnit" class="unit">Pounds</a>
+            </div>
+        </div>
+        
     </ion-content>
 </ion-pane>

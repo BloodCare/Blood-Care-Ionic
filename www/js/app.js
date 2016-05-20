@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic'])
+angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -23,84 +23,95 @@ angular.module('starter', ['ionic'])
   });
 })
 
-.constant("genderActiveClass", "enable-gender")
-.constant("genderClass", "custom-gender")
-
 .config(function($stateProvider, $urlRouterProvider){
   
   $stateProvider
   
-  .state('tab', {
-    url: '/tab',
+  .state('app', {
+    url: '/app',
     abstract: true,
-    templateUrl: 'templates/tabs.html'
+    templateUrl: 'templates/navigation.html'
   })
   
-  .state('tab.home', {
+  .state('app.home', {
     url: '/home',
     views: {
-      'tab-home': {
-        templateUrl: 'templates/tab-home.html',
+      'home': {
+        templateUrl: 'templates/home.html',
         controller: 'HomeCtrl'
       }
     }
   })
   
-  .state('tab.manager', {
+  .state('app.manager', {
     url: '/manager',
     views: {
-      'tab-manager': {
-        templateUrl: 'templates/tab-manager.html',
+      'manager': {
+        templateUrl: 'templates/manager.html',
         controller: 'ManagerCtrl'
       }
     }
   })
   
-  .state('tab.settings', {
+  .state('app.settings', {
     url: '/settings',
     views: {
-      'tab-settings': {
-        templateUrl: 'templates/tab-settings.html',
+      'settings': {
+        templateUrl: 'templates/settings.html',
         controller: 'SettingsCtrl'
       }
     }
   });
   
-  
   $stateProvider
   
   .state('profile', {
-    url: '/tab/settings/profile',
+    url: '/app/settings/profile',
     templateUrl: 'templates/profile.html',
     controller: 'ProfileCtrl'
   })
   .state('feedback', {
-    url: '/tab/settings/feedback',
+    url: '/app/settings/feedback',
     templateUrl: 'templates/feedback.html',
     controller: 'FeedbackCtrl'
   })
   .state('about', {
-    url: '/tab/settings/about',
+    url: '/app/settings/about',
     templateUrl: 'templates/about.html',
     controller: 'AboutCtrl'
   })
   .state('reminder', {
-    url: '/tab/manager/reminder',
+    url: '/app/manager/reminder',
     templateUrl: 'templates/reminder.html',
     controller: 'ReminderCtrl'
   })
   .state('monitor', {
-    url: '/tab/manager/monitor',
+    url: '/app/manager/monitor',
     templateUrl: 'templates/monitor.html',
     controller: 'MonitorCtrl'
   })
   .state('dietPlanner', {
-    url: '/tab/manager/diet-planner',
+    url: '/app/manager/diet-planner',
     templateUrl: 'templates/dietPlanner.html',
     controller: 'DietPlannerCtrl'
-  });
+  })
+  .state('appointment', {
+    url: '/app/manager/reminder/appointment',
+    templateUrl: 'templates/appointment.html',
+    controller: 'AppointmentCtrl'
+  })
+  .state('generalReminder', {
+    url: '/app/manager/reminder/general',
+    templateUrl: 'templates/generalReminder.html',
+    controller: 'GeneralReminderCtrl'
+  })
+  .state('emergencyReminder', {
+    url: '/app/manager/reminder/emergency',
+    templateUrl: 'templates/emergencyReminder.html',
+    controller: 'EmergencyReminderCtrl'
+  })
   
-  $urlRouterProvider.otherwise('/tab/home');
+  $urlRouterProvider.otherwise('/app/home');
 })
 
 .controller('HomeCtrl', function($scope, $ionicSlideBoxDelegate){
@@ -117,11 +128,45 @@ angular.module('starter', ['ionic'])
   
 })
 
-.controller('ProfileCtrl', function($scope, genderActiveClass, genderClass){
- 
+.controller('ProfileCtrl', function($scope, $ionicPopup, $state, IonicClosePopupService){
+  
+   $scope.dateOptions = {
+      dateFormat: 'dd-mm-yy',
+      changeMonth:true,
+      changeYear:true,
+      minDate: new Date(1900, 01 - 1, 01),
+      maxDate: 'today',
+      yearRange: '1900:c' 
+    };
+    
+    $scope.profileData = {
+      gender: 'female',
+      diabetes: 'type1',
+      weightUnit: 'kgs'
+    }
+    
+    $scope.showConfirm = function () {
+      
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Save Profile',
+        template: 'Are you sure?',
+        buttons: [
+          { text: '<i class="icon ion-close-circled"></i>',
+            onTap: function(e) { return false; }
+          },
+          { text: '<i class="icon ion-checkmark-circled""></i>',
+            onTap: function(e) { $state.go('app.settings'); }
+          }
+        ]
+      });
+      
+      IonicClosePopupService.register(confirmPopup);
+    };
+    
 })
 
-.controller('FeedbackCtrl', function($scope){
+.controller('FeedbackCtrl', function($scope, $ionicPopup, $state, IonicClosePopupService){
+  
   $scope.ratingArr = [
     {
       value: 1,
@@ -155,6 +200,26 @@ angular.module('starter', ['ionic'])
       }
     }
   };
+  
+  $scope.showConfirm = function () {
+      
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Save Feedback',
+        template: 'Are you sure?',
+        buttons: [
+          { text: '<i class="icon ion-close-circled"></i>',
+            onTap: function(e) { return false; }
+          },
+          { text: '<i class="icon ion-checkmark-circled""></i>',
+            onTap: function(e) { $state.go('app.settings'); }
+          }
+        ]
+      });
+      
+      IonicClosePopupService.register(confirmPopup);
+      
+    };
+    
 })
 
 .controller('AboutCtrl', function($scope){
@@ -171,4 +236,94 @@ angular.module('starter', ['ionic'])
 
 .controller('DietPlannerCtrl', function($scope){
   
-});
+})
+
+.controller('AppointmentCtrl', function($scope, $ionicPopup, $state, IonicClosePopupService){
+  $scope.showConfirm = function () {
+      
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Save Appointment',
+        template: 'Are you sure?',
+        buttons: [
+          { text: '<i class="icon ion-close-circled"></i>',
+            onTap: function(e) { return false; }
+          },
+          { text: '<i class="icon ion-checkmark-circled""></i>',
+            onTap: function(e) { $state.go('reminder'); }
+          }
+        ]
+      });
+      
+      IonicClosePopupService.register(confirmPopup);
+  };
+})
+
+.controller('GeneralReminderCtrl', function($scope, $ionicPopup, $state, IonicClosePopupService){
+  
+  $scope.showConfirm = function () {
+      
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Save General Reminder',
+        template: 'Are you sure?',
+        buttons: [
+          { text: '<i class="icon ion-close-circled"></i>',
+            onTap: function(e) { return false; }
+          },
+          { text: '<i class="icon ion-checkmark-circled""></i>',
+            onTap: function(e) { $state.go('reminder'); }
+          }
+        ]
+      });
+      
+      IonicClosePopupService.register(confirmPopup);
+  };
+  
+})
+
+.controller('EmergencyReminderCtrl', function($scope, $ionicPopup, $state, IonicClosePopupService){
+  
+  $scope.showConfirm = function () {
+      
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Save Emergency Reminder',
+        template: 'Are you sure?',
+        buttons: [
+          { text: '<i class="icon ion-close-circled"></i>',
+            onTap: function(e) { return false; }
+          },
+          { text: '<i class="icon ion-checkmark-circled""></i>',
+            onTap: function(e) { $state.go('reminder'); }
+          }
+        ]
+      });
+      
+      IonicClosePopupService.register(confirmPopup);
+  };
+  
+})
+
+.directive('groupedRadio', function() {
+  return {
+    restrict: 'A',
+    require: 'ngModel',
+    scope: {
+      model: '=ngModel',
+      value: '=groupedRadio'
+    },
+    link: function(scope, element, attrs, ngModelCtrl) {
+      element.addClass('button');
+      element.on('click', function(e) {
+        scope.$apply(function() {
+          ngModelCtrl.$setViewValue(scope.value);
+        });
+      });
+
+      scope.$watch('model', function(newVal) {
+        element.removeClass('button-positive');
+        if (newVal === scope.value) {
+          element.addClass('button-positive');
+        }
+      });
+    }
+  };
+})

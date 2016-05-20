@@ -1,7 +1,7 @@
 <ion-pane>
     <ion-header-bar class="custom-bar-bg">
         <div class="buttons">
-            <button class="button button-icon ion-ios-arrow-back" ui-sref="tab.manager">
+            <button class="button button-icon ion-ios-arrow-back" ui-sref="app.manager">
             </button>
         </div>
         <h1 class="title">Reminder</h1>
@@ -9,4 +9,14 @@
     <ion-content class="padding">
         <h1>Reminder</h1>
     </ion-content>
+    <ion-footer-bar class="custom-bar-bg custom-footer">
+        <div class="button-bar">
+            <a grouped-radio="'appointment'" ng-model="reminder" 
+               class="reminder-option" ui-sref="appointment">Appointment</a>
+            <a grouped-radio="'general'" ng-model="reminder" 
+               class="reminder-option" ui-sref="generalReminder">General</a>
+            <a grouped-radio="'Emergency'" ng-model="reminder" 
+               class="reminder-option" ui-sref="emergencyReminder">Emergency</a>
+        </div>
+    </ion-footer-bar>
 </ion-pane>

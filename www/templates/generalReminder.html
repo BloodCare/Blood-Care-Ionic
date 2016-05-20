@@ -1,0 +1,39 @@
+<ion-pane>
+    <ion-header-bar class="custom-bar-bg">
+        <div class="buttons">
+            <button class="button button-icon ion-ios-arrow-back" ui-sref="reminder">
+            </button>
+        </div>
+        <h1 class="title">General Reminder</h1>
+        <div class="buttons">
+            <button class="button button-icon ion-checkmark-circled" 
+                    ng-click="showConfirm()">
+            </button>
+        </div>
+    </ion-header-bar>
+    <ion-content class="padding">
+        
+        <div class="card custom-card">
+            <div class="item">
+                <span>Name</span>
+            </div>
+            <div class="item custom-input">
+                <label class="item-input">
+                   <input type="text" placeholder="eg. Insulin injection"> 
+                </label>
+            </div>
+        </div>
+        
+        <div class="card custom-card">
+            <div class="item">
+                <span>Description</span>
+            </div>
+            <div class="item">
+                <label class="item-input">
+                    <textarea placeholder="Before meal" rows="2"></textarea>
+                </label>
+            </div>
+        </div>
+        
+    </ion-content>
+</ion-pane>
