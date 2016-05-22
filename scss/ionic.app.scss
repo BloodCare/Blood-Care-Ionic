@@ -16,12 +16,12 @@ $dark:                            #444 !default;
 */
 $bar-stable-text: #C30000;
 $tabs-stable-text: #C30000;
-$tabs-stable-bg: #D6D6D6;
+$tabs-stable-bg: #C30000;
 $bar-title-font-size: 20px;
 $tabs-text-font-size-side-icon: 11px;
 $button-stable-text: #C30000;
-$light: #000;
-$item-default-active-bg: #C30000;
+$light: rgba(214, 214, 214, 0.1);
+$item-default-active-bg: rgba(67,206,162, 0.5);
 $button-height: 30px;
 $popup-button-min-height: 30px;
 
@@ -38,11 +38,11 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     color: #C30000;
 }
 .scroll-content {
-    background: #C30000;
-    background: -webkit-radial-gradient(circle at top right, #FA0000, #C30000);
-    background: -o-radial-gradient(circle at top right, #FA0000, #C30000);
-    background: -moz-radial-gradient(circle at top right, #FA0000, #C30000);
-    background: radial-gradient(circle at top right, #FA0000, #C30000);     
+    background: #D150FF; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left top, #43cea2, #185a9d, #D150FF); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(bottom right, #43cea2, #185a9d, #D150FF); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(bottom right, #43cea2, #185a9d, #D150FF); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom right, #43cea2, #185a9d, #D150FF); /* Standard syntax */
 }
 .card a, .card div{
     text-decoration: none;
@@ -66,29 +66,21 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     border-radius: 10px !important;
 }
 .custom-bar-bg{
-    background: #D6D6D6; 
-    background: linear-gradient(#D6D6D6, #E6E6E6);
-    background: -webkit-linear-gradient(#D6D6D6, #E6E6E6);
-    background: -o-linear-gradient(#D6D6D6, #E6E6E6);
-    background: -moz-linear-gradient(#D6D6D6, #E6E6E6);
+    background: rgba(214, 214, 214, 0.6);
     font-size: 20px;
 }
 .tabs-custom-bg{
-    background: #D6D6D6; 
-    background: linear-gradient(#D6D6D6, #E6E6E6);
-    background: -webkit-linear-gradient(#D6D6D6, #E6E6E6);
-    background: -o-linear-gradient(#D6D6D6, #E6E6E6);
-    background: -moz-linear-gradient(#D6D6D6, #E6E6E6);
     font-size: 11px;
 }
 .custom-icon{
     font-size: 20px;
-    color: #D6D6D6;
+    color: #C30000;
     padding-right: 20px;
 }
 .custom-item{
-    color: #D6D6D6;
-    font-size: 14px;
+    color: #C30000;
+    font-size: 15px;
+    border: none;
 }
 .list label{
     width: 95%;
@@ -189,23 +181,14 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     background: -moz-linear-gradient(#D6D6D6, #E6E6E6); 
     border: 1px solid #B0B0B0;
 }
-/*.button-bar a:active{
-    background: #C30000;
-    background: -webkit-radial-gradient(circle at top right, #FA0000, #C30000);
-    background: -o-radial-gradient(circle at top right, #FA0000, #C30000);
-    background: -moz-radial-gradient(circle at top right, #FA0000, #C30000);
-    background: radial-gradient(circle at top right, #FA0000, #C30000);     
-    color: #D6D6D6;
-    border: 1px solid #B0B0B0;
-}*/
 a.button-positive{
-    background: #C30000;
-    background: -webkit-radial-gradient(circle at top right, #FA0000, #C30000);
-    background: -o-radial-gradient(circle at top right, #FA0000, #C30000);
-    background: -moz-radial-gradient(circle at top right, #FA0000, #C30000);
-    background: radial-gradient(circle at top right, #FA0000, #C30000);     
-    color: #D6D6D6;
-    border: 1px solid #B0B0B0;
+    background: #185a9d; 
+    background: -webkit-linear-gradient(#43cea2, #185a9d);
+    background: -o-linear-gradient(#43cea2, #185a9d); 
+    background: -moz-linear-gradient(#43cea2, #185a9d); 
+    background: linear-gradient(#43cea2, #185a9d);
+    color: #E6E6E6;
+    border: none;
 }
 .button-bar > .option:last-child {
   border-radius: 0px 20px 20px 0px !important;
@@ -232,15 +215,15 @@ a.button-positive{
     border-radius: 15px !important;
 }
 .popup-head{
-    background: #C30000; 
-    background: linear-gradient(#C30000, #FA0000);
-    background: -webkit-linear-gradient(#C30000, #FA0000);
-    background: -o-linear-gradient(#C30000, #FA0000);
-    background: -moz-linear-gradient(#C30000, #FA0000);
+    background: #D150FF; 
+    background: -webkit-linear-gradient(left top, #43cea2, #185a9d, #D150FF);
+    background: -o-linear-gradient(bottom right, #43cea2, #185a9d, #D150FF); 
+    background: -moz-linear-gradient(bottom right, #43cea2, #185a9d, #D150FF); 
+    background: linear-gradient(to bottom right, #43cea2, #185a9d, #D150FF);
     border-radius: 15px 15px 0 0 !important;
 }
 .popup-title{
-    color: #D6D6D6;
+    color: #E6E6E6;
     font-weight: bold;
 }
 .popup-body{
@@ -256,7 +239,7 @@ a.button-positive{
     border: 1px solid #B0B0B0;
 }
 .popup-buttons .button:hover{
-    color: #B0B0B0;
+    color: #185a9d;
 }
 .popup-buttons .button-positive{
     background: #C30000; 
@@ -266,17 +249,21 @@ a.button-positive{
     background: -moz-linear-gradient(#C30000, #FA0000);
     color: #D6D6D6;
 }
-.custom-footer{
-    height: 50px;   
-}
-.custom-footer div{
-    margin: -2px;
-}
 .button-bar .reminder-option{
-    font-size: 14px;
-    margin: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-top: -1px;
     height: 35px;
     border-radius: 20px;
+    color: #E6E6E6;
+    background: #185a9d; 
+    background: linear-gradient(#43cea2, #185a9d);
+    background: -webkit-linear-gradient(#43cea2, #185a9d);
+    background: -o-linear-gradient(#43cea2, #185a9d);
+    background: -moz-linear-gradient(#43cea2, #185a9d);
 }
 .button-bar > .reminder-option:first-child, 
 .button-bar > .reminder-option:last-child {
@@ -292,11 +279,26 @@ a.button-positive{
     color: #D6D6D6;
 }
 .button-bar .reminder-option.button-positive{
-    background: #D6D6D6; 
-    background: linear-gradient(#D6D6D6, #E6E6E6);
-    background: -webkit-linear-gradient(#D6D6D6, #E6E6E6);
-    background: -o-linear-gradient(#D6D6D6, #E6E6E6);
-    background: -moz-linear-gradient(#D6D6D6, #E6E6E6); 
-    color: #C30000;
+    color: #E6E6E6;
+    background: #185a9d; 
+    background: linear-gradient(#43cea2, #185a9d);
+    background: -webkit-linear-gradient(#43cea2, #185a9d);
+    background: -o-linear-gradient(#43cea2, #185a9d);
+    background: -moz-linear-gradient(#43cea2, #185a9d);
     border: 1px solid #B0B0B0;
 }
+
+/* Following css classes deal with multi-level menu
+.list .item.item-accordion {
+  line-height: 38px;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: 0.09s all linear;
+}
+.list .item.item-accordion.ng-hide {
+  line-height: 0px;
+}
+.list .item.item-accordion.ng-hide-add,
+.list .item.item-accordion.ng-hide-remove {
+  display: block !important;
+}*/

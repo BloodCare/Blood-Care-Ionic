@@ -36,7 +36,7 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
   .state('app.home', {
     url: '/home',
     views: {
-      'home': {
+      'menuContent': {
         templateUrl: 'templates/home.html',
         controller: 'HomeCtrl'
       }
@@ -46,7 +46,7 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
   .state('app.manager', {
     url: '/manager',
     views: {
-      'manager': {
+      'menuContent': {
         templateUrl: 'templates/manager.html',
         controller: 'ManagerCtrl'
       }
@@ -56,7 +56,7 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
   .state('app.settings', {
     url: '/settings',
     views: {
-      'settings': {
+      'menuContent': {
         templateUrl: 'templates/settings.html',
         controller: 'SettingsCtrl'
       }
@@ -114,6 +114,73 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
   $urlRouterProvider.otherwise('/app/home');
 })
 
+.controller('AppCtrl', function($scope, $ionicHistory, $ionicViewSwitcher){
+  
+  $scope.appGoBack = function () {
+    $ionicViewSwitcher.nextDirection('back');
+    $ionicHistory.goBack();
+  };
+  
+  /*
+  $scope.groups = [
+    {
+      name: 'Home',
+      items: [],
+      url: '#/app/home'
+    },
+    {
+      name: 'Manager',
+      items: [
+        {
+          name: 'Reminder',
+          url: '#/app/manager/reminder'
+        },
+        {
+          name: 'Monitor',
+          url: '#/app/manager/monitor'
+        },
+        {
+          name: 'Diet Planner',
+          url: '#/app/manager/diet-planner'
+        }
+      ],
+      url: '#/app/manager'
+    },
+    {
+      name: 'Settings',
+      items: [
+        {
+          name: 'Profile',
+          url: '#/app/settings/profile'
+        },
+        {
+          name: 'Feedback',
+          url: '#/app/settings/feedback'
+        },
+        {
+          name: 'About',
+          url: '#/app/settings/about'
+        }
+      ],
+      url: '#/app/settings'
+    }
+    
+  ];
+  
+  $scope.toggleGroup = function(group) {
+    if ($scope.isGroupShown(group)) {
+      $scope.shownGroup = null;
+    } else {
+      $scope.shownGroup = group;
+    }
+  };
+  
+  $scope.isGroupShown = function(group) {
+    return $scope.shownGroup === group;
+  };*/
+  
+})
+
 .controller('HomeCtrl', function($scope, $ionicSlideBoxDelegate){
   $scope.navSlide = function (index) {
     $ionicSlideBoxDelegate.slide(index, 500);
@@ -128,7 +195,7 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
   
 })
 
-.controller('ProfileCtrl', function($scope, $ionicPopup, $state, IonicClosePopupService){
+.controller('ProfileCtrl', function($scope, $ionicPopup, $state, IonicClosePopupService, $ionicViewSwitcher){
   
    $scope.dateOptions = {
       dateFormat: 'dd-mm-yy',
@@ -155,7 +222,7 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
             onTap: function(e) { return false; }
           },
           { text: '<i class="icon ion-checkmark-circled""></i>',
-            onTap: function(e) { $state.go('app.settings'); }
+            onTap: function(e) { $ionicViewSwitcher.nextDirection('back'); $state.go('app.settings'); }
           }
         ]
       });

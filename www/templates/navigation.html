@@ -10,7 +10,7 @@
         </button>
       </ion-nav-buttons>
     </ion-nav-bar>
-
+<!--
     <ion-tabs class="tabs-custom-bg tabs-icon-top">
       
           <ion-tab title="Home" icon-on="ion-ios-home" icon-off="ion-ios-home-outline" href="#/app/home">
@@ -26,8 +26,8 @@
             <ion-nav-view name="settings"></ion-nav-view>
           </ion-tab>
           
-  </ion-tabs>
-  
+  </ion-tabs>-->
+  <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
   
   <ion-side-menu side="left">
@@ -35,6 +35,7 @@
       <h1 class="title">Blood Care</h1>
     </ion-header-bar>
     <ion-content>
+
       <ion-list>
         
         <ion-item menu-close href="#/app/home" class="custom-item">
@@ -50,6 +51,30 @@
         </ion-item>
         
       </ion-list>
+      
+      <!--
+      <ion-list>
+        
+        <div ng-repeat="group in groups">
+          <ion-item class="item-stable"
+                    ng-click="toggleGroup(group)"
+                    ng-class="{active: isGroupShown(group)}"
+                    ng-href="{{group.url}}" menu-close>
+              <i class="icon" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i>
+            &nbsp;
+            {{group.name}}
+          </ion-item>
+          
+          <ion-item class="item-accordion"
+                    ng-repeat="item in group.items"
+                    ng-show="isGroupShown(group)"
+                    ng-href="{{item.url}}" menu-close>
+            {{item.name}}
+          </ion-item>
+          
+        </div>
+      </ion-list>
+      -->
     </ion-content>
   </ion-side-menu>
 </ion-side-menus>
