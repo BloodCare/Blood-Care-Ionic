@@ -1,4 +1,4 @@
 # Blood-Care - Ionic App
 
 ###Following are the details:
-* Frontend: Ionic, Angular JS
+* **Frontend:** Ionic, Angular JS
