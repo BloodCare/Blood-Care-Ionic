@@ -110,6 +110,46 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
     templateUrl: 'templates/emergencyReminder.html',
     controller: 'EmergencyReminderCtrl'
   })
+  .state('medicineIntake', {
+    url: '/app/manager/monitor/medicine-intake',
+    templateUrl: 'templates/medicineIntake.html',
+    controller: 'MedicineIntakeCtrl'
+  })
+  .state('mealIntake', {
+    url: '/app/manager/monitor/meal-intake',
+    templateUrl: 'templates/mealIntake.html',
+    controller: 'MealIntakeCtrl'
+  })
+  .state('bloodSugar', {
+    url: '/app/manager/monitor/blood-sugar',
+    templateUrl: 'templates/bloodSugar.html',
+    controller: 'BloodSugarCtrl'
+  })
+  .state('physicalWorkout', {
+    url: '/app/manager/monitor/physical-workout',
+    templateUrl: 'templates/physicalWorkout.html',
+    controller: 'PhysicalWorkoutCtrl'
+  })
+  .state('weight', {
+    url: '/app/manager/monitor/weight',
+    templateUrl: 'templates/weight.html',
+    controller: 'WeightCtrl'
+  })
+  .state('foodDatabase', {
+    url: '/app/manager/diet-planner/food-database',
+    templateUrl: 'templates/foodDatabase.html',
+    controller: 'FoodDatabaseCtrl'
+  })
+  .state('favouriteList', {
+    url: '/app/manager/diet-planner/favourite-list',
+    templateUrl: 'templates/favouriteList.html',
+    controller: 'FavouriteListCtrl'
+  })
+  .state('foodReciepies', {
+    url: '/app/manager/diet-planner/food-reciepies',
+    templateUrl: 'templates/foodReciepies.html',
+    controller: 'FoodReciepiesCtrl'
+  });
   
   $urlRouterProvider.otherwise('/app/home');
 })
@@ -160,23 +200,23 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
       items: [
         {
           name: 'Medicine Intake',
-          url: '#/app/manager/monitor'
+          url: '#/app/manager/monitor/medicine-intake'
         },
         {
           name: 'Meal Intake',
-          url: '#/app/manager/monitor'
+          url: '#/app/manager/monitor/meal-intake'
         },
         {
           name: 'Blood Sugar Level',
-          url: '#/app/manager/monitor'
+          url: '#/app/manager/monitor/blood-sugar'
         },
         {
           name: 'Physical Workout',
-          url: '#/app/manager/monitor'
+          url: '#/app/manager/monitor/physical-workout'
         },
         {
           name: 'Weight',
-          url: '#/app/manager/monitor'
+          url: '#/app/manager/monitor/weight'
         }
       ]
     },
@@ -188,15 +228,15 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
       items: [
         {
           name: 'Food Database',
-          url: '#/app/manager/diet-planner'
+          url: '#/app/manager/diet-planner/food-database'
         },
         {
           name: 'Favourite List',
-          url: '#/app/manager/diet-planner'
+          url: '#/app/manager/diet-planner/favourite-list'
         },
         {
           name: 'Healthy Food Reciepies',
-          url: '#/app/manager/diet-planner'
+          url: '#/app/manager/diet-planner/food-reciepies'
         }
       ]
     }
@@ -221,7 +261,7 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
   
 })
 
-.controller('ProfileCtrl', function($scope, $ionicPopup, $state, IonicClosePopupService, $ionicViewSwitcher){
+.controller('ProfileCtrl', function($scope, $ionicPopup, IonicClosePopupService, $ionicViewSwitcher){
   
    $scope.dateOptions = {
       dateFormat: 'dd-mm-yy',
@@ -248,7 +288,7 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
             onTap: function(e) { return false; }
           },
           { text: '<i class="icon ion-checkmark-circled""></i>',
-            onTap: function(e) { $ionicViewSwitcher.nextDirection('back'); $state.go('app.settings'); }
+            onTap: function(e) { $ionicViewSwitcher.nextDirection('back'); $scope.appGoBack(); }
           }
         ]
       });
@@ -258,7 +298,7 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
     
 })
 
-.controller('FeedbackCtrl', function($scope, $ionicPopup, $state, IonicClosePopupService, $ionicViewSwitcher){
+.controller('FeedbackCtrl', function($scope, $ionicPopup, IonicClosePopupService, $ionicViewSwitcher){
   
   $scope.ratingArr = [
     {
@@ -304,7 +344,7 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
             onTap: function(e) { return false; }
           },
           { text: '<i class="icon ion-checkmark-circled""></i>',
-            onTap: function(e) { $ionicViewSwitcher.nextDirection('back'); $state.go('app.settings'); }
+            onTap: function(e) { $ionicViewSwitcher.nextDirection('back'); $scope.appGoBack(); }
           }
         ]
       });
@@ -327,11 +367,43 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
   
 })
 
+.controller('MedicineIntakeCtrl', function($scope){
+  
+})
+
+.controller('MealIntakeCtrl', function($scope){
+  
+})
+
+.controller('BloodSugarCtrl', function($scope){
+  
+})
+
+.controller('PhysicalWorkoutCtrl', function($scope){
+  
+})
+
+.controller('WeightCtrl', function($scope){
+  
+})
+
 .controller('DietPlannerCtrl', function($scope){
   
 })
 
-.controller('AppointmentCtrl', function($scope, $ionicPopup, $state, IonicClosePopupService, $ionicViewSwitcher){
+.controller('FoodDatabaseCtrl', function($scope){
+  
+})
+
+.controller('FavouriteListCtrl', function($scope){
+  
+})
+
+.controller('FoodReciepiesCtrl', function($scope){
+  
+})
+
+.controller('AppointmentCtrl', function($scope, $ionicPopup, IonicClosePopupService, $ionicViewSwitcher){
   $scope.showConfirm = function () {
       
       var confirmPopup = $ionicPopup.confirm({
@@ -342,7 +414,7 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
             onTap: function(e) { return false; }
           },
           { text: '<i class="icon ion-checkmark-circled""></i>',
-            onTap: function(e) { $ionicViewSwitcher.nextDirection('back'); $state.go('reminder'); }
+            onTap: function(e) { $ionicViewSwitcher.nextDirection('back'); $scope.appGoBack(); }
           }
         ]
       });
@@ -351,7 +423,7 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
   };
 })
 
-.controller('GeneralReminderCtrl', function($scope, $ionicPopup, $state, IonicClosePopupService, $ionicViewSwitcher){
+.controller('GeneralReminderCtrl', function($scope, $ionicPopup, IonicClosePopupService, $ionicViewSwitcher){
   
   $scope.showConfirm = function () {
       
@@ -363,7 +435,7 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
             onTap: function(e) { return false; }
           },
           { text: '<i class="icon ion-checkmark-circled""></i>',
-            onTap: function(e) { $ionicViewSwitcher.nextDirection('back'); $state.go('reminder'); }
+            onTap: function(e) { $ionicViewSwitcher.nextDirection('back'); $scope.appGoBack(); }
           }
         ]
       });
@@ -373,7 +445,7 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
   
 })
 
-.controller('EmergencyReminderCtrl', function($scope, $ionicPopup, $state, IonicClosePopupService, $ionicViewSwitcher){
+.controller('EmergencyReminderCtrl', function($scope, $ionicPopup, IonicClosePopupService, $ionicViewSwitcher){
   
   $scope.showConfirm = function () {
       
@@ -385,7 +457,7 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
             onTap: function(e) { return false; }
           },
           { text: '<i class="icon ion-checkmark-circled""></i>',
-            onTap: function(e) { $ionicViewSwitcher.nextDirection('back'); $state.go('reminder'); }
+            onTap: function(e) { $ionicViewSwitcher.nextDirection('back'); $scope.appGoBack(); }
           }
         ]
       });
