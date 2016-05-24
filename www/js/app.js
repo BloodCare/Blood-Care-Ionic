@@ -121,48 +121,84 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
     $ionicHistory.goBack();
   };
   
-  /*
-  $scope.groups = [
+})
+
+.controller('HomeCtrl', function($scope, $ionicSlideBoxDelegate){
+  $scope.navSlide = function (index) {
+    $ionicSlideBoxDelegate.slide(index, 500);
+  }
+})
+
+.controller('ManagerCtrl', function($scope){
+  
+  $scope.managerGroups = [
+    
     {
-      name: 'Home',
-      items: [],
-      url: '#/app/home'
-    },
-    {
-      name: 'Manager',
+      name: 'Reminder',
+      url: '#/app/manager/reminder',
+      groupIcon: 'ion-ios-calendar-outline',
       items: [
         {
-          name: 'Reminder',
-          url: '#/app/manager/reminder'
+          name: 'Appointment',
+          url: '#/app/manager/reminder/appointment'
         },
         {
-          name: 'Monitor',
+          name: 'General Reminder',
+          url: '#/app/manager/reminder/general'
+        },
+        {
+          name: 'Emergency Reminder',
+          url: '#/app/manager/reminder/emergency'
+        }
+      ] 
+    },
+    
+    {
+      name: 'Monitor',
+      url: '#/app/manager/monitor',
+      groupIcon: 'ion-ios-list-outline',
+      items: [
+        {
+          name: 'Medicine Intake',
           url: '#/app/manager/monitor'
         },
         {
-          name: 'Diet Planner',
-          url: '#/app/manager/diet-planner'
+          name: 'Meal Intake',
+          url: '#/app/manager/monitor'
+        },
+        {
+          name: 'Blood Sugar Level',
+          url: '#/app/manager/monitor'
+        },
+        {
+          name: 'Physical Workout',
+          url: '#/app/manager/monitor'
+        },
+        {
+          name: 'Weight',
+          url: '#/app/manager/monitor'
         }
-      ],
-      url: '#/app/manager'
+      ]
     },
+    
     {
-      name: 'Settings',
+      name: 'Diet Planner',
+      url: '#/app/manager/diet-planner',
+      groupIcon: 'ion-ios-nutrition-outline',
       items: [
         {
-          name: 'Profile',
-          url: '#/app/settings/profile'
+          name: 'Food Database',
+          url: '#/app/manager/diet-planner'
         },
         {
-          name: 'Feedback',
-          url: '#/app/settings/feedback'
+          name: 'Favourite List',
+          url: '#/app/manager/diet-planner'
         },
         {
-          name: 'About',
-          url: '#/app/settings/about'
+          name: 'Healthy Food Reciepies',
+          url: '#/app/manager/diet-planner'
         }
-      ],
-      url: '#/app/settings'
+      ]
     }
     
   ];
@@ -177,17 +213,7 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
   
   $scope.isGroupShown = function(group) {
     return $scope.shownGroup === group;
-  };*/
-  
-})
-
-.controller('HomeCtrl', function($scope, $ionicSlideBoxDelegate){
-  $scope.navSlide = function (index) {
-    $ionicSlideBoxDelegate.slide(index, 500);
-  }
-})
-
-.controller('ManagerCtrl', function($scope){
+  };
   
 })
 
@@ -232,7 +258,7 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
     
 })
 
-.controller('FeedbackCtrl', function($scope, $ionicPopup, $state, IonicClosePopupService){
+.controller('FeedbackCtrl', function($scope, $ionicPopup, $state, IonicClosePopupService, $ionicViewSwitcher){
   
   $scope.ratingArr = [
     {
@@ -278,7 +304,7 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
             onTap: function(e) { return false; }
           },
           { text: '<i class="icon ion-checkmark-circled""></i>',
-            onTap: function(e) { $state.go('app.settings'); }
+            onTap: function(e) { $ionicViewSwitcher.nextDirection('back'); $state.go('app.settings'); }
           }
         ]
       });
@@ -305,7 +331,7 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
   
 })
 
-.controller('AppointmentCtrl', function($scope, $ionicPopup, $state, IonicClosePopupService){
+.controller('AppointmentCtrl', function($scope, $ionicPopup, $state, IonicClosePopupService, $ionicViewSwitcher){
   $scope.showConfirm = function () {
       
       var confirmPopup = $ionicPopup.confirm({
@@ -316,7 +342,7 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
             onTap: function(e) { return false; }
           },
           { text: '<i class="icon ion-checkmark-circled""></i>',
-            onTap: function(e) { $state.go('reminder'); }
+            onTap: function(e) { $ionicViewSwitcher.nextDirection('back'); $state.go('reminder'); }
           }
         ]
       });
@@ -325,7 +351,7 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
   };
 })
 
-.controller('GeneralReminderCtrl', function($scope, $ionicPopup, $state, IonicClosePopupService){
+.controller('GeneralReminderCtrl', function($scope, $ionicPopup, $state, IonicClosePopupService, $ionicViewSwitcher){
   
   $scope.showConfirm = function () {
       
@@ -337,7 +363,7 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
             onTap: function(e) { return false; }
           },
           { text: '<i class="icon ion-checkmark-circled""></i>',
-            onTap: function(e) { $state.go('reminder'); }
+            onTap: function(e) { $ionicViewSwitcher.nextDirection('back'); $state.go('reminder'); }
           }
         ]
       });
@@ -347,7 +373,7 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
   
 })
 
-.controller('EmergencyReminderCtrl', function($scope, $ionicPopup, $state, IonicClosePopupService){
+.controller('EmergencyReminderCtrl', function($scope, $ionicPopup, $state, IonicClosePopupService, $ionicViewSwitcher){
   
   $scope.showConfirm = function () {
       
@@ -359,7 +385,7 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
             onTap: function(e) { return false; }
           },
           { text: '<i class="icon ion-checkmark-circled""></i>',
-            onTap: function(e) { $state.go('reminder'); }
+            onTap: function(e) { $ionicViewSwitcher.nextDirection('back'); $state.go('reminder'); }
           }
         ]
       });

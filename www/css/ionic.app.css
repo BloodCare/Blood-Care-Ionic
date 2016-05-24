@@ -10038,55 +10038,61 @@ a.button-positive {
   background: -moz-linear-gradient(#C30000, #FA0000);
   color: #D6D6D6; }
 
-.button-bar .reminder-option {
-  font-size: 12px;
+.custom-item-list {
+  text-decoration: none; }
+
+.custom-item-list .item {
+  background: transparent;
+  color: #C30000;
+  font-size: 18px;
+  padding-top: 22px;
+  padding-right: 22px; }
+
+.custom-item-list .icon {
+  font-size: 32px;
+  padding-left: 10px;
+  padding-right: 5px; }
+
+.custom-manager-group {
+  background: transparent; }
+
+.custom-manager-group .icon {
+  color: #D6D6D6;
+  font-size: 20px;
+  padding-right: 10px; }
+
+.custom-manager-group a {
+  text-decoration: none;
+  color: #C30000;
+  font-size: 18px; }
+
+.custom-manager-group .button-icon {
+  color: #C30000;
+  font-size: 25px;
+  padding-right: 15px;
+  padding-top: 0px;
+  padding-bottom: 0px; }
+
+a.custom-manager-item {
+  text-decoration: none; }
+
+.custom-manager-item .item {
+  color: #D6D6D6;
   font-weight: bold;
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-bottom: 5px;
-  margin-top: -1px;
-  height: 35px;
-  border-radius: 20px;
-  color: #E6E6E6;
-  background: #185a9d;
-  background: linear-gradient(#43cea2, #185a9d);
-  background: -webkit-linear-gradient(#43cea2, #185a9d);
-  background: -o-linear-gradient(#43cea2, #185a9d);
-  background: -moz-linear-gradient(#43cea2, #185a9d); }
+  font-size: 14px;
+  padding-left: 70px;
+  background: transparent; }
 
-.button-bar > .reminder-option:first-child,
-.button-bar > .reminder-option:last-child {
-  border-radius: 20px; }
-
-.button-bar .reminder-option:hover,
-.button-bar .reminder-option.button-positive:hover {
-  background: #C30000;
-  background: linear-gradient(#C30000, #FA0000);
-  background: -webkit-linear-gradient(#C30000, #FA0000);
-  background: -o-linear-gradient(#C30000, #FA0000);
-  background: -moz-linear-gradient(#C30000, #FA0000);
-  color: #D6D6D6; }
-
-.button-bar .reminder-option.button-positive {
-  color: #E6E6E6;
-  background: #185a9d;
-  background: linear-gradient(#43cea2, #185a9d);
-  background: -webkit-linear-gradient(#43cea2, #185a9d);
-  background: -o-linear-gradient(#43cea2, #185a9d);
-  background: -moz-linear-gradient(#43cea2, #185a9d);
-  border: 1px solid #B0B0B0; }
-
-/* Following css classes deal with multi-level menu
+/* Following css classes deal with multi-level menu*/
 .list .item.item-accordion {
   line-height: 38px;
   padding-top: 0;
   padding-bottom: 0;
-  transition: 0.09s all linear;
-}
+  transition: 0.09s all linear; }
+
 .list .item.item-accordion.ng-hide {
-  line-height: 0px;
-}
+  line-height: 0px; }
+
 .list .item.item-accordion.ng-hide-add,
 .list .item.item-accordion.ng-hide-remove {
-  display: block !important;
-}*/
+  display: block !important; }

@@ -1,5 +1,5 @@
 <ion-pane>
-    <ion-header-bar class="custom-bar-bg">
+    <ion-header-bar class="custom-bar-bg" align-title="center">
         <div class="buttons">
             <a class="button button-icon ion-ios-arrow-back" ng-click="appGoBack()" nav-direction="back">
             </a>
@@ -9,14 +9,4 @@
     <ion-content class="padding">
         <h1>Reminder</h1>
     </ion-content>
-    <ion-footer-bar class="custom-bar-bg">
-        <div class="button-bar">
-            <a grouped-radio="'appointment'" ng-model="reminder" 
-               class="reminder-option" ui-sref="appointment" nav-direction="forward">Appointment</a>
-            <a grouped-radio="'general'" ng-model="reminder" 
-               class="reminder-option" ui-sref="generalReminder"nav-direction="forward">General</a>
-            <a grouped-radio="'Emergency'" ng-model="reminder" 
-               class="reminder-option" ui-sref="emergencyReminder" nav-direction="forward">Emergency</a>
-        </div>
-    </ion-footer-bar>
 </ion-pane>

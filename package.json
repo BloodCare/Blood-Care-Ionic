@@ -1,7 +1,7 @@
 {
-  "name": "scared-blank-app",
+  "name": "blood-care",
   "version": "1.1.1",
-  "description": "Scared Blank App: An Ionic project",
+  "description": "Blood Care App: An Ionic project",
   "dependencies": {
     "datepicker-for-ionic": "^1.1.7",
     "gulp": "^3.5.6",

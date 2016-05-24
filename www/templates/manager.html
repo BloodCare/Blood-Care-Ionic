@@ -1,29 +1,33 @@
 <ion-view view-title="Manager">
-    <ion-content class="padding">
-       <br>
-       <div class="card">
-            <a ui-sref="reminder" nav-direction="forward">
-                <div class="item item-icon-left">
-                    <i class="icon ion-android-calendar"></i>
-                    Reminder
-                </div>
-            </a>
+    <ion-content>
+        
+        <ion-list>
+        
+        <div ng-repeat="group in managerGroups">
+            
+          
+            <ion-item class="item-icon-right custom-manager-group">
+                <i class="icon" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"
+                   ng-click="toggleGroup(group)"></i>
+                <a nav-direction="forward"
+                   ng-href="{{group.url}}">
+                   <button class="button-icon" ng-class="group.groupIcon"></button>
+                     &nbsp; {{group.name}}
+                </a>
+            </ion-item>
+          
+          
+          <a nav-direction="forward" class="item-accordion custom-manager-item"
+             ng-repeat="item in group.items" ng-show="isGroupShown(group)"
+             ng-href="{{item.url}}">
+            <ion-item>
+               &nbsp; &nbsp; {{item.name}}
+            </ion-item>
+          </a>
+          
         </div>
-        <div class="card">
-            <a ui-sref="monitor" nav-direction="forward">
-                <div class="item item-icon-left">
-                    <i class="icon ion-ios-list"></i>
-                    Monitor
-                </div>
-            </a>
-        </div>
-        <div class="card">
-            <a ui-sref="dietPlanner" nav-direction="forward">
-                <div class="item item-icon-left">
-                    <i class="icon ion-android-restaurant"></i>
-                    Diet Planner
-                </div>
-            </a>
-        </div> 
+        
+      </ion-list>
+        
     </ion-content>
 </ion-view>

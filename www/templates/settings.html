@@ -1,29 +1,29 @@
 <ion-view view-title="Settings">
-    <ion-content class="padding">
-        <br>
-        <div class="card">
-            <a ui-sref="profile" nav-direction="forward">
-                <div class="item item-icon-left">
-                    <i class="icon ion-ios-person-outline"></i>
-                    Profile
-                </div>
-            </a>
-        </div>
-        <div class="card">
-            <a ui-sref="feedback" nav-direction="forward">
-                <div class="item item-icon-left">
-                    <i class="icon ion-ios-help-outline"></i>
-                    Feedback
-                </div>
-            </a>
-        </div>
-        <div class="card">
-            <a ui-sref="about" nav-direction="forward">
-                <div class="item item-icon-left">
-                    <i class="icon ion-ios-information-outline"></i>
-                    About
-                </div>
-            </a>
-        </div>
+    <ion-content>
+            <ion-list>
+                
+                <a ui-sref="profile" nav-direction="forward" class="custom-item-list">
+                    <ion-item class="item-icon-left">
+                       <i class="icon ion-ios-person-outline"></i>
+                       &nbsp; &nbsp; &nbsp; Profile
+                    </ion-item>
+                </a>
+                
+                <a ui-sref="feedback" nav-direction="forward" class="custom-item-list">
+                    <ion-item class="item-icon-left">
+                       <i class="icon ion-ios-help-outline"></i>
+                       &nbsp;  &nbsp; &nbsp; Feedback
+                    </ion-item>
+                </a>
+                
+                <a ui-sref="about" nav-direction="forward" class="custom-item-list">
+                    <ion-item class="item-icon-left">
+                       <i class="icon ion-ios-information-outline"></i>
+                       &nbsp; &nbsp; &nbsp; About
+                    </ion-item>
+                </a>
+                
+            </ion-list>
+            
     </ion-content>
 </ion-view>
