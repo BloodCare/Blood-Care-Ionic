@@ -369,6 +369,21 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
 
 .controller('MedicineIntakeCtrl', function($scope){
   
+  $scope.medicineList = [
+    {
+      name: 'Insulin',
+      unit: 'ml'
+    },
+    {
+      name: 'Humalin',
+      unit: 'qty2'
+    },
+    {
+      name: 'Humalog',
+      unit: 'qty3'
+    }
+  ];
+  
 })
 
 .controller('MealIntakeCtrl', function($scope){

@@ -9936,6 +9936,10 @@ a.button {
 .item-input textarea {
   resize: none; }
 
+.item-input .button-icon {
+  font-size: 22px;
+  color: #5A00FF; }
+
 .button-bar {
   height: 60px; }
 
@@ -9980,6 +9984,11 @@ a.button-positive {
 
 .button-bar input[type=number]::-webkit-inner-spin-button,
 .button-bar input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0; }
+
+.item-input input[type=number]::-webkit-inner-spin-button,
+.item-input input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0; }
 

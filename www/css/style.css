@@ -70,10 +70,10 @@
     }
 
 .ui-datepicker th{
-    color: #C30000;
+    color: #5A00FF;
 }
 .ui-datepicker-header{
-    color: #C30000;
+    color: #5A00FF;
     background: #D6D6D6; 
     background: linear-gradient(#D6D6D6, #E6E6E6);
     background: -webkit-linear-gradient(#D6D6D6, #E6E6E6);
@@ -82,24 +82,24 @@
     border: 1px solid #B0B0B0;
 }
 .ui-datepicker-month, .ui-datepicker-year{
-    color: #C30000;
+    color: #5A00FF;
 }
 .ui-datepicker-calendar .ui-state-default{
-    color: #C30000;
+    color: #5A00FF;
     text-align: center;
 }
 .ui-datepicker-calendar .ui-state-active{
-    background: #C30000;
-    background: -webkit-radial-gradient(circle at top right, #FA0000, #C30000);
-    background: -o-radial-gradient(circle at top right, #FA0000, #C30000);
-    background: -moz-radial-gradient(circle at top right, #FA0000, #C30000);
-    background: radial-gradient(circle at top right, #FA0000, #C30000);     
+    background: #5A00FF; 
+    background: -webkit-linear-gradient(#A800DC, #5A00FF);
+    background: -o-linear-gradient(#A800DC, #5A00FF); 
+    background: -moz-linear-gradient(#A800DC, #5A00FF); 
+    background: linear-gradient(#A800DC, #5A00FF);   
     color: #D6D6D6;
     font-weight: bold;
-    border: 1px #C30000 solid;
+    border: 1px #5A00FF solid;
 }
 .ui-datepicker-calendar .ui-state-highlight{
     background: #FDFF64;
     border: 1px solid #FDFF64;
-    color: #C30000;
+    color: #5A00FF;;
 }
