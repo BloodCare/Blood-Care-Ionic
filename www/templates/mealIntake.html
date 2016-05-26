@@ -8,14 +8,13 @@
     </ion-header-bar>
     <ion-content class="padding">
         <div class="card custom-card">
-            <div class="item">
+            <div class="item  item-icon-right">
                 <span>Meal Category</span>
+                <i class="icon ion-android-more-vertical custom-more" ng-click="showAddMealCategory()"></i>
             </div>
             <div class="item custom-input">
-                <label class="item-input item-icon-right">
-                   <input type="text" placeholder="eg. Lunch">
-                   <button class="button-icon ion-android-more-vertical" 
-                   ></button> 
+                <label class="item-input">
+                   <input type="text" value="{{selectedMealCategory}}" ng-click="showMealCategory()">
                 </label>
             </div>
         </div>
@@ -33,3 +32,20 @@
         
     </ion-content>
 </ion-pane>
+
+<script type="text/ng-template" id="meal-popup.html">
+    <ion-list>
+        <ion-item ng-repeat="meal in mealCategories" ng-click="closeMealCat(meal)" class="select-item">
+            <a class="custom-selectbox">{{meal}}</a>
+        </ion-item>
+    </ion-list>
+</script>
+
+<script type="text/ng-template" id="add-mealCategory-popup.html">
+    <ion-list>
+        <label class="item item-input item-floating-label">
+            <span class="input-label">Meal Category Name</span>
+            <input type="text" placeholder="Meal Category Name" ng-model="mealCatObj.mealCatName">
+        </label>
+    </ion-list>
+</script>

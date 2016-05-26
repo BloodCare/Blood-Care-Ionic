@@ -9,13 +9,13 @@
     <ion-content class="padding">
         
         <div class="card custom-card">
-            <div class="item">
+            <div class="item item-icon-right">
                 <span>Workout Type</span>
+                <i class="icon ion-android-more-vertical custom-more" ng-click="showAddWorkout()"></i>
             </div>
             <div class="item custom-input">
-                <label class="item-input item-icon-right">
-                   <input type="text" placeholder="eg. Running">
-                   <button class="button-icon ion-android-more-vertical"></button> 
+                <label class="item-input">
+                   <input type="text" value="{{selectedWorkout}}", ng-click="showWorkoutType()">
                 </label>
             </div>
         </div>
@@ -27,7 +27,7 @@
             <div class="item custom-input">
                 <label class="item-input item-icon-right">
                    <input type="number" placeholder="50">
-                   <button class="button-icon ion-android-more-vertical"></button> 
+                   <span type="text" ng-bind="selectedBloodSugarUnit" style="text-align: right"></span>
                 </label>
             </div>
         </div>
@@ -38,11 +38,28 @@
             </div>
             <div class="item custom-input">
                 <label class="item-input item-icon-right">
-                   <input type="number" placeholder="50">
-                   <button class="button-icon ion-android-more-vertical"></button> 
+                   <input type="number" placeholder="50"> 
+                   <span type="text" ng-bind="selectedBloodSugarUnit" style="text-align: right"></span>
                 </label>
             </div>
         </div>
         
     </ion-content>
 </ion-pane>
+
+<script type="text/ng-template" id="workout-popup.html">
+    <ion-list>
+        <ion-item ng-repeat="workout in workoutTypes" ng-click="closeWorkout(workout)" class="select-item">
+            <a class="custom-selectbox">{{workout}}</a>
+        </ion-item>
+    </ion-list>
+</script>
+
+<script type="text/ng-template" id="add-workoutType-popup.html">
+    <ion-list>
+        <label class="item item-input item-floating-label">
+            <span class="input-label">Workout Type Name</span>
+            <input type="text" placeholder="Workout Type Name" ng-model="workoutObj.workoutType">
+        </label>
+    </ion-list>
+</script>

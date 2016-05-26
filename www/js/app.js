@@ -161,6 +161,9 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
     $ionicHistory.goBack();
   };
   
+  $scope.selectedBloodSugarUnit = 'mmo/l';
+  $scope.selectedWeightUnit = 'Kgs';
+  
 })
 
 .controller('HomeCtrl', function($scope, $ionicSlideBoxDelegate){
@@ -367,8 +370,14 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
   
 })
 
-.controller('MedicineIntakeCtrl', function($scope){
+.controller('MedicineIntakeCtrl', function($scope, IonicClosePopupService, $ionicPopup){
   
+  $scope.medsObj = {};
+  $scope.selectedMedicine = 'Insulin';
+  $scope.selectedUnit = 'ml';
+  var medsPopup;
+  var addMedsPopup;
+   
   $scope.medicineList = [
     {
       name: 'Insulin',
@@ -381,21 +390,193 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
     {
       name: 'Humalog',
       unit: 'qty3'
+    },
+    {
+      name: 'Asder',
+      unit: 'cdf'
     }
   ];
   
-})
-
-.controller('MealIntakeCtrl', function($scope){
+  $scope.showMeds = function () {
+      
+     medsPopup = $ionicPopup.show({
+        title: 'Select Medicine',
+        templateUrl: 'medicine-popup.html',
+        scope: $scope,
+         buttons: [
+          { text: 'Cancel',
+            onTap: function(e) { return false; }
+          },
+        ]
+      });
+      
+      IonicClosePopupService.register(medsPopup);
+    };
+  
+  $scope.closeMeds = function (name, unit) {
+    $scope.selectedMedicine = name;
+    $scope.selectedUnit = unit;
+    medsPopup.close();
+  }
+  
+  
+  $scope.showAddMeds = function () {
+      
+     addMedsPopup = $ionicPopup.show({
+        title: 'Add Medicine',
+        templateUrl: 'add-medicine-popup.html',
+        scope: $scope,
+        buttons: [
+          { text: '<i class="icon ion-close-circled"></i>',
+            onTap: function(e) { return false; }
+          },
+          { text: '<i class="icon ion-checkmark-circled""></i>',
+            onTap: function(e) { 
+              if (!$scope.medsObj.medsname || !$scope.medsObj.medsunit) {
+                e.preventDefault();
+              } else {
+                var obj = { name: $scope.medsObj.medsname,
+                            unit: $scope.medsObj.medsunit};
+                $scope.medicineList.push(obj);
+                return false;
+              }
+            }
+          }
+        ]
+      });
+      
+      IonicClosePopupService.register(addMedsPopup);
+    };
   
 })
 
-.controller('BloodSugarCtrl', function($scope){
+.controller('MealIntakeCtrl', function($scope, IonicClosePopupService, $ionicPopup){
+ 
+  $scope.mealCatObj = {};
+  $scope.selectedMealCategory = 'Breakfast';
+  var addMealCatPopup;
+  var mealPopup;
+  
+  $scope.mealCategories = [
+    'Breakfast',
+    'Lunch',
+    'Dinner',
+    'Supper'
+  ];
+  
+  $scope.showMealCategory = function () {
+      
+     mealPopup = $ionicPopup.show({
+        title: 'Select Meal Category',
+        templateUrl: 'meal-popup.html',
+        scope: $scope,
+         buttons: [
+          { text: 'Cancel',
+            onTap: function(e) { return false; }
+          },
+        ]
+      });
+      
+      IonicClosePopupService.register(mealPopup);
+    };
+  
+  $scope.closeMealCat = function (name) {
+    $scope.selectedMealCategory = name;
+    mealPopup.close();
+  };
+  
+  $scope.showAddMealCategory = function () {
+      
+     addMealCatPopup = $ionicPopup.show({
+        title: 'Add Meal Category',
+        templateUrl: 'add-mealCategory-popup.html',
+        scope: $scope,
+        buttons: [
+          { text: '<i class="icon ion-close-circled"></i>',
+            onTap: function(e) { return false; }
+          },
+          { text: '<i class="icon ion-checkmark-circled""></i>',
+            onTap: function(e) { 
+              if (!$scope.mealCatObj.mealCatName) {
+                e.preventDefault();
+              } else {
+                $scope.mealCategories.push($scope.mealCatObj.mealCatName);
+                return false;
+              }
+            }
+          }
+        ]
+      });
+      
+      IonicClosePopupService.register(addMealCatPopup);
+    };
   
 })
 
-.controller('PhysicalWorkoutCtrl', function($scope){
+.controller('BloodSugarCtrl', function($scope, IonicClosePopupService, $ionicPopup){
   
+})
+
+.controller('PhysicalWorkoutCtrl', function($scope, IonicClosePopupService, $ionicPopup){
+  
+  $scope.workoutObj = {};
+  $scope.selectedWorkout = 'Running';
+  var workoutPopup;
+  var addWorkoutPopup;
+  
+  $scope.workoutTypes = [
+    'Running',
+    'Walking',
+    'Sit-ups'
+  ];
+  
+  $scope.showWorkoutType = function () {
+      
+     workoutPopup = $ionicPopup.show({
+        title: 'Select Workout Type',
+        templateUrl: 'workout-popup.html',
+        scope: $scope,
+         buttons: [
+          { text: 'Cancel',
+            onTap: function(e) { return false; }
+          },
+        ]
+      });
+      
+      IonicClosePopupService.register(workoutPopup);
+    };
+    
+    $scope.closeWorkout = function (name) {
+      $scope.selectedWorkout = name;
+      workoutPopup.close();
+    };
+    
+    $scope.showAddWorkout = function () {
+      
+     addWorkoutPopup = $ionicPopup.show({
+        title: 'Add Workout Type',
+        templateUrl: 'add-workoutType-popup.html',
+        scope: $scope,
+        buttons: [
+          { text: '<i class="icon ion-close-circled"></i>',
+            onTap: function(e) { return false; }
+          },
+          { text: '<i class="icon ion-checkmark-circled""></i>',
+            onTap: function(e) { 
+              if (!$scope.workoutObj.workoutType) {
+                e.preventDefault();
+              } else {
+                $scope.workoutTypes.push($scope.workoutObj.workoutType);
+                return false;
+              }
+            }
+          }
+        ]
+      });
+      
+      IonicClosePopupService.register(addWorkoutPopup);
+    };
+    
 })
 
 .controller('WeightCtrl', function($scope){

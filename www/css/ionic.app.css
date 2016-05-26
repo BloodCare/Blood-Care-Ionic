@@ -9936,10 +9936,6 @@ a.button {
 .item-input textarea {
   resize: none; }
 
-.item-input .button-icon {
-  font-size: 22px;
-  color: #5A00FF; }
-
 .button-bar {
   height: 60px; }
 
@@ -10092,3 +10088,29 @@ a.custom-manager-item {
 .list .item.item-accordion.ng-hide-add,
 .list .item.item-accordion.ng-hide-remove {
   display: block !important; }
+
+.item .custom-selectbox {
+  color: #5A00FF;
+  text-decoration: none; }
+
+.item.select-item {
+  border-radius: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px; }
+
+.item.select-item:hover {
+  background: rgba(168, 0, 220, 0.5); }
+
+.item.select-item:hover a {
+  color: #E6E6E6;
+  font-weight: bold; }
+
+.item .custom-more {
+  font-size: 22px; }
+
+.item .custom-more:hover {
+  font-size: 24px;
+  color: #A800DC; }
+
+label.item-floating-label {
+  height: 70px; }

@@ -9,13 +9,13 @@
     <ion-content class="padding">
         
         <div class="card custom-card">
-            <div class="item">
+            <div class="item item-icon-right">
                 <span>Medication Name</span>
+                <i class="icon ion-android-more-vertical custom-more" ng-click="showAddMeds()"></i>
             </div>
             <div class="item custom-input">
                 <label class="item-input item-icon-right">
-                   <input type="text" placeholder="e.g. Insulin">
-                   <button class="button-icon ion-android-more-vertical"></button> 
+                   <input type="text" value="{{selectedMedicine}}" ng-click="showMeds()">
                 </label>
             </div>
         </div>
@@ -26,7 +26,8 @@
             </div>
             <div class="item custom-input">
                 <label class="item-input">
-                   <input type="text" placeholder="eg. 123">
+                   <input type="number" placeholder="eg. 123">
+                   <span type="text" ng-bind="selectedUnit" style="text-align: right"></span>
                 </label>
             </div>
         </div>
@@ -44,3 +45,24 @@
         
     </ion-content>
 </ion-pane>
+
+<script type="text/ng-template" id="medicine-popup.html">
+    <ion-list>
+        <ion-item ng-repeat="med in medicineList" ng-click="closeMeds(med.name, med.unit)" class="select-item">
+            <a class="custom-selectbox">{{med.name}}</a>
+        </ion-item>
+    </ion-list>
+</script>
+
+<script type="text/ng-template" id="add-medicine-popup.html">
+    <ion-list>
+        <label class="item item-input item-floating-label">
+            <span class="input-label">Medicine Name</span>
+            <input type="text" placeholder="Medicine Name" ng-model="medsObj.medsname">
+        </label>
+        <label class="item item-input item-floating-label">
+            <span class="input-label">Medicine Unit</span>
+            <input type="text" placeholder="Medicine Unit" ng-model="medsObj.medsunit">
+        </label>
+    </ion-list>
+</script>
