@@ -14,14 +14,13 @@
         <h1 class="title">Medicine Name</h1>
         
         <div class="buttons">
-            <a ng-click="listData.showDelete = false; listData.showReorder = !listData.showReorder"
+            <a ng-click="listData.showReorder = !listData.showReorder"
                class="button button-icon icon ion-arrow-move">
             </a>
         </div>
     </ion-header-bar>
     <ion-content class="custom-medicine-list">
-        <ion-list show-delete="listData.showDelete" 
-                  show-reorder="listData.showReorder">
+        <ion-list show-reorder="listData.showReorder">
                   
             <ion-item ng-repeat="med in medicineList"
                       item="med"
@@ -29,7 +28,7 @@
                       {{med.name}}
                       
                       <ion-option-button class="ion-edit"
-                                ng-click="showEditMeds(med.name, med.unit)">
+                                ng-click="showEditMeds(med)">
                       </ion-option-button>
                       
                       <ion-option-button class="ion-trash-a" 
@@ -46,7 +45,7 @@
 </ion-pane>
 
 <script type="text/ng-template" id="add-medicine-popup.html">
-    <div class="list">
+    <div class="list custom-popup-form">
         <label class="item item-input item-floating-label">
             <span class="input-label">Medicine Name</span>
             <input type="text" placeholder="Medicine Name" ng-model="medsObj.medsname">
@@ -59,21 +58,21 @@
 </script>
 
 <script type="text/ng-template" id="edit-medicine-popup.html">
-    <div class="list">
+    <div class="list custom-popup-form">
         <span>Medicine Name: </span>
         <label class="item item-input">
-            <input type="text" value="{{medsObj.editMedsName}}">
+            <input type="text" value="{{medsObj.editMedsName}}" ng-model="medsObj.editMedsName">
         </label>
         <span>Medicine Unit: </span>
         <label class="item item-input">
-            <input type="text" value="{{medsObj.editMedsUnit}}">
+            <input type="text" value="{{medsObj.editMedsUnit}}" ng-model="medsObj.editMedsUnit">
         </label>
     </div>
 </script>
 
 <script type="text/ng-template" id="delete-medicine-popup.html">
     <span style="text-align: center"><b>Are you Sure?</b></span>
-    <div class="list custom-delete-list">
+    <div class="list custom-popup-form custom-delete-list">
         <span>Medicine Name: </span>
         <label class="item custom-popup-item">
             <span>{{medsObj.deleteMedsName}}</span>

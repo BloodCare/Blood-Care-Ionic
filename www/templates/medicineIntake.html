@@ -16,7 +16,7 @@
                 </i>
             </div>
             <div class="item" ng-click="showMeds()">
-                <a class="custom-popup-text">{{selectedMedicine}}</a>
+                <a class="custom-popup-text">{{selectedMedicineName}}</a>
             </div>
         </div>
         
@@ -27,7 +27,7 @@
             <div class="item custom-input">
                 <label class="item-input">
                    <input type="number" placeholder="eg. 123">
-                   <span type="text" ng-bind="selectedUnit" style="text-align: right"></span>
+                   <span type="text" ng-bind="selectedMedicineUnit" style="text-align: right"></span>
                 </label>
             </div>
         </div>
@@ -47,23 +47,9 @@
 </ion-pane>
 
 <script type="text/ng-template" id="medicine-popup.html">
-    <ion-list>
+    <ion-list class="medicine-list">
         <ion-item ng-repeat="med in medicineList" ng-click="closeMeds(med.name, med.unit)" class="select-item">
             <a class="custom-selectbox">{{med.name}}</a>
         </ion-item>
     </ion-list>
 </script>
-
-<!--
-<script type="text/ng-template" id="add-medicine-popup.html">
-    <ion-list>
-        <label class="item item-input item-floating-label">
-            <span class="input-label">Medicine Name</span>
-            <input type="text" placeholder="Medicine Name" ng-model="medsObj.medsname">
-        </label>
-        <label class="item item-input item-floating-label">
-            <span class="input-label">Medicine Unit</span>
-            <input type="text" placeholder="Medicine Unit" ng-model="medsObj.medsunit">
-        </label>
-    </ion-list>
-</script>-->

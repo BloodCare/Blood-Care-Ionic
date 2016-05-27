@@ -10160,26 +10160,29 @@ ion-option-button.button.ion-trash-a.button.activated {
 .item-reorder .button.icon {
   color: #5A00FF; }
 
+.item .custom-popup-text {
+  font-size: 16px; }
+
 .popup-body {
   text-align: center; }
 
-.popup-body .list {
+.popup-body .list.custom-popup-form {
   text-align: left; }
 
-.popup-body .item {
+.custom-popup-form .item {
   padding: 0px;
   padding-left: 5px;
   margin-top: 6px;
   margin-bottom: 6px;
   border: none; }
 
-.popup-body .item.item-input {
+.custom-popup-form .item.item-input {
   height: 35px; }
 
 .popup-body input {
   color: #A800DC; }
 
-.popup-body span {
+.popup span {
   font-size: 16px; }
 
 .popup .list.custom-delete-list {
@@ -10187,10 +10190,14 @@ ion-option-button.button.ion-trash-a.button.activated {
   padding: 4px; }
 
 .popup-body .item.custom-popup-item {
-  height: 23px; }
+  height: 23px;
+  background: transparent; }
 
 .item.custom-popup-item span {
   color: #A800DC; }
 
 .popup-body .item.item-input.item-floating-label {
   height: 60px; }
+
+.popup-body list.medicine-list {
+  text-align: center !important; }
