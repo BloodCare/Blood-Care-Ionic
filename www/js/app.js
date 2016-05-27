@@ -149,8 +149,23 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
     url: '/app/manager/diet-planner/food-reciepies',
     templateUrl: 'templates/foodReciepies.html',
     controller: 'FoodReciepiesCtrl'
+  })
+  .state('medicineName', {
+    url: '/app/manager/monitor/medicine-intake/medicine-name',
+    templateUrl: 'templates/medicine-add-edit-delete.html',
+    controller: 'MedicineNameCtrl'
+  })
+  .state('mealCategory', {
+    url: '/app/manager/monitor/medicine-intake/meal-category',
+    templateUrl: 'templates/meal-add-edit-delete.html',
+    controller: 'MealCategoryCtrl'
+  })
+  .state('workoutType', {
+    url: '/app/manager/monitor/medicine-intake/workout-type',
+    templateUrl: 'templates/workout-add-edit-delete.html',
+    controller: 'WorkoutTypeCtrl'
   });
-  
+
   $urlRouterProvider.otherwise('/app/home');
 })
 
@@ -163,6 +178,39 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
   
   $scope.selectedBloodSugarUnit = 'mmo/l';
   $scope.selectedWeightUnit = 'Kgs';
+  
+  
+  $scope.medicineList = [
+    {
+      name: 'Insulin',
+      unit: 'ml'
+    },
+    {
+      name: 'Humalin',
+      unit: 'qty2'
+    },
+    {
+      name: 'Humalog',
+      unit: 'qty3'
+    },
+    {
+      name: 'Asder',
+      unit: 'cdf'
+    }
+  ];
+  
+  $scope.mealCategories = [
+    'Breakfast',
+    'Lunch',
+    'Dinner',
+    'Supper'
+  ];
+  
+  $scope.workoutTypes = [
+    'Running',
+    'Walking',
+    'Sit-ups'
+  ];
   
 })
 
@@ -372,30 +420,9 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
 
 .controller('MedicineIntakeCtrl', function($scope, IonicClosePopupService, $ionicPopup){
   
-  $scope.medsObj = {};
   $scope.selectedMedicine = 'Insulin';
   $scope.selectedUnit = 'ml';
   var medsPopup;
-  var addMedsPopup;
-   
-  $scope.medicineList = [
-    {
-      name: 'Insulin',
-      unit: 'ml'
-    },
-    {
-      name: 'Humalin',
-      unit: 'qty2'
-    },
-    {
-      name: 'Humalog',
-      unit: 'qty3'
-    },
-    {
-      name: 'Asder',
-      unit: 'cdf'
-    }
-  ];
   
   $scope.showMeds = function () {
       
@@ -419,35 +446,6 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
     medsPopup.close();
   }
   
-  
-  $scope.showAddMeds = function () {
-      
-     addMedsPopup = $ionicPopup.show({
-        title: 'Add Medicine',
-        templateUrl: 'add-medicine-popup.html',
-        scope: $scope,
-        buttons: [
-          { text: '<i class="icon ion-close-circled"></i>',
-            onTap: function(e) { return false; }
-          },
-          { text: '<i class="icon ion-checkmark-circled""></i>',
-            onTap: function(e) { 
-              if (!$scope.medsObj.medsname || !$scope.medsObj.medsunit) {
-                e.preventDefault();
-              } else {
-                var obj = { name: $scope.medsObj.medsname,
-                            unit: $scope.medsObj.medsunit};
-                $scope.medicineList.push(obj);
-                return false;
-              }
-            }
-          }
-        ]
-      });
-      
-      IonicClosePopupService.register(addMedsPopup);
-    };
-  
 })
 
 .controller('MealIntakeCtrl', function($scope, IonicClosePopupService, $ionicPopup){
@@ -456,13 +454,6 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
   $scope.selectedMealCategory = 'Breakfast';
   var addMealCatPopup;
   var mealPopup;
-  
-  $scope.mealCategories = [
-    'Breakfast',
-    'Lunch',
-    'Dinner',
-    'Supper'
-  ];
   
   $scope.showMealCategory = function () {
       
@@ -524,12 +515,6 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
   var workoutPopup;
   var addWorkoutPopup;
   
-  $scope.workoutTypes = [
-    'Running',
-    'Walking',
-    'Sit-ups'
-  ];
-  
   $scope.showWorkoutType = function () {
       
      workoutPopup = $ionicPopup.show({
@@ -580,6 +565,121 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup'])
 })
 
 .controller('WeightCtrl', function($scope){
+  
+})
+
+.controller('MealCategoryCtrl', function($scope){
+  
+})
+
+.controller('MedicineNameCtrl', function($scope, IonicClosePopupService, $ionicPopup){
+  
+  $scope.medsObj = {};
+  var addMedsPopup;
+  var editMedsPopup;
+  var deleteMedsPopup;
+  
+  $scope.listData = {
+    showReorder: false
+  };
+  
+  $scope.moveItem = function(item, fromIndex, toIndex) {
+    $scope.medicineList.splice(fromIndex, 1);
+    $scope.medicineList.splice(toIndex, 0, item);
+  };
+  
+  $scope.showAddMeds = function () {
+      
+      $scope.medsObj.editMedsName = "";
+      $scope.medsObj.editMedsUnit = "";
+      
+     addMedsPopup = $ionicPopup.show({
+        title: 'Add Medicine',
+        templateUrl: 'add-medicine-popup.html',
+        scope: $scope,
+        buttons: [
+          { text: '<i class="icon ion-close-circled"></i>',
+            onTap: function(e) { return false; }
+          },
+          { text: '<i class="icon ion-checkmark-circled""></i>',
+            onTap: function(e) { 
+              if (!$scope.medsObj.medsname || !$scope.medsObj.medsunit) {
+                e.preventDefault();
+              } else {
+                var obj = { name: $scope.medsObj.medsname,
+                            unit: $scope.medsObj.medsunit};
+                $scope.medicineList.push(obj);
+                return false;
+              }
+            }
+          }
+        ]
+      });
+      
+      IonicClosePopupService.register(addMedsPopup);
+    };
+    
+    $scope.showEditMeds = function (name, unit) {
+
+      $scope.medsObj.editMedsName = name;
+      $scope.medsObj.editMedsUnit = unit;
+      
+     editMedsPopup = $ionicPopup.show({
+        title: 'Edit Medicine',
+        templateUrl: 'edit-medicine-popup.html',
+        scope: $scope,
+        buttons: [
+          { text: '<i class="icon ion-close-circled"></i>',
+            onTap: function(e) { return false; }
+          },
+          { text: '<i class="icon ion-checkmark-circled""></i>',
+            onTap: function(e) { 
+              if (!$scope.medsObj.editMedsName || !$scope.medsObj.editMedsName) {
+                e.preventDefault();
+              } else {
+                var newName = $scope.medsObj.editMedsName;
+                var newUnit = $scope.medsObj.editMedsUnit;
+                console.log("Name: " + name + " Unit: " + unit);
+                console.log("New Name: " + newName + " New Unit: " + newUnit)
+                return false;
+              }
+            }
+          }
+        ]
+      });
+      
+      IonicClosePopupService.register(editMedsPopup);
+    };
+  
+    $scope.showDeleteMeds = function (item) {
+      
+      $scope.medsObj.deleteMedsName = item.name;
+      $scope.medsObj.deleteMedsUnit = item.unit;
+      
+     deleteMedsPopup = $ionicPopup.show({
+        title: 'Delete Medicine',
+        templateUrl: 'delete-medicine-popup.html',
+        scope: $scope,
+        buttons: [
+          { text: '<i class="icon ion-close-circled"></i>',
+            onTap: function(e) { return false; }
+          },
+          { text: '<i class="icon ion-checkmark-circled""></i>',
+            onTap: function(e) { 
+                var newName = $scope.medsObj.deleteMedsName;
+                var newUnit = $scope.medsObj.deleteMedsUnit;
+                console.log("New Name: " + newName + " New Unit: " + newUnit)
+                return false;
+            }
+          }
+        ]
+      });
+      
+      IonicClosePopupService.register(deleteMedsPopup);
+    };
+})
+
+.controller('WorkoutTypeCtrl', function($scope){
   
 })
 

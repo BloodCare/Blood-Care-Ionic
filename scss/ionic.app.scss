@@ -222,9 +222,6 @@ a.button-positive{
     color: #E6E6E6;
     font-weight: bold;
 }
-.popup-body{
-    text-align: center;
-}
 .popup-buttons .button{
     background: #D6D6D6; 
     background: linear-gradient(#D6D6D6, #E6E6E6);
@@ -240,7 +237,6 @@ a.button-positive{
 .custom-item-list{
     text-decoration: none;
 }
-
 .custom-item-list .item{
     background: rgba(0, 0, 0, 0);
     color: #E6E6E6;
@@ -305,8 +301,8 @@ a.custom-manager-item{
 }
 .item.select-item{
     border-radius: 20px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: 7px;
+    padding-bottom: 7px;
 }
 .item.select-item:hover{
     background: rgba(168,0,220, 0.5);
@@ -316,12 +312,95 @@ a.custom-manager-item{
     font-weight: bold;
 }
 .item .custom-more{
-    font-size: 22px;
+    font-size: 24px;
 }
 .item .custom-more:hover{
-    font-size: 24px;
+    font-size: 26px;
     color: #A800DC;
 }
 label.item-floating-label{
     height: 70px;
+}
+.icon.ion-plus-circled, .icon.ion-arrow-move{
+    margin-top: -2px;
+    margin-left: 0px;
+    padding-left: 0px;
+}
+.icon.ion-ios-arrow-back{
+    margin-left: 0px;
+    padding-left: 1px;
+}
+.icon.ion-plus-circled.activated{
+    color: #A800DC !important;
+    opacity: 1 !important;
+}
+.button.button-icon.ion-ios-arrow-back:active{
+    color: #A800DC !important;
+}
+.custom-medicine-list{
+    padding-top: 2px;
+}
+.custom-medicine-list-item{
+    color: #5A00FF;
+    padding: 12px;
+    height: 55px;
+}
+.custom-medicine-list-item div.item-content{
+    margin: -11px;
+}
+.item-delete{
+    height: 55px;
+}
+ion-option-button.button{
+    background: rgba(90, 0, 255, 0.5);
+    color: #E6E6E6;
+    font-size: 24px;
+}
+ion-option-button.button:hover{
+    color: #FFF;
+    font-size: 26px;
+}
+ion-option-button.button.ion-edit.button.activated,
+ion-option-button.button.ion-trash-a.button.activated{
+    background: rgba(176, 176, 176, 0.2);
+    color: #5A00FF;
+    opacity: 1;
+}
+.item-reorder .button.icon{
+    color: #5A00FF;
+}
+.popup-body{
+    text-align: center;
+}
+.popup-body .list{
+    text-align: left;
+}
+.popup-body .item{
+    padding: 0px;
+    padding-left: 5px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    border: none;
+}
+.popup-body .item.item-input{
+    height: 35px;
+}
+.popup-body input{
+    color: #A800DC;
+}
+.popup-body span{
+    font-size: 16px;
+}
+.popup .list.custom-delete-list{
+    margin-top: 15px;
+    padding: 4px;
+}
+.popup-body .item.custom-popup-item{
+    height: 23px;
+}
+.item.custom-popup-item span{
+    color: #A800DC;
+}
+.popup-body .item.item-input.item-floating-label{
+    height: 60px;
 }

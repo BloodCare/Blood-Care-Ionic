@@ -11,12 +11,12 @@
         <div class="card custom-card">
             <div class="item item-icon-right">
                 <span>Workout Type</span>
-                <i class="icon ion-android-more-vertical custom-more" ng-click="showAddWorkout()"></i>
+                <i class="icon ion-android-more-vertical custom-more" 
+                   ui-sref="workoutType">
+                </i>
             </div>
-            <div class="item custom-input">
-                <label class="item-input">
-                   <input type="text" value="{{selectedWorkout}}", ng-click="showWorkoutType()">
-                </label>
+            <div class="item" ng-click="showWorkoutType()">
+                 <a class="custom-popup-text">{{selectedWorkout}}</a>
             </div>
         </div>
         
@@ -55,6 +55,7 @@
     </ion-list>
 </script>
 
+<!--
 <script type="text/ng-template" id="add-workoutType-popup.html">
     <ion-list>
         <label class="item item-input item-floating-label">
@@ -62,4 +63,4 @@
             <input type="text" placeholder="Workout Type Name" ng-model="workoutObj.workoutType">
         </label>
     </ion-list>
-</script>
+</script>-->
