@@ -862,7 +862,33 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup', 'ngCordova'])
   };
 })
 
-.controller('GeneralReminderCtrl', function($scope, $ionicPopup, IonicClosePopupService, $ionicViewSwitcher){
+.controller('GeneralReminderCtrl', function($scope, $ionicPopup, IonicClosePopupService, $ionicViewSwitcher, $filter){
+  
+  $scope.genReminderObj = {};
+   
+  var today = new Date();
+  /*
+  var dd = today.getDate();
+  var mm = today.getMonth()+1; //January is 0!
+  var yyyy = today.getFullYear();
+  var hr = today.getHours();
+  var min = today.getMinutes();
+
+  if(dd<10) {
+    dd='0'+dd
+  } 
+
+  if(mm<10) {
+    mm='0'+mm
+  } 
+
+  today = mm+'/'+dd+'/'+yyyy;
+  currentTime = hr + ':' + min;
+  */
+  
+  $scope.genReminderObj.MinDate = $filter('date')(today, "yyyy-MM-dd");
+  $scope.genReminderObj.Date = $filter('date')(today, "yyyy-MM-dd");
+  $scope.genReminderObj.Time = $filter('date')(today, "HH:mm");;
   
   $scope.showConfirm = function () {
       
@@ -874,7 +900,11 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup', 'ngCordova'])
             onTap: function(e) { return false; }
           },
           { text: '<i class="icon ion-checkmark-circled""></i>',
-            onTap: function(e) { $ionicViewSwitcher.nextDirection('back'); $scope.appGoBack(); }
+            onTap: function(e) { 
+              console.log($scope.genReminderObj.Date + 'Min Date: ' + $scope.genReminderObj.MinDate);
+              $ionicViewSwitcher.nextDirection('back'); 
+              $scope.appGoBack(); 
+            }
           }
         ]
       });
