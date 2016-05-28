@@ -411,3 +411,42 @@ ion-option-button.button.ion-trash-a.button.activated{
 .popup-body list.medicine-list{
     text-align: center !important;
 }
+/*side-menu header styles*/
+.bar.bar-profile {
+    background-color: rgba(90, 0, 255, 0.5); /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left top, #5A00FF, #A800DC, #185a9d); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(bottom right, #5A00FF, #A800DC, #185a9d); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(bottom right, #5A00FF, #A800DC, #185a9d); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom right, #5A00FF, #A800DC, #185a9d); /* Standard syntax */
+    height: 170px;
+}
+
+.bar .profile {
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 0;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    padding-top: 15px;
+}
+
+.profile .name {
+    color: #E6E6E6;
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+    font-size: 22px !important;
+}
+
+.profile-picture {
+    border-radius: 50%;
+}
+
+.menu .has-header
+{
+    top: 169px;
+}
+/*------------------------------------------*/
