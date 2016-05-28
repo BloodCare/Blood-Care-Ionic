@@ -41,9 +41,9 @@
             </div>
             <div class="item custom-input">
                 <label class="item-input">
-                   <input type="date" ng-model="genReminderDate" 
-                          value="{{genReminderObj.Date}}" 
-                          min="{{genReminderObj.MinDate}}"> 
+                   <input type="date" ng-model="genReminderObj.Date" 
+                          min="{{genReminderObj.MinDate}}"
+                          placeholder="mm/dd/yyyy"> 
                 </label>
             </div>
         </div>
@@ -54,7 +54,8 @@
             </div>
             <div class="item custom-input">
                 <label class="item-input">
-                   <input type="time" ng-model="genReminderTime" value="{{genReminderObj.Time}}"> 
+                   <input type="time" ng-model="genReminderObj.Time"
+                          placeholder="HH:mm AM/PM"> 
                 </label>
             </div>
         </div>

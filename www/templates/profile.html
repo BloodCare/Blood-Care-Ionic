@@ -43,7 +43,10 @@
             </div>
             <div class="item custom-input">
                 <label class="item-input">
-                   <input ui-date="dateOptions" name="DateOfBirth" placeholder="dd-mm-yyyy">
+                   <!--<input ui-date="dateOptions" name="DateOfBirth" placeholder="dd-mm-yyyy">-->
+                   <input type="date" min="{{profileObj.MinDate}}"
+                          max="{{profileObj.MaxDate}}"
+                          ng-model="profileObj.Date">
                 </label>
             </div>
         </div>

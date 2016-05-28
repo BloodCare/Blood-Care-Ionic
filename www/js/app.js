@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup', 'ngCordova'])
+angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -317,8 +317,17 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup', 'ngCordova'])
   
 })
 
-.controller('ProfileCtrl', function($scope, $ionicPopup, IonicClosePopupService, $ionicViewSwitcher){
+.controller('ProfileCtrl', function($scope, $filter, $ionicPopup, IonicClosePopupService, $ionicViewSwitcher){
   
+   $scope.profileObj = {};
+   
+   var today = new Date();
+   var minDate = new Date(1900, 01 - 1, 01);
+   
+   $scope.profileObj.MinDate = $filter('date')(minDate, "yyyy-MM-dd");
+   $scope.profileObj.MaxDate = $filter('date')(today, "yyyy-MM-dd");
+  
+  /*
    $scope.dateOptions = {
       dateFormat: 'dd-mm-yy',
       changeMonth:true,
@@ -326,7 +335,7 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup', 'ngCordova'])
       minDate: new Date(1900, 01 - 1, 01),
       maxDate: 'today',
       yearRange: '1900:c' 
-    };
+    };*/
     
     $scope.profileData = {
       gender: 'female',
@@ -887,8 +896,6 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup', 'ngCordova'])
   */
   
   $scope.genReminderObj.MinDate = $filter('date')(today, "yyyy-MM-dd");
-  $scope.genReminderObj.Date = $filter('date')(today, "yyyy-MM-dd");
-  $scope.genReminderObj.Time = $filter('date')(today, "HH:mm");;
   
   $scope.showConfirm = function () {
       
@@ -915,6 +922,26 @@ angular.module('starter', ['ionic', 'ui.date', 'ionic.closePopup', 'ngCordova'])
 })
 
 .controller('EmergencyReminderCtrl', function($scope, $ionicPopup, IonicClosePopupService, $ionicViewSwitcher){
+  
+  $scope.emrReminderObj = {};
+  
+  $scope.emrReminderObj.count = 1;
+  $scope.emrReminderObj.timeUnit = 'Minutes';
+  
+  $scope.increamentCount = function (count) {
+    count = count + 1;
+    $scope.emrReminderObj.count = count;
+  }
+  
+  $scope.decreamentCount = function (count) {
+    
+    if (count === 1) {
+      count = count;
+    } else {
+      count = count - 1;
+    }
+    $scope.emrReminderObj.count = count;
+  }
   
   $scope.showConfirm = function () {
       

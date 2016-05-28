@@ -450,3 +450,24 @@ ion-option-button.button.ion-trash-a.button.activated{
     top: 169px;
 }
 /*------------------------------------------*/
+.item .custom-counter.ng-binding{
+    margin: 3px !important;
+    padding: 3px !important;
+    position: relative;
+    top: -5px;
+    vertical-align: middle !important;
+}
+.time-option{
+    background: #E6E6E6;  
+    border: 1px solid #B0B0B0;
+    border-radius: 20px;
+    position: relative;
+    top: -3px;
+    left: 10px;
+}
+a.time-option{
+    font-size: 14px !important;
+}
+.item i.icon.ion-minus-circled:active{
+    color: #A800DC;
+}
