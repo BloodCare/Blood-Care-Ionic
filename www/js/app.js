@@ -176,6 +176,17 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
     $ionicHistory.goBack();
   };
   
+  $scope.genderList = [
+    'Male',
+    'Female',
+    'Other'
+  ];
+  
+  $scope.diabetesTypes = [
+    'Type 1',
+    'Type 2'
+  ];
+  
   $scope.bloodSugarUnits = [
     'mmo/l',
     'mg/dL'
@@ -218,11 +229,16 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
     'Sit-ups'
   ];
   
+  $scope.profileObject = {};
+  $scope.feedbackObject = {};
   $scope.medicineIntakeObject = {};
   $scope.mealIntakeObject = {}; 
   $scope.bloodSugarObject = {};
   $scope.phyWorkoutObject = {};
   $scope.weightObject = {};
+  
+  $scope.profileObject.gender = $scope.genderList[1];
+  $scope.profileObject.diabetes = $scope.diabetesTypes[0];
   
   $scope.medicineIntakeObject.medicineName = $scope.medicineList[0].name;
   $scope.medicineIntakeObject.medicineUnit = $scope.medicineList[0].unit;
@@ -336,14 +352,12 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
 })
 
 .controller('ProfileCtrl', function($scope, $filter, $ionicPopup, IonicClosePopupService, $ionicViewSwitcher){
-  
-   $scope.profileObj = {};
    
    var today = new Date();
    var minDate = new Date(1900, 01 - 1, 01);
    
-   $scope.profileObj.MinDate = $filter('date')(minDate, "yyyy-MM-dd");
-   $scope.profileObj.MaxDate = $filter('date')(today, "yyyy-MM-dd");
+   $scope.profileObject.MinDate = $filter('date')(minDate, "yyyy-MM-dd");
+   $scope.profileObject.MaxDate = $filter('date')(today, "yyyy-MM-dd");
   
   /*
    $scope.dateOptions = {
@@ -354,12 +368,6 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
       maxDate: 'today',
       yearRange: '1900:c' 
     };*/
-    
-    $scope.profileData = {
-      gender: 'female',
-      diabetes: 'type1',
-      weightUnit: 'kgs'
-    }
     
     $scope.showConfirm = function () {
       
@@ -410,6 +418,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
     var ratings = $scope.ratingArr;
     for (var i = 0; i < ratings.length; i++) {
       if (i < value) {
+        $scope.feedbackObject.ratings = value;
         ratings[i].icon = 'ion-ios-star';
       } else {
         ratings[i].icon = 'ion-ios-star-outline';
@@ -427,7 +436,11 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
             onTap: function(e) { return false; }
           },
           { text: '<i class="icon ion-checkmark-circled""></i>',
-            onTap: function(e) { $ionicViewSwitcher.nextDirection('back'); $scope.appGoBack(); }
+            onTap: function(e) { 
+              //console.log('Value: ' + $scope.feedbackObject.ratings);
+              $ionicViewSwitcher.nextDirection('back'); 
+              $scope.appGoBack(); 
+            }
           }
         ]
       });

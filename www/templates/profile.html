@@ -21,7 +21,7 @@
             </div>
             <div class="item custom-input">
                 <label class="item-input">
-                   <input type="text" placeholder="eg. Alpana Chaphalkar"> 
+                   <input type="text" placeholder="eg. Alpana Chaphalkar" ng-model="profileObject.name"> 
                 </label>
             </div>
         </div>
@@ -32,7 +32,7 @@
             </div>
             <div class="item custom-input">
                 <label class="item-input">
-                   <input type="email" placeholder="eg. alpana@example.com"> 
+                   <input type="email" placeholder="eg. alpana@example.com" ng-model="profileObject.email"> 
                 </label>
             </div>
         </div>
@@ -45,9 +45,9 @@
                 <label class="item-input">
                    <i class="icon ion-calendar placeholder-icon"></i>
                    <!--<input ui-date="dateOptions" name="DateOfBirth" placeholder="dd-mm-yyyy">-->
-                   <input type="date" min="{{profileObj.MinDate}}"
-                          max="{{profileObj.MaxDate}}"
-                          ng-model="profileObj.Date">
+                   <input type="date" min="{{profileObject.MinDate}}"
+                          max="{{profileObject.MaxDate}}"
+                          ng-model="profileObject.Date">
                 </label>
             </div>
         </div>
@@ -57,9 +57,9 @@
                 <span>Gender</span>
             </div>
             <div class="item button-bar">
-                <a grouped-radio="'male'" ng-model="profileData.gender" class="option">Male</a>
-                <a grouped-radio="'female'" ng-model="profileData.gender" class="option">Female</a>
-                <a grouped-radio="'other'" ng-model="profileData.gender" class="option">Other</a>
+                <a grouped-radio="genderList[0]" ng-model="profileObject.gender" class="option">Male</a>
+                <a grouped-radio="genderList[1]" ng-model="profileObject.gender" class="option">Female</a>
+                <a grouped-radio="genderList[2]" ng-model="profileObject.gender" class="option">Other</a>
             </div>
         </div>
         
@@ -68,8 +68,8 @@
                 <span>Diabetes Type</span>
             </div>
             <div class="item button-bar">
-                <a grouped-radio="'type1'" ng-model="profileData.diabetes" class="option">Type 1</a>
-                <a grouped-radio="'type2'" ng-model="profileData.diabetes" class="option">Type 2</a>
+                <a grouped-radio="diabetesTypes[0]" ng-model="profileObject.diabetes" class="option">Type 1</a>
+                <a grouped-radio="diabetesTypes[1]" ng-model="profileObject.diabetes" class="option">Type 2</a>
             </div>
         </div>
         
