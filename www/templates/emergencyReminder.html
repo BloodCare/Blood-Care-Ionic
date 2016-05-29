@@ -51,18 +51,33 @@
             <div class="item">
                 <span>Time Interval</span>
             </div>
-            <div class="item custom-input">
-                
-                <i class="icon ion-plus-circled" style="font-size: 30px"
-                   ng-click="increamentCount(emrReminderObj.count)"></i>
-                <span class="custom-counter">&nbsp; &nbsp; {{emrReminderObj.count}} &nbsp; &nbsp;</span>
-                <i class="icon ion-minus-circled" style="font-size: 30px"
-                   ng-click="decreamentCount(emrReminderObj.count)"></i>
-                
-                <a grouped-radio="'Minutes'" ng-model="emrReminderObj.timeUnit" class="time-option">Minutes</a>
-                <a grouped-radio="'Hours'" ng-model="emrReminderObj.timeUnit" class="time-option">Hours</a>
-                
+            
+            <div class="item item-divider custom-interval-divider">
+                <i class="icon ion-chevron-up"
+                   ng-click="increamentHrsCount(emrReminderObj.hrsCount)"></i>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <i class="icon ion-chevron-up"
+                   ng-click="increamentMinCount(emrReminderObj.minCount)"></i>
             </div>
+            
+            <div class="item item-text-wrap custom-inteval-wrap">
+                
+                <span class="custom-hrs-counter"
+                      ng-bind="emrReminderObj.hrsCount">{{emrReminderObj.hrsCount}}
+                </span>
+                &nbsp; &nbsp; &nbsp;
+                <span class="custom-min-counter"
+                      ng-bind="emrReminderObj.minCount">{{emrReminderObj.minCount}}</span>
+            </div>
+            
+            <div class="item item-divider custom-interval-divider">
+                <i class="icon ion-chevron-down"
+                    ng-click="decreamentHrsCount(emrReminderObj.hrsCount)"></i>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <i class="icon ion-chevron-down"
+                    ng-click="decreamentMinCount(emrReminderObj.minCount)"></i>
+            </div>
+        
         </div>
         
     </ion-content>

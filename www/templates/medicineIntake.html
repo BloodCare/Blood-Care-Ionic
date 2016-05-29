@@ -6,7 +6,18 @@
         </div>
         <h1 class="title">Medicine Intake</h1>
     </ion-header-bar>
-    <ion-content class="padding">
+    <ion-content class="custom-content">
+        
+        <ion-list class="custom-datetime-list">
+            <ion-item class="item-input custom-datetime-item">
+                &nbsp;  &nbsp; Date:
+                <input type="date" min="{{medicineObject.MinDate}}" ng-model="medicineObject.Date">
+            </ion-item>
+            <ion-item class="item-input custom-datetime-item">
+                &nbsp; &nbsp; Time:
+                <input type="time" ng-model="medicineObject.Time">
+            </ion-item>
+        </ion-list>
         
         <div class="card custom-card">
             <div class="item item-icon-right">

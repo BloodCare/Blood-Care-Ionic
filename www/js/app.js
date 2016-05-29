@@ -432,9 +432,14 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
   
 })
 
-.controller('MedicineIntakeCtrl', function($scope, IonicClosePopupService, $ionicPopup){
+.controller('MedicineIntakeCtrl', function($scope, IonicClosePopupService, $ionicPopup, $filter){
 
+  $scope.medicineObject = {};
   var medsPopup;
+  
+  var today = new Date();
+  
+  $scope.medicineObject.MinDate = $filter('date')(today, "yyyy-MM-dd");
   
   $scope.showMeds = function () {
       
@@ -851,7 +856,14 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
   
 })
 
-.controller('AppointmentCtrl', function($scope, $ionicPopup, IonicClosePopupService, $ionicViewSwitcher){
+.controller('AppointmentCtrl', function($scope, $ionicPopup, IonicClosePopupService, $ionicViewSwitcher, $filter){
+  
+  $scope.appointmentObj = {};
+  
+  var today = new Date();
+  
+  $scope.appointmentObj.MinDate = $filter('date')(today, "yyyy-MM-dd");
+  
   $scope.showConfirm = function () {
       
       var confirmPopup = $ionicPopup.confirm({
@@ -925,22 +937,49 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
   
   $scope.emrReminderObj = {};
   
-  $scope.emrReminderObj.count = 1;
-  $scope.emrReminderObj.timeUnit = 'Minutes';
+  $scope.emrReminderObj.hrsCount = 1;
+  $scope.emrReminderObj.minCount = 30;
   
-  $scope.increamentCount = function (count) {
-    count = count + 1;
-    $scope.emrReminderObj.count = count;
+  $scope.increamentHrsCount = function (count) {
+    
+    if (count === 24) {
+      count = count;
+    } else {
+      count = count + 1;
+    }
+    
+    $scope.emrReminderObj.hrsCount = count;
   }
   
-  $scope.decreamentCount = function (count) {
+  $scope.increamentMinCount = function (count) {
+    
+    if (count === 59) {
+      count = count;
+    } else {
+      count = count + 1;
+    }
+    
+    $scope.emrReminderObj.minCount = count;
+  }
+  
+  $scope.decreamentHrsCount = function (count) {
+    
+    if (count === 0) {
+      count = count;
+    } else {
+      count = count - 1;
+    }
+    $scope.emrReminderObj.hrsCount = count;
+  }
+  
+  $scope.decreamentMinCount = function (count) {
     
     if (count === 1) {
       count = count;
     } else {
       count = count - 1;
     }
-    $scope.emrReminderObj.count = count;
+    $scope.emrReminderObj.minCount = count;
   }
   
   $scope.showConfirm = function () {
