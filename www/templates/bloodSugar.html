@@ -6,7 +6,20 @@
         </div>
         <h1 class="title">Blood Sugar Level</h1>
     </ion-header-bar>
-    <ion-content class="padding">
+    <ion-content class="custom-content">
+        
+        <ion-list class="custom-datetime-list">
+            <ion-item class="item-input custom-datetime-item">
+                &nbsp;  &nbsp; Date:
+                <i class="icon ion-calendar placeholder-icon"></i>
+                <input type="date" min="{{bloodSugarObject.MinDate}}" ng-model="bloodSugarObject.Date">
+            </ion-item>
+            <ion-item class="item-input custom-datetime-item">
+                &nbsp; &nbsp; Time:
+                <i class="icon ion-ios-time placeholder-icon"></i>
+                <input type="time" ng-model="bloodSugarObject.Time">
+            </ion-item>
+        </ion-list>
         
         <div class="card custom-card">
             <div class="item">
@@ -14,8 +27,8 @@
             </div>
             <div class="item custom-input">
                 <label class="item-input">
-                   <input type="number" placeholder="50" style="width: 100px">
-                   <span type="text" ng-bind="selectedBloodSugarUnit" style="text-align: right"></span>
+                   <input type="number" placeholder="50" style="width: 100px" ng-model="bloodSugarObject.value">
+                   <span type="text" ng-bind="bloodSugarObject.bloodSugarUnit" style="text-align: right"></span>
                 </label>
             </div>
         </div>
@@ -26,7 +39,7 @@
             </div>
             <div class="item">
                 <label class="item-input">
-                   <textarea placeholder="..." rows="2"></textarea>
+                   <textarea placeholder="..." rows="2" ng-model="bloodSugarObject.notes"></textarea>
                 </label>
             </div>
         </div>

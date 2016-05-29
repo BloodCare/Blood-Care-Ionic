@@ -6,17 +6,32 @@
         </div>
         <h1 class="title">Weight</h1>
     </ion-header-bar>
-    <ion-content class="padding">
+    <ion-content class="custom-content">
+        
+        <ion-list class="custom-datetime-list">
+            <ion-item class="item-input custom-datetime-item">
+                &nbsp;  &nbsp; Date:
+                <i class="icon ion-calendar placeholder-icon"></i>
+                <input type="date" min="{{weightObject.MinDate}}" ng-model="weightObject.Date">
+            </ion-item>
+            <ion-item class="item-input custom-datetime-item">
+                &nbsp; &nbsp; Time:
+                <i class="icon ion-ios-time placeholder-icon"></i>
+                <input type="time" ng-model="weightObject.Time">
+            </ion-item>
+        </ion-list>
+        
         <div class="card custom-card">
             <div class="item">
                 <span>Weight</span>
             </div>
             <div class="item custom-input">
                 <label class="item-input">
-                   <input type="number" placeholder="50">
-                   <span type="text" ng-bind="selectedWeightUnit" style="text-align: right"></span>
+                   <input type="number" placeholder="50" ng-model="weightObject.value">
+                   <span type="text" ng-bind="weightObject.weightUnit" style="text-align: right"></span>
                 </label>
             </div>
         </div>
+        
     </ion-content>
 </ion-pane>

@@ -497,6 +497,22 @@ div.item.item-text-wrap.custom-inteval-wrap{
 }
 .item-input.custom-datetime-item input{
     position: relative;
-    top: -3px;
-    left: 60px;
+    top: 0px;
+    left: 50px;
+}
+.item-input.custom-datetime-item i.icon.ion-calendar.placeholder-icon,
+.item-input.custom-datetime-item i.icon.ion-ios-time.placeholder-icon{
+    position: relative;
+    left: 45px;
+    font-size: 20px;
+    color: rgba(90, 0, 255, 0.5);
+}
+.custom-input i.icon.ion-calendar.placeholder-icon{
+    font-size: 20px;
+    color: rgba(90, 0, 255, 0.5);
+}
+.custom-input input[type=date]{
+    position: relative;
+    top: 0px;
+    left: 5px;
 }

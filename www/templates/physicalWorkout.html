@@ -6,7 +6,20 @@
         </div>
         <h1 class="title">Physical Workout</h1>
     </ion-header-bar>
-    <ion-content class="padding">
+    <ion-content class="custom-content">
+        
+        <ion-list class="custom-datetime-list">
+            <ion-item class="item-input custom-datetime-item">
+                &nbsp;  &nbsp; Date:
+                <i class="icon ion-calendar placeholder-icon"></i>
+                <input type="date" min="{{phyWorkoutObject.MinDate}}" ng-model="phyWorkoutObject.Date">
+            </ion-item>
+            <ion-item class="item-input custom-datetime-item">
+                &nbsp; &nbsp; Time:
+                <i class="icon ion-ios-time placeholder-icon"></i>
+                <input type="time" ng-model="phyWorkoutObject.Time">
+            </ion-item>
+        </ion-list>
         
         <div class="card custom-card">
             <div class="item item-icon-right">
@@ -16,10 +29,11 @@
                 </i>
             </div>
             <div class="item" ng-click="showWorkoutType()">
-                 <a class="custom-popup-text">{{selectedWorkout}}</a>
+                 <a class="custom-popup-text" ng-bind="phyWorkoutObject.workoutName">{{phyWorkoutObject.workoutName}}</a>
             </div>
         </div>
         
+        <!--
         <div class="card custom-card">
             <div class="item">
                 <span>Before Workout: Blood Sugar</span>
@@ -43,6 +57,7 @@
                 </label>
             </div>
         </div>
+        -->
         
     </ion-content>
 </ion-pane>

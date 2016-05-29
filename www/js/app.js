@@ -176,9 +176,15 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
     $ionicHistory.goBack();
   };
   
-  $scope.selectedBloodSugarUnit = 'mmo/l';
-  $scope.selectedWeightUnit = 'Kgs';
+  $scope.bloodSugarUnits = [
+    'mmo/l',
+    'mg/dL'
+  ];
   
+  $scope.weightUnits = [
+    'Kgs',
+    'Pounds'
+  ];
   
   $scope.medicineList = [
     {
@@ -212,10 +218,22 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
     'Sit-ups'
   ];
   
-  $scope.selectedMedicineName = $scope.medicineList[0].name;
-  $scope.selectedMedicineUnit = $scope.medicineList[0].unit;
-  $scope.selectedWorkout = $scope.workoutTypes[0];
-  $scope.selectedMealCategory = $scope.mealCategories[0];
+  $scope.medicineIntakeObject = {};
+  $scope.mealIntakeObject = {}; 
+  $scope.bloodSugarObject = {};
+  $scope.phyWorkoutObject = {};
+  $scope.weightObject = {};
+  
+  $scope.medicineIntakeObject.medicineName = $scope.medicineList[0].name;
+  $scope.medicineIntakeObject.medicineUnit = $scope.medicineList[0].unit;
+  
+  $scope.mealIntakeObject.mealCategory = $scope.mealCategories[0];
+  
+  $scope.bloodSugarObject.bloodSugarUnit = $scope.bloodSugarUnits[0];
+  
+  $scope.phyWorkoutObject.workoutName = $scope.workoutTypes[0];
+  
+  $scope.weightObject.weightUnit = $scope.weightUnits[0];
   
 })
 
@@ -434,12 +452,12 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
 
 .controller('MedicineIntakeCtrl', function($scope, IonicClosePopupService, $ionicPopup, $filter){
 
-  $scope.medicineObject = {};
+  
   var medsPopup;
   
   var today = new Date();
   
-  $scope.medicineObject.MinDate = $filter('date')(today, "yyyy-MM-dd");
+  $scope.medicineIntakeObject.MinDate = $filter('date')(today, "yyyy-MM-dd");
   
   $scope.showMeds = function () {
       
@@ -458,16 +476,20 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
     };
   
   $scope.closeMeds = function (name, unit) {
-    $scope.selectedMedicineName = name;
-    $scope.selectedMedicineUnit = unit;
+    $scope.medicineIntakeObject.medicineName = name;
+    $scope.medicineIntakeObject.medicineUnit = unit;
     medsPopup.close();
   }
   
 })
 
-.controller('MealIntakeCtrl', function($scope, IonicClosePopupService, $ionicPopup){
- 
+.controller('MealIntakeCtrl', function($scope, IonicClosePopupService, $ionicPopup, $filter){
+  
   var mealPopup;
+  
+  var today = new Date();
+  
+  $scope.mealIntakeObject.MinDate = $filter('date')(today, "yyyy-MM-dd");
   
   $scope.showMealCategory = function () {
       
@@ -486,19 +508,26 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
     };
   
   $scope.closeMealCat = function (name) {
-    $scope.selectedMealCategory = name;
+    $scope.mealIntakeObject.mealCategory = name;
     mealPopup.close();
   };
   
 })
 
-.controller('BloodSugarCtrl', function($scope, IonicClosePopupService, $ionicPopup){
-  
+.controller('BloodSugarCtrl', function($scope, $filter){
+    
+    var today = new Date();
+    
+    $scope.bloodSugarObject.MinDate = $filter('date')(today, "yyyy-MM-dd");
 })
 
-.controller('PhysicalWorkoutCtrl', function($scope, IonicClosePopupService, $ionicPopup){
-
+.controller('PhysicalWorkoutCtrl', function($scope, $filter, IonicClosePopupService, $ionicPopup){
+  
   var workoutPopup;
+  
+  var today = new Date();
+  
+  $scope.phyWorkoutObject.MinDate = $filter('date')(today, "yyyy-MM-dd");
   
   $scope.showWorkoutType = function () {
       
@@ -517,13 +546,17 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
     };
     
     $scope.closeWorkout = function (name) {
-      $scope.selectedWorkout = name;
+      $scope.phyWorkoutObject.workoutName = name;
       workoutPopup.close();
     };
     
 })
 
-.controller('WeightCtrl', function($scope){
+.controller('WeightCtrl', function($scope, $filter){
+  
+  var today = new Date();
+  
+  $scope.weightObject.MinDate = $filter('date')(today, "yyyy-MM-dd");
   
 })
 

@@ -6,9 +6,20 @@
         </div>
         <h1 class="title">Meal Intake</h1>
     </ion-header-bar>
-    <ion-content class="padding">
+    <ion-content class="custom-content">
         
-        
+        <ion-list class="custom-datetime-list">
+            <ion-item class="item-input custom-datetime-item">
+                &nbsp;  &nbsp; Date:
+                <i class="icon ion-calendar placeholder-icon"></i>
+                <input type="date" min="{{mealIntakeObject.MinDate}}" ng-model="mealIntakeObject.Date">
+            </ion-item>
+            <ion-item class="item-input custom-datetime-item">
+                &nbsp; &nbsp; Time:
+                <i class="icon ion-ios-time placeholder-icon"></i>
+                <input type="time" ng-model="mealIntakeObject.Time">
+            </ion-item>
+        </ion-list>
         
         <div class="card custom-card">
             <div class="item  item-icon-right">
@@ -18,7 +29,7 @@
                 </i>
             </div>
             <div class="item" ng-click="showMealCategory()">
-                 <a class="custom-popup-text">{{selectedMealCategory}}</a>
+                 <a class="custom-popup-text" ng-bind="mealIntakeObject.mealCategory">{{mealIntakeObject.mealCategory}}</a>
             </div>
         </div>
         
@@ -28,7 +39,7 @@
             </div>
             <div class="item">
                 <label class="item-input">
-                   <textarea placeholder="Salad, Tomato Soup" rows="2"></textarea>
+                   <textarea placeholder="Salad, Tomato Soup" rows="2" ng-model="mealIntakeObject.mealDetails"></textarea>
                 </label>
             </div>
         </div>
