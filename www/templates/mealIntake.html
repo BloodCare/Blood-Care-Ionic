@@ -12,7 +12,9 @@
             <ion-item class="item-input custom-datetime-item">
                 &nbsp;  &nbsp; Date:
                 <i class="icon ion-calendar placeholder-icon"></i>
-                <input type="date" min="{{mealIntakeObject.MinDate}}" ng-model="mealIntakeObject.Date">
+                <input type="date" min="{{mealIntakeObject.MinDate}}" 
+                        max="{{mealIntakeObject.MaxDate}}"
+                        ng-model="mealIntakeObject.Date">
             </ion-item>
             <ion-item class="item-input custom-datetime-item">
                 &nbsp; &nbsp; Time:

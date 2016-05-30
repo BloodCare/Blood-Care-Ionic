@@ -20,6 +20,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+     
   });
 })
 
@@ -169,7 +170,12 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
   $urlRouterProvider.otherwise('/app/home');
 })
 
-.controller('AppCtrl', function($scope, $ionicHistory, $ionicViewSwitcher){
+.controller('AppCtrl', function($scope, $ionicHistory, $ionicViewSwitcher, $filter){
+  
+  var today = new Date();
+  var minDate = new Date(1900, 01 - 1, 01);
+  $scope.currentDate = today;
+  $scope.minimunDate = minDate;
   
   $scope.appGoBack = function () {
     $ionicViewSwitcher.nextDirection('back');
@@ -353,12 +359,9 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
 
 .controller('ProfileCtrl', function($scope, $filter, $ionicPopup, IonicClosePopupService, $ionicViewSwitcher){
    
-   var today = new Date();
-   var minDate = new Date(1900, 01 - 1, 01);
+   $scope.profileObject.MinDate = $filter('date')($scope.minimunDate, "yyyy-MM-dd");
+   $scope.profileObject.MaxDate = $filter('date')($scope.currentDate, "yyyy-MM-dd");
    
-   $scope.profileObject.MinDate = $filter('date')(minDate, "yyyy-MM-dd");
-   $scope.profileObject.MaxDate = $filter('date')(today, "yyyy-MM-dd");
-  
   /*
    $scope.dateOptions = {
       dateFormat: 'dd-mm-yy',
@@ -465,12 +468,10 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
 
 .controller('MedicineIntakeCtrl', function($scope, IonicClosePopupService, $ionicPopup, $filter){
 
-  
   var medsPopup;
   
-  var today = new Date();
-  
-  $scope.medicineIntakeObject.MinDate = $filter('date')(today, "yyyy-MM-dd");
+  $scope.medicineIntakeObject.MinDate = $filter('date')($scope.minimunDate, "yyyy-MM-dd");
+  $scope.medicineIntakeObject.MaxDate = $filter('date')($scope.currentDate, "yyyy-MM-dd");
   
   $scope.showMeds = function () {
       
@@ -500,9 +501,8 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
   
   var mealPopup;
   
-  var today = new Date();
-  
-  $scope.mealIntakeObject.MinDate = $filter('date')(today, "yyyy-MM-dd");
+  $scope.medicineIntakeObject.MinDate = $filter('date')($scope.minimunDate, "yyyy-MM-dd");
+  $scope.mealIntakeObject.MaxDate = $filter('date')($scope.currentDate, "yyyy-MM-dd");
   
   $scope.showMealCategory = function () {
       
@@ -528,19 +528,18 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
 })
 
 .controller('BloodSugarCtrl', function($scope, $filter){
+
+    $scope.bloodSugarObject.MinDate = $filter('date')($scope.minimunDate, "yyyy-MM-dd");
+    $scope.bloodSugarObject.MaxDate = $filter('date')($scope.currentDate, "yyyy-MM-dd");
     
-    var today = new Date();
-    
-    $scope.bloodSugarObject.MinDate = $filter('date')(today, "yyyy-MM-dd");
 })
 
 .controller('PhysicalWorkoutCtrl', function($scope, $filter, IonicClosePopupService, $ionicPopup){
   
   var workoutPopup;
   
-  var today = new Date();
-  
-  $scope.phyWorkoutObject.MinDate = $filter('date')(today, "yyyy-MM-dd");
+  $scope.phyWorkoutObject.MinDate = $filter('date')($scope.minimunDate, "yyyy-MM-dd");
+  $scope.phyWorkoutObject.MaxDate = $filter('date')($scope.currentDate, "yyyy-MM-dd");
   
   $scope.showWorkoutType = function () {
       
@@ -567,9 +566,8 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
 
 .controller('WeightCtrl', function($scope, $filter){
   
-  var today = new Date();
-  
-  $scope.weightObject.MinDate = $filter('date')(today, "yyyy-MM-dd");
+  $scope.weightObject.MaxDate = $filter('date')($scope.currentDate, "yyyy-MM-dd");
+  $scope.weightObject.MinDate = $filter('date')($scope.minimunDate, "yyyy-MM-dd");
   
 })
 
@@ -906,9 +904,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
   
   $scope.appointmentObj = {};
   
-  var today = new Date();
-  
-  $scope.appointmentObj.MinDate = $filter('date')(today, "yyyy-MM-dd");
+  $scope.appointmentObj.MinDate = $filter('date')($scope.currentDate, "yyyy-MM-dd");
   
   $scope.showConfirm = function () {
       
@@ -929,31 +925,11 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
   };
 })
 
-.controller('GeneralReminderCtrl', function($scope, $ionicPopup, IonicClosePopupService, $ionicViewSwitcher, $filter){
-  
+.controller('GeneralReminderCtrl', function($scope, $ionicPopup, IonicClosePopupService, $ionicViewSwitcher, $filter, $cordovaLocalNotification, $ionicPlatform){
+
   $scope.genReminderObj = {};
-   
-  var today = new Date();
-  /*
-  var dd = today.getDate();
-  var mm = today.getMonth()+1; //January is 0!
-  var yyyy = today.getFullYear();
-  var hr = today.getHours();
-  var min = today.getMinutes();
-
-  if(dd<10) {
-    dd='0'+dd
-  } 
-
-  if(mm<10) {
-    mm='0'+mm
-  } 
-
-  today = mm+'/'+dd+'/'+yyyy;
-  currentTime = hr + ':' + min;
-  */
   
-  $scope.genReminderObj.MinDate = $filter('date')(today, "yyyy-MM-dd");
+  $scope.genReminderObj.MinDate = $filter('date')($scope.currentDate, "yyyy-MM-dd");
   
   $scope.showConfirm = function () {
       
@@ -966,7 +942,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
           },
           { text: '<i class="icon ion-checkmark-circled""></i>',
             onTap: function(e) { 
-              console.log($scope.genReminderObj.Date + 'Min Date: ' + $scope.genReminderObj.MinDate);
+              $scope.addGeneralReminder();
               $ionicViewSwitcher.nextDirection('back'); 
               $scope.appGoBack(); 
             }
@@ -976,6 +952,27 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
       
       IonicClosePopupService.register(confirmPopup);
   };
+  
+  $ionicPlatform.ready(function(){
+    
+    $scope.addGeneralReminder = function(){
+      var date = new Date($scope.genReminderObj.Date);
+      var time = new Date($scope.genReminderObj.Time).getTime();
+      var reminderDateTime = new Date(date.setTime(date.getTime() + time));
+      reminderDateTime.setHours(reminderDateTime.getHours() + 1);
+      
+      $cordovaLocalNotification.add({
+        id: "12345",
+        date: reminderDateTime,
+        message: $scope.genReminderObj.Msg,
+        title: $scope.genReminderObj.Name,
+        autoCancel: true
+      }).then(function () {
+        console.log("General Reminder is Set.");
+      });
+    }
+    
+  });
   
 })
 

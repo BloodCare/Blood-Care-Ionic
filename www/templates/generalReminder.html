@@ -32,7 +32,7 @@
             </div>
             <div class="item custom-input">
                 <label class="item-input">
-                   <input type="text" placeholder="eg. Insulin injection"> 
+                   <input type="text" placeholder="eg. Insulin injection" ng-model="genReminderObj.Name"> 
                 </label>
             </div>
         </div>
@@ -43,7 +43,7 @@
             </div>
             <div class="item">
                 <label class="item-input">
-                    <textarea placeholder="Before meal" rows="2"></textarea>
+                    <textarea placeholder="Before meal" rows="2" ng-model="genReminderObj.Msg"></textarea>
                 </label>
             </div>
         </div>
