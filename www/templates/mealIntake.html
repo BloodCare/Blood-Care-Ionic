@@ -5,6 +5,11 @@
             </a>
         </div>
         <h1 class="title">Meal Intake</h1>
+        <div class="buttons">
+            <button class="button button-icon ion-checkmark-circled" 
+                    ng-click="showConfirm()">
+            </button>
+        </div>
     </ion-header-bar>
     <ion-content class="custom-content">
         
@@ -22,7 +27,7 @@
                 <input type="time" ng-model="mealIntakeObject.Time">
             </ion-item>
         </ion-list>
-        
+
         <div class="card custom-card">
             <div class="item  item-icon-right">
                 <span>Meal Category</span>
@@ -32,6 +37,18 @@
             </div>
             <div class="item" ng-click="showMealCategory()">
                  <a class="custom-popup-text" ng-bind="mealIntakeObject.mealCategory">{{mealIntakeObject.mealCategory}}</a>
+            </div>
+        </div>
+        
+        <div class="card custom-card">
+            <div class="item">
+                <span>Amount of Meal</span>
+            </div>
+            <div class="item custom-input">
+                <label class="item-input">
+                   <input type="number" placeholder="30" style="width: 100px" ng-model="mealIntakeObject.value">
+                   <span type="text" ng-bind="mealIntakeObject.mealUnit" style="text-align: right"></span>
+                </label>
             </div>
         </div>
         

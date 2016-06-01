@@ -211,7 +211,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
   $scope.medicineList = [
     {
       name: 'Insulin',
-      unit: 'ml'
+      unit: 'mg'
     },
     {
       name: 'Humalin',
@@ -255,12 +255,22 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
   $scope.medicineIntakeObject.medicineUnit = $scope.medicineList[0].unit;
   
   $scope.mealIntakeObject.mealCategory = $scope.mealCategories[0];
+  $scope.mealIntakeObject.mealUnit = "gm of Carbs";
   
   $scope.bloodSugarObject.bloodSugarUnit = $scope.bloodSugarUnits[0];
   
   $scope.phyWorkoutObject.workoutName = $scope.workoutTypes[0];
   
   $scope.weightObject.weightUnit = $scope.weightUnits[0];
+  
+  
+  $scope.getReminderDateTime = function (inputDate, inputTime) {
+    var date = new Date(inputDate);
+    var time = new Date(inputTime).getTime();
+    var reminderDateTime = new Date(date.setTime(date.getTime() + time));
+    reminderDateTime.setHours(reminderDateTime.getHours() + 1);
+    return reminderDateTime;
+  };
   
 })
 
@@ -445,7 +455,6 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
           },
           { text: '<i class="icon ion-checkmark-circled""></i>',
             onTap: function(e) { 
-              //console.log('Value: ' + $scope.feedbackObject.ratings);
               $ionicViewSwitcher.nextDirection('back'); 
               $scope.appGoBack(); 
             }
@@ -471,7 +480,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
   
 })
 
-.controller('MedicineIntakeCtrl', function($scope, IonicClosePopupService, $ionicPopup, $filter){
+.controller('MedicineIntakeCtrl', function($scope, IonicClosePopupService, $ionicPopup, $filter, $ionicViewSwitcher){
 
   var medsPopup;
   
@@ -500,9 +509,27 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
     medsPopup.close();
   }
   
+  $scope.showConfirm = function () {
+      
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Save Appointment',
+        template: 'Are you sure?',
+        buttons: [
+          { text: '<i class="icon ion-close-circled"></i>',
+            onTap: function(e) { return false; }
+          },
+          { text: '<i class="icon ion-checkmark-circled""></i>',
+            onTap: function(e) { $ionicViewSwitcher.nextDirection('back'); $scope.appGoBack(); }
+          }
+        ]
+      });
+      
+      IonicClosePopupService.register(confirmPopup);
+  };
+  
 })
 
-.controller('MealIntakeCtrl', function($scope, IonicClosePopupService, $ionicPopup, $filter){
+.controller('MealIntakeCtrl', function($scope, IonicClosePopupService, $ionicPopup, $filter, $ionicViewSwitcher){
   
   var mealPopup;
   
@@ -530,16 +557,52 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
     mealPopup.close();
   };
   
+  $scope.showConfirm = function () {
+      
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Save Appointment',
+        template: 'Are you sure?',
+        buttons: [
+          { text: '<i class="icon ion-close-circled"></i>',
+            onTap: function(e) { return false; }
+          },
+          { text: '<i class="icon ion-checkmark-circled""></i>',
+            onTap: function(e) { $ionicViewSwitcher.nextDirection('back'); $scope.appGoBack(); }
+          }
+        ]
+      });
+      
+      IonicClosePopupService.register(confirmPopup);
+  };
+  
 })
 
-.controller('BloodSugarCtrl', function($scope, $filter){
+.controller('BloodSugarCtrl', function($scope, $filter, IonicClosePopupService, $ionicPopup, $ionicViewSwitcher){
 
     $scope.bloodSugarObject.MinDate = $filter('date')($scope.minimunDate, "yyyy-MM-dd");
     $scope.bloodSugarObject.MaxDate = $filter('date')($scope.currentDate, "yyyy-MM-dd");
     
+    $scope.showConfirm = function () {
+      
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Save Appointment',
+        template: 'Are you sure?',
+        buttons: [
+          { text: '<i class="icon ion-close-circled"></i>',
+            onTap: function(e) { return false; }
+          },
+          { text: '<i class="icon ion-checkmark-circled""></i>',
+            onTap: function(e) { $ionicViewSwitcher.nextDirection('back'); $scope.appGoBack(); }
+          }
+        ]
+      });
+      
+      IonicClosePopupService.register(confirmPopup);
+  };
+    
 })
 
-.controller('PhysicalWorkoutCtrl', function($scope, $filter, IonicClosePopupService, $ionicPopup){
+.controller('PhysicalWorkoutCtrl', function($scope, $filter, IonicClosePopupService, $ionicPopup, $ionicViewSwitcher){
   
   var workoutPopup;
   
@@ -567,12 +630,69 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
       workoutPopup.close();
     };
     
+    var msToTime = function (duration) {
+        var milliseconds = parseInt((duration%1000)/100)
+            , seconds = parseInt((duration/1000)%60)
+            , minutes = parseInt((duration/(1000*60))%60)
+            , hours = parseInt((duration/(1000*60*60))%24);
+
+        hours = (hours < 10) ? "0" + hours : hours;
+        minutes = (minutes < 10) ? "0" + minutes : minutes;
+        seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+        return hours + ":" + minutes;
+    };
+    
+    $scope.showConfirm = function () {
+      
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Save Appointment',
+        template: 'Are you sure?',
+        buttons: [
+          { text: '<i class="icon ion-close-circled"></i>',
+            onTap: function(e) { return false; }
+          },
+          { text: '<i class="icon ion-checkmark-circled""></i>',
+            onTap: function(e) { 
+              var startTime = new Date($scope.phyWorkoutObject.startTime).getTime();
+              var endTime = new Date($scope.phyWorkoutObject.endTime).getTime();
+              var totalTime = msToTime(endTime - startTime);
+              $scope.phyWorkoutObject.totalTime = totalTime;
+              //console.log("totalTime : " + totalTime);
+              $ionicViewSwitcher.nextDirection('back'); 
+              $scope.appGoBack(); 
+            }
+          }
+        ]
+      });
+      
+      IonicClosePopupService.register(confirmPopup);
+  };
+    
 })
 
-.controller('WeightCtrl', function($scope, $filter){
+.controller('WeightCtrl', function($scope, $filter, IonicClosePopupService, $ionicPopup, $ionicViewSwitcher){
   
   $scope.weightObject.MaxDate = $filter('date')($scope.currentDate, "yyyy-MM-dd");
   $scope.weightObject.MinDate = $filter('date')($scope.minimunDate, "yyyy-MM-dd");
+  
+  $scope.showConfirm = function () {
+      
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Save Appointment',
+        template: 'Are you sure?',
+        buttons: [
+          { text: '<i class="icon ion-close-circled"></i>',
+            onTap: function(e) { return false; }
+          },
+          { text: '<i class="icon ion-checkmark-circled""></i>',
+            onTap: function(e) { $ionicViewSwitcher.nextDirection('back'); $scope.appGoBack(); }
+          }
+        ]
+      });
+      
+      IonicClosePopupService.register(confirmPopup);
+  };
   
 })
 
@@ -947,6 +1067,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
           },
           { text: '<i class="icon ion-checkmark-circled""></i>',
             onTap: function(e) { 
+              console.log($scope.getReminderDateTime($scope.genReminderObj.Date, $scope.genReminderObj.Time));
               $scope.addGeneralReminder();
               $ionicViewSwitcher.nextDirection('back'); 
               $scope.appGoBack(); 
@@ -961,14 +1082,10 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
   $ionicPlatform.ready(function(){
     
     $scope.addGeneralReminder = function(){
-      var date = new Date($scope.genReminderObj.Date);
-      var time = new Date($scope.genReminderObj.Time).getTime();
-      var reminderDateTime = new Date(date.setTime(date.getTime() + time));
-      reminderDateTime.setHours(reminderDateTime.getHours() + 1);
-      
+     
       $cordovaLocalNotification.add({
         id: "12345",
-        date: reminderDateTime,
+        date: $scope.getReminderDateTime($scope.genReminderObj.Date, $scope.genReminderObj.Time),
         message: $scope.genReminderObj.Msg,
         title: $scope.genReminderObj.Name,
         autoCancel: true
