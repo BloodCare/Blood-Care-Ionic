@@ -19,12 +19,12 @@
                 <i class="icon ion-calendar placeholder-icon"></i>
                 <input type="date" min="{{bloodSugarObject.MinDate}}" 
                        max="{{bloodSugarObject.MaxDate}}"
-                       ng-model="bloodSugarObject.Date">
+                       ng-model="bloodSugarObject.date">
             </ion-item>
             <ion-item class="item-input custom-datetime-item">
                 &nbsp; &nbsp; Time:
                 <i class="icon ion-ios-time placeholder-icon"></i>
-                <input type="time" ng-model="bloodSugarObject.Time">
+                <input type="time" ng-model="bloodSugarObject.time">
             </ion-item>
         </ion-list>
         
@@ -35,7 +35,7 @@
             <div class="item custom-input">
                 <label class="item-input">
                    <input type="number" placeholder="50" style="width: 100px" ng-model="bloodSugarObject.value">
-                   <span type="text" ng-bind="bloodSugarObject.bloodSugarUnit" style="text-align: right"></span>
+                   <span type="text" ng-bind="bloodSugarObject.unit" style="text-align: right"></span>
                 </label>
             </div>
         </div>

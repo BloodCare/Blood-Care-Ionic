@@ -49,7 +49,7 @@
     <div class="list custom-popup-form">
         <label class="item item-input item-floating-label">
             <span class="input-label">Meal Category Name</span>
-            <input type="text" placeholder="Meal Category Name" ng-model="mealCatObj.mealCatName">
+            <input type="text" placeholder="Meal Category Name" ng-model="mealIntakeObject.name">
         </label>
     </div>
 </script>
@@ -58,7 +58,7 @@
     <div class="list custom-popup-form">
         <span>Meal Category Name: </span>
         <label class="item item-input">
-            <input type="text" value="{{mealCatObj.editMealCat}}" ng-model="mealCatObj.editMealCat">
+            <input type="text" value="{{mealIntakeObject.name}}" ng-model="mealIntakeObject.name">
         </label>
     </div>
 </script>
@@ -68,7 +68,7 @@
     <div class="list custom-popup-form custom-delete-list">
         <span>Meal Category Name: </span>
         <label class="item custom-popup-item">
-            <span>{{mealCatObj.deleteMealCat}}</span>
+            <span>{{mealIntakeObject.name}}</span>
         </label>
     </div>
 </script>

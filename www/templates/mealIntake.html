@@ -19,12 +19,12 @@
                 <i class="icon ion-calendar placeholder-icon"></i>
                 <input type="date" min="{{mealIntakeObject.MinDate}}" 
                         max="{{mealIntakeObject.MaxDate}}"
-                        ng-model="mealIntakeObject.Date">
+                        ng-model="mealIntakeObject.date">
             </ion-item>
             <ion-item class="item-input custom-datetime-item">
                 &nbsp; &nbsp; Time:
                 <i class="icon ion-ios-time placeholder-icon"></i>
-                <input type="time" ng-model="mealIntakeObject.Time">
+                <input type="time" ng-model="mealIntakeObject.time">
             </ion-item>
         </ion-list>
 
@@ -36,7 +36,7 @@
                 </i>
             </div>
             <div class="item" ng-click="showMealCategory()">
-                 <a class="custom-popup-text" ng-bind="mealIntakeObject.mealCategory">{{mealIntakeObject.mealCategory}}</a>
+                 <a class="custom-popup-text" ng-bind="mealIntakeObject.name">{{mealIntakeObject.name}}</a>
             </div>
         </div>
         
@@ -47,7 +47,7 @@
             <div class="item custom-input">
                 <label class="item-input">
                    <input type="number" placeholder="30" style="width: 100px" ng-model="mealIntakeObject.value">
-                   <span type="text" ng-bind="mealIntakeObject.mealUnit" style="text-align: right"></span>
+                   <span type="text" ng-bind="mealIntakeObject.unit" style="text-align: right"></span>
                 </label>
             </div>
         </div>
@@ -58,7 +58,7 @@
             </div>
             <div class="item">
                 <label class="item-input">
-                   <textarea placeholder="Salad, Tomato Soup" rows="2" ng-model="mealIntakeObject.mealDetails"></textarea>
+                   <textarea placeholder="Salad, Tomato Soup" rows="2" ng-model="mealIntakeObject.notes"></textarea>
                 </label>
             </div>
         </div>

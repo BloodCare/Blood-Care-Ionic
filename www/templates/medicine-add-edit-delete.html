@@ -48,11 +48,11 @@
     <div class="list custom-popup-form">
         <label class="item item-input item-floating-label">
             <span class="input-label">Medicine Name</span>
-            <input type="text" placeholder="Medicine Name" ng-model="medsObj.medsname">
+            <input type="text" placeholder="Medicine Name" ng-model="medicineIntakeObject.name">
         </label>
         <label class="item item-input item-floating-label">
             <span class="input-label">Medicine Unit</span>
-            <input type="text" placeholder="Medicine Unit" ng-model="medsObj.medsunit">
+            <input type="text" placeholder="Medicine Unit" ng-model="medicineIntakeObject.unit">
         </label>
     </div>
 </script>
@@ -61,11 +61,11 @@
     <div class="list custom-popup-form">
         <span>Medicine Name: </span>
         <label class="item item-input">
-            <input type="text" value="{{medsObj.editMedsName}}" ng-model="medsObj.editMedsName">
+            <input type="text" value="{{medicineIntakeObject.name}}" ng-model="medicineIntakeObject.name">
         </label>
         <span>Medicine Unit: </span>
         <label class="item item-input">
-            <input type="text" value="{{medsObj.editMedsUnit}}" ng-model="medsObj.editMedsUnit">
+            <input type="text" value="{{medicineIntakeObject.unit}}" ng-model="medicineIntakeObject.unit">
         </label>
     </div>
 </script>
@@ -75,11 +75,11 @@
     <div class="list custom-popup-form custom-delete-list">
         <span>Medicine Name: </span>
         <label class="item custom-popup-item">
-            <span>{{medsObj.deleteMedsName}}</span>
+            <span>{{medicineIntakeObject.name}}</span>
         </label>
         <span>Medicine Unit: </span>
         <label class="item custom-popup-item">
-            <span>{{medsObj.deleteMedsUnit}}</span>
+            <span>{{medicineIntakeObject.unit}}</span>
         </label>
     </div>
 </script>

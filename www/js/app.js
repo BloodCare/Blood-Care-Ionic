@@ -186,6 +186,8 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
     $ionicViewSwitcher.nextDirection('back');
     $ionicHistory.goBack();
   };
+
+  /*------------------------ Profile Data ------------------------*/
   
   $scope.genderList = [
     'Male',
@@ -198,16 +200,15 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
     'Type 2'
   ];
   
-  $scope.bloodSugarUnits = [
-    'mmo/l',
-    'mg/dL'
-  ];
+  $scope.profileObject = {};
+  $scope.profileObject.gender = $scope.genderList[1];
+  $scope.profileObject.diabetes = $scope.diabetesTypes[0];
   
-  $scope.weightUnits = [
-    'Kgs',
-    'Pounds'
-  ];
+  /*------------------------------------------------------------------*/
   
+  $scope.feedbackObject = {};
+  
+  /*-------------------- Medicine Intake Data -------------*/
   $scope.medicineList = [
     {
       name: 'Insulin',
@@ -227,6 +228,14 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
     }
   ];
   
+  $scope.medicineIntakeObject = {};
+  $scope.medicineIntakeObject.title = "Medicine Intake";
+  $scope.medicineIntakeObject.name = $scope.medicineList[0].name;
+  $scope.medicineIntakeObject.unit = $scope.medicineList[0].unit;
+  /*------------------------------------------------------------------*/
+  
+  /*------------------------ Meal Intake Data -----------------*/
+  
   $scope.mealCategories = [
     'Breakfast',
     'Lunch',
@@ -234,36 +243,56 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
     'Supper'
   ];
   
+  $scope.mealIntakeObject = {}; 
+  $scope.mealIntakeObject.title = "Meal Intake";
+  $scope.mealIntakeObject.name = $scope.mealCategories[0];
+  $scope.mealIntakeObject.unit = "gm of Carbs";
+  
+  /*------------------------------------------------------------------*/
+  
+  /*------------------------ Blood Sugar Data ---------------------*/
+  
+  $scope.bloodSugarUnits = [
+    'mmo/l',
+    'mg/dL'
+  ];
+  
+  $scope.bloodSugarObject = {};
+  $scope.bloodSugarObject.title = "Blood Sugar";
+  $scope.bloodSugarObject.name = "Blood Sugar";
+  $scope.bloodSugarObject.unit = $scope.bloodSugarUnits[0];
+  
+  /*------------------------------------------------------------------*/
+  
+  /*------------------------------ Weight Data ---------------------------*/
+  
+  $scope.weightUnits = [
+    'Kgs',
+    'Pounds'
+  ];
+  
+  $scope.weightObject = {};
+  $scope.weightObject.title ="Weight";
+  $scope.weightObject.name = "Weight";
+  $scope.weightObject.unit = $scope.weightUnits[0];
+  
+  /*----------------------------------------------------------------------*/
+  
+  /*------------------------- Physical Workout Data ----------------------*/
+  
   $scope.workoutTypes = [
     'Running',
     'Walking',
     'Sit-ups'
   ];
   
-  $scope.profileObject = {};
-  $scope.feedbackObject = {};
-  $scope.medicineIntakeObject = {};
-  $scope.mealIntakeObject = {}; 
-  $scope.bloodSugarObject = {};
   $scope.phyWorkoutObject = {};
-  $scope.weightObject = {};
+  $scope.phyWorkoutObject.title = "Physical Workout";
+  $scope.phyWorkoutObject.name = $scope.workoutTypes[0];
+  $scope.phyWorkoutObject.unit = "";
   
-  $scope.profileObject.gender = $scope.genderList[1];
-  $scope.profileObject.diabetes = $scope.diabetesTypes[0];
-  
-  $scope.medicineIntakeObject.medicineName = $scope.medicineList[0].name;
-  $scope.medicineIntakeObject.medicineUnit = $scope.medicineList[0].unit;
-  
-  $scope.mealIntakeObject.mealCategory = $scope.mealCategories[0];
-  $scope.mealIntakeObject.mealUnit = "gm of Carbs";
-  
-  $scope.bloodSugarObject.bloodSugarUnit = $scope.bloodSugarUnits[0];
-  
-  $scope.phyWorkoutObject.workoutName = $scope.workoutTypes[0];
-  
-  $scope.weightObject.weightUnit = $scope.weightUnits[0];
-  
-  
+  /*------------------------------------------------------------------------------*/
+
   $scope.getReminderDateTime = function (inputDate, inputTime) {
     var date = new Date(inputDate);
     var time = new Date(inputTime).getTime();
@@ -504,8 +533,8 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
     };
   
   $scope.closeMeds = function (name, unit) {
-    $scope.medicineIntakeObject.medicineName = name;
-    $scope.medicineIntakeObject.medicineUnit = unit;
+    $scope.medicineIntakeObject.name = name;
+    $scope.medicineIntakeObject.unit = unit;
     medsPopup.close();
   }
   
@@ -553,7 +582,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
     };
   
   $scope.closeMealCat = function (name) {
-    $scope.mealIntakeObject.mealCategory = name;
+    $scope.mealIntakeObject.name = name;
     mealPopup.close();
   };
   
@@ -626,7 +655,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
     };
     
     $scope.closeWorkout = function (name) {
-      $scope.phyWorkoutObject.workoutName = name;
+      $scope.phyWorkoutObject.name = name;
       workoutPopup.close();
     };
     
@@ -640,7 +669,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
         minutes = (minutes < 10) ? "0" + minutes : minutes;
         seconds = (seconds < 10) ? "0" + seconds : seconds;
 
-        return hours + ":" + minutes;
+        return hours + " Hrs " + minutes + " min ";
     };
     
     $scope.showConfirm = function () {
@@ -657,7 +686,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
               var startTime = new Date($scope.phyWorkoutObject.startTime).getTime();
               var endTime = new Date($scope.phyWorkoutObject.endTime).getTime();
               var totalTime = msToTime(endTime - startTime);
-              $scope.phyWorkoutObject.totalTime = totalTime;
+              $scope.phyWorkoutObject.value = totalTime;
               //console.log("totalTime : " + totalTime);
               $ionicViewSwitcher.nextDirection('back'); 
               $scope.appGoBack(); 
@@ -712,7 +741,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
   
    $scope.showAddMealCategory = function () {
       
-     $scope.mealCatObj.mealCatName = "";
+     $scope.mealIntakeObject.name = "";
       
      addMealCatPopup = $ionicPopup.show({
         title: 'Add Meal Category',
@@ -720,14 +749,17 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
         scope: $scope,
         buttons: [
           { text: '<i class="icon ion-close-circled"></i>',
-            onTap: function(e) { return false; }
+            onTap: function(e) { 
+              $scope.mealIntakeObject.name = $scope.mealCategories[0];
+              return false; 
+            }
           },
           { text: '<i class="icon ion-checkmark-circled""></i>',
             onTap: function(e) { 
-              if (!$scope.mealCatObj.mealCatName) {
+              if (!$scope.mealIntakeObject.name) {
                 e.preventDefault();
               } else {
-                $scope.mealCategories.push($scope.mealCatObj.mealCatName);
+                $scope.mealCategories.push($scope.mealIntakeObject.name);
                 return false;
               }
             }
@@ -740,7 +772,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
     
     $scope.showEditMealCat = function (item) {
       
-      $scope.mealCatObj.editMealCat = item;
+      $scope.mealIntakeObject.name = item;
       
      editMealCatPopup = $ionicPopup.show({
         title: 'Edit Meal Category',
@@ -748,11 +780,14 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
         scope: $scope,
         buttons: [
           { text: '<i class="icon ion-close-circled"></i>',
-            onTap: function(e) { return false; }
+            onTap: function(e) { 
+              $scope.mealIntakeObject.name = $scope.mealCategories[0];
+              return false; 
+            }
           },
           { text: '<i class="icon ion-checkmark-circled""></i>',
             onTap: function(e) { 
-              if (!$scope.mealCatObj.editMealCat) {
+              if (!$scope.mealIntakeObject.name) {
                 e.preventDefault();
               } else {
                 /*
@@ -762,7 +797,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
                 }*/
                 
                 var index = $scope.mealCategories.indexOf(item);
-                $scope.mealCategories[index] = $scope.mealCatObj.editMealCat;
+                $scope.mealCategories[index] = $scope.mealIntakeObject.name;
                 return false;
               }
             }
@@ -775,7 +810,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
     
     $scope.showDeleteMealCat = function (item) {
       
-      $scope.mealCatObj.deleteMealCat = item;
+      $scope.mealIntakeObject.name = item;
       
      deleteMealCatPopup = $ionicPopup.show({
         title: 'Delete Meal Category',
@@ -788,6 +823,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
           { text: '<i class="icon ion-checkmark-circled""></i>',
             onTap: function(e) { 
                 $scope.mealCategories.splice($scope.mealCategories.indexOf(item), 1);
+                $scope.mealIntakeObject.name = $scope.mealCategories[0];
             }
           }
         ]
@@ -816,8 +852,8 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
   
   $scope.showAddMeds = function () {
       
-      $scope.medsObj.medsname = "";
-      $scope.medsObj.medsunit = "";
+      $scope.medicineIntakeObject.name = "";
+      $scope.medicineIntakeObject.unit = "";
       
      addMedsPopup = $ionicPopup.show({
         title: 'Add Medicine',
@@ -825,15 +861,19 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
         scope: $scope,
         buttons: [
           { text: '<i class="icon ion-close-circled"></i>',
-            onTap: function(e) { return false; }
+            onTap: function(e) { 
+              $scope.medicineIntakeObject.name = $scope.medicineList[0].name;
+              $scope.medicineIntakeObject.unit = $scope.medicineList[0].unit;
+              return false; 
+            }
           },
           { text: '<i class="icon ion-checkmark-circled""></i>',
             onTap: function(e) { 
-              if (!$scope.medsObj.medsname || !$scope.medsObj.medsunit) {
+              if (!$scope.medicineIntakeObject.name || !$scope.medicineIntakeObject.unit) {
                 e.preventDefault();
               } else {
-                var obj = { name: $scope.medsObj.medsname,
-                            unit: $scope.medsObj.medsunit};
+                var obj = { name: $scope.medicineIntakeObject.name,
+                            unit: $scope.medicineIntakeObject.unit};
                 $scope.medicineList.push(obj);
                 return false;
               }
@@ -847,8 +887,8 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
     
     $scope.showEditMeds = function (item) {
 
-      $scope.medsObj.editMedsName = item.name;
-      $scope.medsObj.editMedsUnit = item.unit;
+      $scope.medicineIntakeObject.name = item.name;
+      $scope.medicineIntakeObject.unit = item.unit;
       
      editMedsPopup = $ionicPopup.show({
         title: 'Edit Medicine',
@@ -856,22 +896,20 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
         scope: $scope,
         buttons: [
           { text: '<i class="icon ion-close-circled"></i>',
-            onTap: function(e) { return false; }
+            onTap: function(e) { 
+              $scope.medicineIntakeObject.name = $scope.medicineList[0].name;
+              $scope.medicineIntakeObject.unit = $scope.medicineList[0].unit;
+              return false; 
+            }
           },
           { text: '<i class="icon ion-checkmark-circled""></i>',
             onTap: function(e) { 
-              if (!$scope.medsObj.editMedsName || !$scope.medsObj.editMedsUnit) {
+              if (!$scope.medicineIntakeObject.name || !$scope.medicineIntakeObject.unit) {
                 e.preventDefault();
               } else {
-                /*
-                if ($scope.selectedMedicineName == item.name && $scope.selectedMedicineUnit == item.unit) {
-                  $scope.selectedMedicineName = $scope.medsObj.editMedsName;
-                  $scope.selectedMedicineUnit = $scope.medsObj.editMedsUnit;
-                }*/
-                
                 var index = $scope.medicineList.indexOf(item);
-                $scope.medicineList[index].name = $scope.medsObj.editMedsName;
-                $scope.medicineList[index].unit = $scope.medsObj.editMedsUnit;
+                $scope.medicineList[index].name = $scope.medicineIntakeObject.name;
+                $scope.medicineList[index].unit = $scope.medicineIntakeObject.unit;
                 return false;
               }
             }
@@ -884,8 +922,8 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
   
     $scope.showDeleteMeds = function (item) {
       
-      $scope.medsObj.deleteMedsName = item.name;
-      $scope.medsObj.deleteMedsUnit = item.unit;
+      $scope.medicineIntakeObject.name = item.name;
+      $scope.medicineIntakeObject.unit = item.unit;
       
      deleteMedsPopup = $ionicPopup.show({
         title: 'Delete Medicine',
@@ -898,6 +936,8 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
           { text: '<i class="icon ion-checkmark-circled""></i>',
             onTap: function(e) { 
                 $scope.medicineList.splice($scope.medicineList.indexOf(item), 1);
+                $scope.medicineIntakeObject.name = $scope.medicineList[0].name;
+                $scope.medicineIntakeObject.unit = $scope.medicineList[0].unit;
             }
           }
         ]
@@ -925,20 +965,25 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
   
   $scope.showAddWorkoutType = function () {
       
+      $scope.phyWorkoutObject.name = "";
+      
      addWorkoutTypePopup = $ionicPopup.show({
         title: 'Add Workout Type',
         templateUrl: 'add-workoutType-popup.html',
         scope: $scope,
         buttons: [
           { text: '<i class="icon ion-close-circled"></i>',
-            onTap: function(e) { return false; }
+            onTap: function(e) { 
+              $scope.phyWorkoutObject.name = $scope.workoutTypes[0];
+              return false; 
+            }
           },
           { text: '<i class="icon ion-checkmark-circled""></i>',
             onTap: function(e) { 
-              if (!$scope.workoutObj.workoutType) {
+              if (!$scope.phyWorkoutObject.name) {
                 e.preventDefault();
               } else {
-                $scope.workoutTypes.push($scope.workoutObj.workoutType);
+                $scope.workoutTypes.push($scope.phyWorkoutObject.name);
                 return false;
               }
             }
@@ -951,7 +996,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
     
     $scope.showEditWorkoutType = function (item) {
       
-      $scope.workoutObj.editworkoutType = item;
+      $scope.phyWorkoutObject.name = item;
       
      editWorkoutTypePopup = $ionicPopup.show({
         title: 'Edit Workout Type',
@@ -959,21 +1004,18 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
         scope: $scope,
         buttons: [
           { text: '<i class="icon ion-close-circled"></i>',
-            onTap: function(e) { return false; }
+            onTap: function(e) { 
+              $scope.phyWorkoutObject.name = $scope.workoutTypes[0];
+              return false; 
+            }
           },
           { text: '<i class="icon ion-checkmark-circled""></i>',
             onTap: function(e) { 
-              if (!$scope.workoutObj.editworkoutType) {
+              if (!$scope.phyWorkoutObject.name) {
                 e.preventDefault();
               } else {
-                /*
-                if ($scope.selectedMedicineName == item.name && $scope.selectedMedicineUnit == item.unit) {
-                  $scope.selectedMedicineName = $scope.medsObj.editMedsName;
-                  $scope.selectedMedicineUnit = $scope.medsObj.editMedsUnit;
-                }*/
-                
                 var index = $scope.workoutTypes.indexOf(item);
-                $scope.workoutTypes[index] = $scope.workoutObj.editworkoutType;
+                $scope.workoutTypes[index] = $scope.phyWorkoutObject.name;
                 return false;
               }
             }
@@ -986,7 +1028,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
     
     $scope.showDeleteWorkoutType = function (item) {
       
-      $scope.workoutObj.deleteworkoutType = item;
+      $scope.phyWorkoutObject.name = item;
       
      deleteWorkoutTypePopup = $ionicPopup.show({
         title: 'Delete Workout Type',
@@ -999,6 +1041,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
           { text: '<i class="icon ion-checkmark-circled""></i>',
             onTap: function(e) { 
                 $scope.workoutTypes.splice($scope.workoutTypes.indexOf(item), 1);
+                $scope.phyWorkoutObject.name = $scope.workoutTypes[0];
             }
           }
         ]

@@ -49,7 +49,7 @@
     <div class="list custom-popup-form">
         <label class="item item-input item-floating-label">
             <span class="input-label">Workout Type Name</span>
-            <input type="text" placeholder="Workout Type Name" ng-model="workoutObj.workoutType">
+            <input type="text" placeholder="Workout Type Name" ng-model="phyWorkoutObject.name">
         </label>
     </div>
 </script>
@@ -58,7 +58,7 @@
     <div class="list custom-popup-form">
         <span>Workout Type Name: </span>
         <label class="item item-input">
-            <input type="text" value="{{workoutObj.editworkoutType}}" ng-model="workoutObj.editworkoutType">
+            <input type="text" value="{{phyWorkoutObject.name}}" ng-model="phyWorkoutObject.name">
         </label>
     </div>
 </script>
@@ -68,7 +68,7 @@
     <div class="list custom-popup-form custom-delete-list">
         <span>Workout Type Name: </span>
         <label class="item custom-popup-item">
-            <span>{{workoutObj.deleteworkoutType}}</span>
+            <span>{{phyWorkoutObject.name}}</span>
         </label>
     </div>
 </script>

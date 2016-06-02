@@ -19,12 +19,12 @@
                 <i class="icon ion-calendar placeholder-icon"></i>
                 <input type="date" min="{{phyWorkoutObject.MinDate}}" 
                        max="{{phyWorkoutObject.MaxDate}}"
-                       ng-model="phyWorkoutObject.Date">
+                       ng-model="phyWorkoutObject.date">
             </ion-item>
             <ion-item class="item-input custom-datetime-item">
                 &nbsp; &nbsp; Time:
                 <i class="icon ion-ios-time placeholder-icon"></i>
-                <input type="time" ng-model="phyWorkoutObject.Time">
+                <input type="time" ng-model="phyWorkoutObject.time">
             </ion-item>
         </ion-list>
         
@@ -36,7 +36,7 @@
                 </i>
             </div>
             <div class="item" ng-click="showWorkoutType()">
-                 <a class="custom-popup-text" ng-bind="phyWorkoutObject.workoutName">{{phyWorkoutObject.workoutName}}</a>
+                 <a class="custom-popup-text" ng-bind="phyWorkoutObject.name">{{phyWorkoutObject.name}}</a>
             </div>
         </div>
         
@@ -60,6 +60,17 @@
                 <label class="item-input">
                    <i class="icon ion-ios-time placeholder-icon"></i>
                    <input type="time" ng-model="phyWorkoutObject.endTime"> 
+                </label>
+            </div>
+        </div>
+        
+        <div class="card custom-card">
+            <div class="item">
+                <span>Notes</span>
+            </div>
+            <div class="item">
+                <label class="item-input">
+                   <textarea placeholder="..." rows="2" ng-model="phyWorkoutObject.notes"></textarea>
                 </label>
             </div>
         </div>
