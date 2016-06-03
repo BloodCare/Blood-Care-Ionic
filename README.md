@@ -1,6 +1,6 @@
 # Blood-Care-Ionic
 
-(https://github.com/BloodCare/Blood-Care-Ionic/blob/master/www/img/menu-icon-40x40.gif)
+![Alt text] (https://github.com/BloodCare/Blood-Care-Ionic/blob/master/www/img/menu-icon-40x40.gif)
 
 ###Details:
 * **Frontend**: Ionic Framework, AngularJS
