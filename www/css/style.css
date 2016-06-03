@@ -1,0 +1,105 @@
+/* Empty. Add your own CSS if you like */
+.hasDatepicker{
+    border: 0;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+   .ui-datepicker{
+        font-size:11px;
+        background: #D6D6D6; 
+        background: linear-gradient(#D6D6D6, #E6E6E6);
+        background: -webkit-linear-gradient(#D6D6D6, #E6E6E6);
+        background: -o-linear-gradient(#D6D6D6, #E6E6E6);
+        background: -moz-linear-gradient(#D6D6D6, #E6E6E6); 
+    } 
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2){
+    .ui-datepicker{
+        font-size:11px;
+        background: #D6D6D6; 
+        background: linear-gradient(#D6D6D6, #E6E6E6);
+        background: -webkit-linear-gradient(#D6D6D6, #E6E6E6);
+        background: -o-linear-gradient(#D6D6D6, #E6E6E6);
+        background: -moz-linear-gradient(#D6D6D6, #E6E6E6); 
+    } 
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2){
+    .ui-datepicker{
+        font-size:12px;
+        background: #D6D6D6; 
+        background: linear-gradient(#D6D6D6, #E6E6E6);
+        background: -webkit-linear-gradient(#D6D6D6, #E6E6E6);
+        background: -o-linear-gradient(#D6D6D6, #E6E6E6);
+        background: -moz-linear-gradient(#D6D6D6, #E6E6E6); 
+    }   
+}
+
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 2){
+    .ui-datepicker{
+        font-size:12px;
+        background: #D6D6D6; 
+        background: linear-gradient(#D6D6D6, #E6E6E6);
+        background: -webkit-linear-gradient(#D6D6D6, #E6E6E6);
+        background: -o-linear-gradient(#D6D6D6, #E6E6E6);
+        background: -moz-linear-gradient(#D6D6D6, #E6E6E6); 
+    }        
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2){
+    .ui-datepicker{
+        width: 240px;
+        height: 250px;
+        font-size: 14px !important;
+        background: #D6D6D6; 
+        background: linear-gradient(#D6D6D6, #E6E6E6);
+        background: -webkit-linear-gradient(#D6D6D6, #E6E6E6);
+        background: -o-linear-gradient(#D6D6D6, #E6E6E6);
+        background: -moz-linear-gradient(#D6D6D6, #E6E6E6); 
+    }        
+}
+
+.ui-datepicker{
+        font-size:12px;
+        background: #D6D6D6; 
+        background: linear-gradient(#D6D6D6, #E6E6E6);
+        background: -webkit-linear-gradient(#D6D6D6, #E6E6E6);
+        background: -o-linear-gradient(#D6D6D6, #E6E6E6);
+        background: -moz-linear-gradient(#D6D6D6, #E6E6E6); 
+    }
+
+.ui-datepicker th{
+    color: #5A00FF;
+}
+.ui-datepicker-header{
+    color: #5A00FF;
+    background: #D6D6D6; 
+    background: linear-gradient(#D6D6D6, #E6E6E6);
+    background: -webkit-linear-gradient(#D6D6D6, #E6E6E6);
+    background: -o-linear-gradient(#D6D6D6, #E6E6E6);
+    background: -moz-linear-gradient(#D6D6D6, #E6E6E6); 
+    border: 1px solid #B0B0B0;
+}
+.ui-datepicker-month, .ui-datepicker-year{
+    color: #5A00FF;
+}
+.ui-datepicker-calendar .ui-state-default{
+    color: #5A00FF;
+    text-align: center;
+}
+.ui-datepicker-calendar .ui-state-active{
+    background: #5A00FF; 
+    background: -webkit-linear-gradient(#A800DC, #5A00FF);
+    background: -o-linear-gradient(#A800DC, #5A00FF); 
+    background: -moz-linear-gradient(#A800DC, #5A00FF); 
+    background: linear-gradient(#A800DC, #5A00FF);   
+    color: #D6D6D6;
+    font-weight: bold;
+    border: 1px #5A00FF solid;
+}
+.ui-datepicker-calendar .ui-state-highlight{
+    background: #FDFF64;
+    border: 1px solid #FDFF64;
+    color: #5A00FF;;
+}

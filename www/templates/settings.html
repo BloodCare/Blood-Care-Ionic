@@ -1,0 +1,36 @@
+<ion-pane>
+    <ion-header-bar class="custom-bar-bg" align-title="center">
+        <div class="buttons">
+            &nbsp;
+            <img src="img/menu-icon-40x40.gif" width="33px" height="33px" ng-click="appGoBack()" nav-direction="back">
+        </div>
+        <h1 class="title">Settings</h1>
+    </ion-header-bar>
+    <ion-content>
+            <ion-list>
+                
+                <a ui-sref="profile" nav-direction="forward" class="custom-item-list">
+                    <ion-item class="item-icon-left">
+                       <i class="icon ion-ios-person-outline"></i>
+                       &nbsp; &nbsp; &nbsp; Profile
+                    </ion-item>
+                </a>
+                
+                <a ui-sref="feedback" nav-direction="forward" class="custom-item-list">
+                    <ion-item class="item-icon-left">
+                       <i class="icon ion-ios-help-outline"></i>
+                       &nbsp;  &nbsp; &nbsp; Feedback
+                    </ion-item>
+                </a>
+                
+                <a ui-sref="about" nav-direction="forward" class="custom-item-list">
+                    <ion-item class="item-icon-left">
+                       <i class="icon ion-ios-information-outline"></i>
+                       &nbsp; &nbsp; &nbsp; About
+                    </ion-item>
+                </a>
+                
+            </ion-list>
+            
+    </ion-content>
+</ion-pane>

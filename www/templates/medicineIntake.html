@@ -1,0 +1,75 @@
+<ion-pane>
+    <ion-header-bar class="custom-bar-bg" align-title="center">
+        <div class="buttons">
+            <a class="button button-icon ion-ios-arrow-back" ng-click="appGoBack()" nav-direction="back">
+            </a>
+        </div>
+        <h1 class="title">Medicine Intake</h1>
+        <div class="buttons">
+            <button class="button button-icon ion-checkmark-circled" 
+                    ng-click="showConfirm()">
+            </button>
+        </div>
+    </ion-header-bar>
+    <ion-content class="custom-content">
+        
+        <ion-list class="custom-datetime-list">
+            <ion-item class="item-input custom-datetime-item">
+                &nbsp;  &nbsp; Date:
+                <i class="icon ion-calendar placeholder-icon"></i>
+                <input type="date" min="{{medicineIntakeObject.MinDate}}" 
+                       max="{{medicineIntakeObject.MaxDate}}"
+                       ng-model="medicineIntakeObject.date">
+            </ion-item>
+            <ion-item class="item-input custom-datetime-item">
+                &nbsp; &nbsp; Time:
+                <i class="icon ion-ios-time placeholder-icon"></i>
+                <input type="time" ng-model="medicineIntakeObject.time">
+            </ion-item>
+        </ion-list>
+        
+        <div class="card custom-card">
+            <div class="item item-icon-right">
+                <span>Medication Name</span>
+                <i class="icon ion-android-more-vertical custom-more"
+                   ui-sref="medicineName">
+                </i>
+            </div>
+            <div class="item" ng-click="showMeds()">
+                <a class="custom-popup-text" ng-bind="medicineIntakeObject.name">{{medicineIntakeObject.name}}</a>
+            </div>
+        </div>
+        
+        <div class="card custom-card">
+            <div class="item">
+                <span>Medication Quantity</span>
+            </div>
+            <div class="item custom-input">
+                <label class="item-input">
+                   <input type="number" placeholder="eg. 123" ng-model="medicineIntakeObject.value">
+                   <span type="text" ng-bind="medicineIntakeObject.unit" style="text-align: right"></span>
+                </label>
+            </div>
+        </div>
+        
+        <div class="card custom-card">
+            <div class="item">
+                <span>Medication Description</span>
+            </div>
+            <div class="item">
+                <label class="item-input">
+                   <textarea placeholder="Low power" rows="2" ng-model="medicineIntakeObject.notes"></textarea>
+                </label>
+            </div>
+        </div>
+        
+    </ion-content>
+</ion-pane>
+
+<script type="text/ng-template" id="medicine-popup.html">
+    <ion-list class="medicine-list">
+        <ion-item ng-repeat="med in medicineList" ng-click="closeMeds(med.name, med.unit)" class="select-item">
+            <a class="custom-selectbox">{{med.name}}</a>
+        </ion-item>
+    </ion-list>
+</script>

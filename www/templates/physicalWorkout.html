@@ -1,0 +1,113 @@
+<ion-pane>
+    <ion-header-bar class="custom-bar-bg" align-title="center">
+        <div class="buttons">
+            <a class="button button-icon ion-ios-arrow-back" ng-click="appGoBack()" nav-direction="back">
+            </a>
+        </div>
+        <h1 class="title">Physical Workout</h1>
+        <div class="buttons">
+            <button class="button button-icon ion-checkmark-circled" 
+                    ng-click="showConfirm()">
+            </button>
+        </div>
+    </ion-header-bar>
+    <ion-content class="custom-content">
+        
+        <ion-list class="custom-datetime-list">
+            <ion-item class="item-input custom-datetime-item">
+                &nbsp;  &nbsp; Date:
+                <i class="icon ion-calendar placeholder-icon"></i>
+                <input type="date" min="{{phyWorkoutObject.MinDate}}" 
+                       max="{{phyWorkoutObject.MaxDate}}"
+                       ng-model="phyWorkoutObject.date">
+            </ion-item>
+            <ion-item class="item-input custom-datetime-item">
+                &nbsp; &nbsp; Time:
+                <i class="icon ion-ios-time placeholder-icon"></i>
+                <input type="time" ng-model="phyWorkoutObject.time">
+            </ion-item>
+        </ion-list>
+        
+        <div class="card custom-card">
+            <div class="item item-icon-right">
+                <span>Workout Type</span>
+                <i class="icon ion-android-more-vertical custom-more" 
+                   ui-sref="workoutType">
+                </i>
+            </div>
+            <div class="item" ng-click="showWorkoutType()">
+                 <a class="custom-popup-text" ng-bind="phyWorkoutObject.name">{{phyWorkoutObject.name}}</a>
+            </div>
+        </div>
+        
+        <div class="card custom-card">
+            <div class="item">
+                <span>Start Time</span>
+            </div>
+            <div class="item custom-input">
+                <label class="item-input">
+                   <i class="icon ion-ios-time placeholder-icon"></i>
+                   <input type="time" ng-model="phyWorkoutObject.startTime"> 
+                </label>
+            </div>
+        </div>
+        
+        <div class="card custom-card">
+            <div class="item">
+                <span>End Time</span>
+            </div>
+            <div class="item custom-input">
+                <label class="item-input">
+                   <i class="icon ion-ios-time placeholder-icon"></i>
+                   <input type="time" ng-model="phyWorkoutObject.endTime"> 
+                </label>
+            </div>
+        </div>
+        
+        <div class="card custom-card">
+            <div class="item">
+                <span>Notes</span>
+            </div>
+            <div class="item">
+                <label class="item-input">
+                   <textarea placeholder="..." rows="2" ng-model="phyWorkoutObject.notes"></textarea>
+                </label>
+            </div>
+        </div>
+        
+        <!--
+        <div class="card custom-card">
+            <div class="item">
+                <span>Before Workout: Blood Sugar</span>
+            </div>
+            <div class="item custom-input">
+                <label class="item-input item-icon-right">
+                   <input type="number" placeholder="50">
+                   <span type="text" ng-bind="selectedBloodSugarUnit" style="text-align: right"></span>
+                </label>
+            </div>
+        </div>
+        
+        <div class="card custom-card">
+            <div class="item">
+                <span>After Workout: Blood Sugar</span>
+            </div>
+            <div class="item custom-input">
+                <label class="item-input item-icon-right">
+                   <input type="number" placeholder="50"> 
+                   <span type="text" ng-bind="selectedBloodSugarUnit" style="text-align: right"></span>
+                </label>
+            </div>
+        </div>
+        -->
+        
+    </ion-content>
+</ion-pane>
+
+<script type="text/ng-template" id="workout-popup.html">
+    <ion-list>
+        <ion-item ng-repeat="workout in workoutTypes" ng-click="closeWorkout(workout)" class="select-item">
+            <a class="custom-selectbox">{{workout}}</a>
+        </ion-item>
+    </ion-list>
+</script>

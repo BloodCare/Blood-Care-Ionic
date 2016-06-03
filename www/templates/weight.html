@@ -1,0 +1,55 @@
+<ion-pane>
+    <ion-header-bar class="custom-bar-bg" align-title="center">
+        <div class="buttons">
+            <a class="button button-icon ion-ios-arrow-back" ng-click="appGoBack()" nav-direction="back">
+            </a>
+        </div>
+        <h1 class="title">Weight</h1>
+        <div class="buttons">
+            <button class="button button-icon ion-checkmark-circled" 
+                    ng-click="showConfirm()">
+            </button>
+        </div>
+    </ion-header-bar>
+    <ion-content class="custom-content">
+        
+        <ion-list class="custom-datetime-list">
+            <ion-item class="item-input custom-datetime-item">
+                &nbsp;  &nbsp; Date:
+                <i class="icon ion-calendar placeholder-icon"></i>
+                <input type="date" min="{{weightObject.MinDate}}" 
+                       max="{{weightObject.MaxDate}}"
+                       ng-model="weightObject.date">
+            </ion-item>
+            <ion-item class="item-input custom-datetime-item">
+                &nbsp; &nbsp; Time:
+                <i class="icon ion-ios-time placeholder-icon"></i>
+                <input type="time" ng-model="weightObject.time">
+            </ion-item>
+        </ion-list>
+        
+        <div class="card custom-card">
+            <div class="item">
+                <span>Weight</span>
+            </div>
+            <div class="item custom-input">
+                <label class="item-input">
+                   <input type="number" placeholder="50" ng-model="weightObject.value">
+                   <span type="text" ng-bind="weightObject.unit" style="text-align: right"></span>
+                </label>
+            </div>
+        </div>
+        
+        <div class="card custom-card">
+            <div class="item">
+                <span>Notes</span>
+            </div>
+            <div class="item">
+                <label class="item-input">
+                   <textarea placeholder="..." rows="2" ng-model="weightObject.notes"></textarea>
+                </label>
+            </div>
+        </div>
+        
+    </ion-content>
+</ion-pane>

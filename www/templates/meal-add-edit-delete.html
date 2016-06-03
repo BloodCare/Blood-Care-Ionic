@@ -1,0 +1,74 @@
+<ion-pane>
+    <ion-header-bar class="custom-bar-bg" align-title="center">
+        
+        <div class="buttons">
+            <a class="button button-icon ion-ios-arrow-back" ng-click="appGoBack()" nav-direction="back">
+            </a>
+            <a class="button button-icon icon ion-plus-circled"
+               ng-click="showAddMealCategory()">
+            </a>
+        </div>
+        
+        <h1 class="title">Meal Category</h1>
+        
+        <div class="buttons">
+            <a ng-click="listData.showReorder = !listData.showReorder"
+               class="button button-icon icon ion-arrow-move">
+            </a>
+        </div>
+        
+    </ion-header-bar>
+    <ion-content class="custom-medicine-list">
+        
+        <ion-list show-reorder="listData.showReorder">
+                  
+            <ion-item ng-repeat="cat in mealCategories"
+                      item="cat"
+                      class="item-remove-animate custom-medicine-list-item"">
+                      {{cat}}
+                      
+                      <ion-option-button class="ion-edit"
+                                ng-click="showEditMealCat(cat)">
+                      </ion-option-button>
+                      
+                      <ion-option-button class="ion-trash-a" 
+                                 ng-click="showDeleteMealCat(cat)">
+                      </ion-option-button>
+                      
+                      <ion-reorder-button class="ion-arrow-move"
+                            on-reorder="moveItem(cat, $fromIndex, $toIndex)">
+                      </ion-reorder-button>
+            </ion-item>
+            
+        </ion-list>
+        
+    </ion-content>
+</ion-pane>
+
+<script type="text/ng-template" id="add-mealCategory-popup.html">
+    <div class="list custom-popup-form">
+        <label class="item item-input item-floating-label">
+            <span class="input-label">Meal Category Name</span>
+            <input type="text" placeholder="Meal Category Name" ng-model="mealIntakeObject.name">
+        </label>
+    </div>
+</script>
+
+<script type="text/ng-template" id="edit-mealCategory-popup.html">
+    <div class="list custom-popup-form">
+        <span>Meal Category Name: </span>
+        <label class="item item-input">
+            <input type="text" value="{{mealIntakeObject.name}}" ng-model="mealIntakeObject.name">
+        </label>
+    </div>
+</script>
+
+<script type="text/ng-template" id="delete-mealCategory-popup.html">
+    <span style="text-align: center"><b>Are you Sure?</b></span>
+    <div class="list custom-popup-form custom-delete-list">
+        <span>Meal Category Name: </span>
+        <label class="item custom-popup-item">
+            <span>{{mealIntakeObject.name}}</span>
+        </label>
+    </div>
+</script>

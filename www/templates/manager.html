@@ -1,0 +1,33 @@
+<ion-view view-title="Manager">
+    <ion-content>
+        
+        <ion-list>
+        
+        <div ng-repeat="group in managerGroups">
+            
+          
+            <ion-item class="item-icon-right custom-manager-group">
+                <i class="icon" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"
+                   ng-click="toggleGroup(group)"></i>
+                <a nav-direction="forward"
+                   ng-href="{{group.url}}">
+                   <span class="button-icon" ng-class="group.groupIcon"></span>
+                    &nbsp; {{group.name}}
+                </a>
+            </ion-item>
+          
+          
+          <a nav-direction="forward" class="item-accordion custom-manager-item"
+             ng-repeat="item in group.items" ng-show="isGroupShown(group)"
+             ng-href="{{item.url}}">
+            <ion-item>
+               &nbsp; &nbsp; {{item.name}}
+            </ion-item>
+          </a>
+          
+        </div>
+        
+      </ion-list>
+        
+    </ion-content>
+</ion-view>

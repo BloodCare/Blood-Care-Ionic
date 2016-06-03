@@ -1,0 +1,75 @@
+<ion-pane>
+    <ion-header-bar class="custom-bar-bg" align-title="center">
+        <div class="buttons">
+            <a class="button button-icon ion-ios-arrow-back" ng-click="appGoBack()" nav-direction="back">
+            </a>
+        </div>
+        <h1 class="title">Meal Intake</h1>
+        <div class="buttons">
+            <button class="button button-icon ion-checkmark-circled" 
+                    ng-click="showConfirm()">
+            </button>
+        </div>
+    </ion-header-bar>
+    <ion-content class="custom-content">
+        
+        <ion-list class="custom-datetime-list">
+            <ion-item class="item-input custom-datetime-item">
+                &nbsp;  &nbsp; Date:
+                <i class="icon ion-calendar placeholder-icon"></i>
+                <input type="date" min="{{mealIntakeObject.MinDate}}" 
+                        max="{{mealIntakeObject.MaxDate}}"
+                        ng-model="mealIntakeObject.date">
+            </ion-item>
+            <ion-item class="item-input custom-datetime-item">
+                &nbsp; &nbsp; Time:
+                <i class="icon ion-ios-time placeholder-icon"></i>
+                <input type="time" ng-model="mealIntakeObject.time">
+            </ion-item>
+        </ion-list>
+
+        <div class="card custom-card">
+            <div class="item  item-icon-right">
+                <span>Meal Category</span>
+                <i class="icon ion-android-more-vertical custom-more"
+                   ui-sref="mealCategory">
+                </i>
+            </div>
+            <div class="item" ng-click="showMealCategory()">
+                 <a class="custom-popup-text" ng-bind="mealIntakeObject.name">{{mealIntakeObject.name}}</a>
+            </div>
+        </div>
+        
+        <div class="card custom-card">
+            <div class="item">
+                <span>Amount of Meal</span>
+            </div>
+            <div class="item custom-input">
+                <label class="item-input">
+                   <input type="number" placeholder="30" style="width: 100px" ng-model="mealIntakeObject.value">
+                   <span type="text" ng-bind="mealIntakeObject.unit" style="text-align: right"></span>
+                </label>
+            </div>
+        </div>
+        
+        <div class="card custom-card">
+            <div class="item">
+                <span>Meal Details</span>
+            </div>
+            <div class="item">
+                <label class="item-input">
+                   <textarea placeholder="Salad, Tomato Soup" rows="2" ng-model="mealIntakeObject.notes"></textarea>
+                </label>
+            </div>
+        </div>
+        
+    </ion-content>
+</ion-pane>
+
+<script type="text/ng-template" id="meal-popup.html">
+    <ion-list>
+        <ion-item ng-repeat="meal in mealCategories" ng-click="closeMealCat(meal)" class="select-item">
+            <a class="custom-selectbox">{{meal}}</a>
+        </ion-item>
+    </ion-list>
+</script>

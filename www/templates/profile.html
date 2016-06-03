@@ -1,0 +1,77 @@
+<ion-pane>
+    
+    <ion-header-bar class="custom-bar-bg" align-title="center">
+        <div class="buttons">
+            <a class="button button-icon ion-ios-arrow-back" ng-click="appGoBack()" nav-direction="back">
+            </a>
+        </div>
+        <h1 class="title">Profile</h1>
+        <div class="buttons">
+            <button class="button button-icon ion-checkmark-circled" 
+                    ng-click="showConfirm()">
+            </button>
+        </div>
+    </ion-header-bar>
+    
+    <ion-content class="padding">
+        
+        <div class="card custom-card">
+            <div class="item">
+                <span>Name</span>
+            </div>
+            <div class="item custom-input">
+                <label class="item-input">
+                   <input type="text" placeholder="eg. Alpana Chaphalkar" ng-model="profileObject.name"> 
+                </label>
+            </div>
+        </div>
+        
+        <div class="card custom-card">
+            <div class="item">
+                <span>Email</span>
+            </div>
+            <div class="item custom-input">
+                <label class="item-input">
+                   <input type="email" placeholder="eg. alpana@example.com" ng-model="profileObject.email"> 
+                </label>
+            </div>
+        </div>
+        
+        <div class="card custom-card">
+            <div class="item">
+                <span>Date of Birth</span>
+            </div>
+            <div class="item custom-input">
+                <label class="item-input">
+                   <i class="icon ion-calendar placeholder-icon"></i>
+                   <!--<input ui-date="dateOptions" name="DateOfBirth" placeholder="dd-mm-yyyy">-->
+                   <input type="date" min="{{profileObject.MinDate}}"
+                          max="{{profileObject.MaxDate}}"
+                          ng-model="profileObject.birthDate">
+                </label>
+            </div>
+        </div>
+        
+        <div class="card custom-card">
+            <div class="item">
+                <span>Gender</span>
+            </div>
+            <div class="item button-bar">
+                <a grouped-radio="genderList[0]" ng-model="profileObject.gender" class="option">Male</a>
+                <a grouped-radio="genderList[1]" ng-model="profileObject.gender" class="option">Female</a>
+                <a grouped-radio="genderList[2]" ng-model="profileObject.gender" class="option">Other</a>
+            </div>
+        </div>
+        
+        <div class="card custom-card">
+            <div class="item">
+                <span>Diabetes Type</span>
+            </div>
+            <div class="item button-bar">
+                <a grouped-radio="diabetesTypes[0]" ng-model="profileObject.diabetes" class="option">Type 1</a>
+                <a grouped-radio="diabetesTypes[1]" ng-model="profileObject.diabetes" class="option">Type 2</a>
+            </div>
+        </div>
+        
+    </ion-content>
+</ion-pane>
