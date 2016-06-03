@@ -47,30 +47,15 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
         controller: 'HomeCtrl'
       }
     }
-  })
-  
-  .state('app.manager', {
-    url: '/manager',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/manager.html',
-        controller: 'ManagerCtrl'
-      }
-    }
-  })
-  
-  .state('app.settings', {
-    url: '/settings',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/settings.html',
-        controller: 'SettingsCtrl'
-      }
-    }
   });
   
   $stateProvider
   
+  .state('settings', {
+    url: '/app/settings',
+    templateUrl: 'templates/settings.html',
+    controller: 'SettingsCtrl'
+  })
   .state('profile', {
     url: '/app/settings/profile',
     templateUrl: 'templates/profile.html',
@@ -87,67 +72,67 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
     controller: 'AboutCtrl'
   })
   .state('reminder', {
-    url: '/app/manager/reminder',
+    url: '/app/reminder',
     templateUrl: 'templates/reminder.html',
     controller: 'ReminderCtrl'
   })
   .state('monitor', {
-    url: '/app/manager/monitor',
+    url: '/app/monitor',
     templateUrl: 'templates/monitor.html',
     controller: 'MonitorCtrl'
   })
   .state('appointment', {
-    url: '/app/manager/reminder/appointment',
+    url: '/app/reminder/appointment',
     templateUrl: 'templates/appointment.html',
     controller: 'AppointmentCtrl'
   })
   .state('generalReminder', {
-    url: '/app/manager/reminder/general',
+    url: '/app/reminder/general',
     templateUrl: 'templates/generalReminder.html',
     controller: 'GeneralReminderCtrl'
   })
   .state('emergencyReminder', {
-    url: '/app/manager/reminder/emergency',
+    url: '/app/reminder/emergency',
     templateUrl: 'templates/emergencyReminder.html',
     controller: 'EmergencyReminderCtrl'
   })
   .state('medicineIntake', {
-    url: '/app/manager/monitor/medicine-intake',
+    url: '/app/monitor/medicine-intake',
     templateUrl: 'templates/medicineIntake.html',
     controller: 'MedicineIntakeCtrl'
   })
   .state('mealIntake', {
-    url: '/app/manager/monitor/meal-intake',
+    url: '/app/monitor/meal-intake',
     templateUrl: 'templates/mealIntake.html',
     controller: 'MealIntakeCtrl'
   })
   .state('bloodSugar', {
-    url: '/app/manager/monitor/blood-sugar',
+    url: '/app/monitor/blood-sugar',
     templateUrl: 'templates/bloodSugar.html',
     controller: 'BloodSugarCtrl'
   })
   .state('physicalWorkout', {
-    url: '/app/manager/monitor/physical-workout',
+    url: '/app/monitor/physical-workout',
     templateUrl: 'templates/physicalWorkout.html',
     controller: 'PhysicalWorkoutCtrl'
   })
   .state('weight', {
-    url: '/app/manager/monitor/weight',
+    url: '/app/monitor/weight',
     templateUrl: 'templates/weight.html',
     controller: 'WeightCtrl'
   })
   .state('medicineName', {
-    url: '/app/manager/monitor/medicine-intake/medicine-name',
+    url: '/app/monitor/medicine-intake/medicine-name',
     templateUrl: 'templates/medicine-add-edit-delete.html',
     controller: 'MedicineNameCtrl'
   })
   .state('mealCategory', {
-    url: '/app/manager/monitor/medicine-intake/meal-category',
+    url: '/app/monitor/medicine-intake/meal-category',
     templateUrl: 'templates/meal-add-edit-delete.html',
     controller: 'MealCategoryCtrl'
   })
   .state('workoutType', {
-    url: '/app/manager/monitor/medicine-intake/workout-type',
+    url: '/app/monitor/medicine-intake/workout-type',
     templateUrl: 'templates/workout-add-edit-delete.html',
     controller: 'WorkoutTypeCtrl'
   });
@@ -163,55 +148,55 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
     
     {
       name: 'Reminder',
-      url: '#/app/manager/reminder',
+      url: '#/app/reminder',
       groupIcon: 'ion-ios-calendar',
       items: [
         {
           name: 'Appointment',
-          url: '#/app/manager/reminder/appointment'
+          url: '#/app/reminder/appointment'
         },
         {
           name: 'General Reminder',
-          url: '#/app/manager/reminder/general'
+          url: '#/app/reminder/general'
         },
         {
           name: 'Emergency Reminder',
-          url: '#/app/manager/reminder/emergency'
+          url: '#/app/reminder/emergency'
         }
       ] 
     },
     
     {
       name: 'Monitor',
-      url: '#/app/manager/monitor',
+      url: '#/app/monitor',
       groupIcon: 'ion-ios-list',
       items: [
         {
           name: 'Medicine Intake',
-          url: '#/app/manager/monitor/medicine-intake'
+          url: '#/app/monitor/medicine-intake'
         },
         {
           name: 'Meal Intake',
-          url: '#/app/manager/monitor/meal-intake'
+          url: '#/app/monitor/meal-intake'
         },
         {
           name: 'Blood Sugar Level',
-          url: '#/app/manager/monitor/blood-sugar'
+          url: '#/app/monitor/blood-sugar'
         },
         {
           name: 'Physical Workout',
-          url: '#/app/manager/monitor/physical-workout'
+          url: '#/app/monitor/physical-workout'
         },
         {
           name: 'Weight',
-          url: '#/app/manager/monitor/weight'
+          url: '#/app/monitor/weight'
         }
       ]
     },
     
     {
       name: 'Settings',
-      url: '#/app/manager/monitor',
+      url: '#/app/settings',
       groupIcon: 'ion-ios-gear',
       items: [
         {
@@ -373,73 +358,6 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
   $scope.navSlide = function (index) {
     $ionicSlideBoxDelegate.slide(index, 500);
   }
-})
-
-.controller('ManagerCtrl', function($scope){
-  
-  $scope.managerGroups = [
-    
-    {
-      name: 'Reminder',
-      url: '#/app/manager/reminder',
-      groupIcon: 'ion-ios-calendar-outline',
-      items: [
-        {
-          name: 'Appointment',
-          url: '#/app/manager/reminder/appointment'
-        },
-        {
-          name: 'General Reminder',
-          url: '#/app/manager/reminder/general'
-        },
-        {
-          name: 'Emergency Reminder',
-          url: '#/app/manager/reminder/emergency'
-        }
-      ] 
-    },
-    
-    {
-      name: 'Monitor',
-      url: '#/app/manager/monitor',
-      groupIcon: 'ion-ios-list-outline',
-      items: [
-        {
-          name: 'Medicine Intake',
-          url: '#/app/manager/monitor/medicine-intake'
-        },
-        {
-          name: 'Meal Intake',
-          url: '#/app/manager/monitor/meal-intake'
-        },
-        {
-          name: 'Blood Sugar Level',
-          url: '#/app/manager/monitor/blood-sugar'
-        },
-        {
-          name: 'Physical Workout',
-          url: '#/app/manager/monitor/physical-workout'
-        },
-        {
-          name: 'Weight',
-          url: '#/app/manager/monitor/weight'
-        }
-      ]
-    },
-  ];
-  
-  $scope.toggleGroup = function(group) {
-    if ($scope.isGroupShown(group)) {
-      $scope.shownGroup = null;
-    } else {
-      $scope.shownGroup = group;
-    }
-  };
-  
-  $scope.isGroupShown = function(group) {
-    return $scope.shownGroup === group;
-  };
-  
 })
 
 .controller('SettingsCtrl', function($scope){
