@@ -9820,15 +9820,10 @@ a.button {
 
 .scroll-content {
   background: #5A00FF;
-  /* For browsers that do not support gradients */
   background: -webkit-linear-gradient(left top, #5A00FF, #A800DC, #185a9d);
-  /* For Safari 5.1 to 6.0 */
   background: -o-linear-gradient(bottom right, #5A00FF, #A800DC, #185a9d);
-  /* For Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(bottom right, #5A00FF, #A800DC, #185a9d);
-  /* For Firefox 3.6 to 15 */
-  background: linear-gradient(to bottom right, #5A00FF, #A800DC, #185a9d);
-  /* Standard syntax */ }
+  background: linear-gradient(to bottom right, #5A00FF, #A800DC, #185a9d); }
 
 .card a, .card div {
   text-decoration: none;
@@ -9858,15 +9853,46 @@ a.button {
 .tabs-custom-bg {
   font-size: 11px; }
 
-.custom-icon {
-  font-size: 20px;
+.button-icon.custom-icon, .custom-icon {
+  font-size: 26px;
   color: #5A00FF;
   padding-right: 20px; }
 
+.item.custom-item.item-complex {
+  padding-top: 0px;
+  padding-bottom: 0px; }
+
 .custom-item {
   color: #5A00FF;
+  font-size: 18px;
+  border: none;
+  padding-top: 16px;
+  padding-bottom: 16px; }
+
+div .custom-item:active, div .custom-item:hover,
+div .custom-item:visited {
+  background: rgba(214, 214, 214, 0.8); }
+
+.custom-item a {
+  text-decoration: none;
+  color: #5A00FF; }
+
+.custom-item .custom-menu-icon {
+  font-size: 16px; }
+
+a.custom-menu-sub-items {
+  text-decoration: none; }
+
+a.custom-menu-sub-items .item {
+  color: #5A00FF;
   font-size: 15px;
-  border: none; }
+  padding-top: 10px;
+  padding-bottom: 10px; }
+
+a.custom-menu-sub-items .item:hover,
+a.custom-menu-sub-items .item:active,
+a.custom-menu-sub-items .item:visited {
+  background: rgba(214, 214, 214, 0.8); }
 
 .list label {
   width: 95%;

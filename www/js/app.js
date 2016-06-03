@@ -96,11 +96,6 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
     templateUrl: 'templates/monitor.html',
     controller: 'MonitorCtrl'
   })
-  .state('dietPlanner', {
-    url: '/app/manager/diet-planner',
-    templateUrl: 'templates/dietPlanner.html',
-    controller: 'DietPlannerCtrl'
-  })
   .state('appointment', {
     url: '/app/manager/reminder/appointment',
     templateUrl: 'templates/appointment.html',
@@ -141,21 +136,6 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
     templateUrl: 'templates/weight.html',
     controller: 'WeightCtrl'
   })
-  .state('foodDatabase', {
-    url: '/app/manager/diet-planner/food-database',
-    templateUrl: 'templates/foodDatabase.html',
-    controller: 'FoodDatabaseCtrl'
-  })
-  .state('favouriteList', {
-    url: '/app/manager/diet-planner/favourite-list',
-    templateUrl: 'templates/favouriteList.html',
-    controller: 'FavouriteListCtrl'
-  })
-  .state('foodReciepies', {
-    url: '/app/manager/diet-planner/food-reciepies',
-    templateUrl: 'templates/foodReciepies.html',
-    controller: 'FoodReciepiesCtrl'
-  })
   .state('medicineName', {
     url: '/app/manager/monitor/medicine-intake/medicine-name',
     templateUrl: 'templates/medicine-add-edit-delete.html',
@@ -177,6 +157,92 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
 
 .controller('AppCtrl', function($scope, $ionicHistory, $ionicViewSwitcher, $filter){
   
+  /*-------------------------- Navigation Data --------------------------*/
+  
+   $scope.menuGroups = [
+    
+    {
+      name: 'Reminder',
+      url: '#/app/manager/reminder',
+      groupIcon: 'ion-ios-calendar',
+      items: [
+        {
+          name: 'Appointment',
+          url: '#/app/manager/reminder/appointment'
+        },
+        {
+          name: 'General Reminder',
+          url: '#/app/manager/reminder/general'
+        },
+        {
+          name: 'Emergency Reminder',
+          url: '#/app/manager/reminder/emergency'
+        }
+      ] 
+    },
+    
+    {
+      name: 'Monitor',
+      url: '#/app/manager/monitor',
+      groupIcon: 'ion-ios-list',
+      items: [
+        {
+          name: 'Medicine Intake',
+          url: '#/app/manager/monitor/medicine-intake'
+        },
+        {
+          name: 'Meal Intake',
+          url: '#/app/manager/monitor/meal-intake'
+        },
+        {
+          name: 'Blood Sugar Level',
+          url: '#/app/manager/monitor/blood-sugar'
+        },
+        {
+          name: 'Physical Workout',
+          url: '#/app/manager/monitor/physical-workout'
+        },
+        {
+          name: 'Weight',
+          url: '#/app/manager/monitor/weight'
+        }
+      ]
+    },
+    
+    {
+      name: 'Settings',
+      url: '#/app/manager/monitor',
+      groupIcon: 'ion-ios-gear',
+      items: [
+        {
+          name: 'Profile',
+          url: '#/app/settings/profile'
+        },
+        {
+          name: 'Feedback',
+          url: '#/app/settings/feedback'
+        },
+        {
+          name: 'About',
+          url: '#/app/settings/about'
+        }
+      ]
+    }
+  ];
+  
+  $scope.toggleGroup = function(group) {
+    if ($scope.isGroupShown(group)) {
+      $scope.shownGroup = null;
+    } else {
+      $scope.shownGroup = group;
+    }
+  };
+  
+  $scope.isGroupShown = function(group) {
+    return $scope.shownGroup === group;
+  };
+  
+  /*---------------------------------------------------------------------*/
   var today = new Date();
   var minDate = new Date(1900, 01 - 1, 01);
   $scope.currentDate = today;
@@ -360,27 +426,6 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
         }
       ]
     },
-    
-    {
-      name: 'Diet Planner',
-      url: '#/app/manager/diet-planner',
-      groupIcon: 'ion-ios-nutrition-outline',
-      items: [
-        {
-          name: 'Food Database',
-          url: '#/app/manager/diet-planner/food-database'
-        },
-        {
-          name: 'Favourite List',
-          url: '#/app/manager/diet-planner/favourite-list'
-        },
-        {
-          name: 'Healthy Food Reciepies',
-          url: '#/app/manager/diet-planner/food-reciepies'
-        }
-      ]
-    }
-    
   ];
   
   $scope.toggleGroup = function(group) {
@@ -1050,22 +1095,6 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
       IonicClosePopupService.register(deleteWorkoutTypePopup);
     };
     
-})
-
-.controller('DietPlannerCtrl', function($scope){
-  
-})
-
-.controller('FoodDatabaseCtrl', function($scope){
-  
-})
-
-.controller('FavouriteListCtrl', function($scope){
-  
-})
-
-.controller('FoodReciepiesCtrl', function($scope){
-  
 })
 
 .controller('AppointmentCtrl', function($scope, $ionicPopup, IonicClosePopupService, $ionicViewSwitcher, $filter){

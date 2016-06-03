@@ -6,8 +6,10 @@
       </ion-nav-back-button>
       
       <ion-nav-buttons>
-        <button class="button button-icon ion-navicon" menu-toggle="left">
-        </button>
+        <!--<button class="button button-icon ion-navicon" menu-toggle="left">
+        </button>-->
+        &nbsp;
+        <img src="img/menu-icon-40x40.gif" width="33px" height="33px"  menu-toggle="left">
       </ion-nav-buttons>
     </ion-nav-bar>
 
@@ -19,7 +21,7 @@
     <ion-header-bar class="custom-bar-bg bar-profile" align-title="center">
       
       <div class="profile">
-        <img class="profile-picture" src="img/logo.png" />
+        <img class="profile-picture" src="img/logo.png">
         <h3 class="name">Blood Care</h3>
       </div>
     </ion-header-bar>
@@ -28,17 +30,35 @@
 
       <ion-list>
         
-        <ion-item menu-close href="#/app/home" class="custom-item">
-          <i class="custom-icon ion-ios-home"></i> Home
-        </ion-item>
+
+          <ion-item menu-close href="#/app/home" class="custom-item">
+            <i class="custom-icon ion-ios-home" style="padding-left: 6px;"></i> Home
+          </ion-item>
+
         
-        <ion-item menu-close href="#/app/manager" class="custom-item">
-          <i class="custom-icon ion-ios-briefcase"></i> Manager
-        </ion-item>
-        
-        <ion-item menu-close href="#/app/settings" class="custom-item">
-          <i class="custom-icon ion-ios-gear"></i> Settings
-        </ion-item>
+        <div ng-repeat="group in menuGroups">
+            
+          
+            <ion-item class="item-icon-right custom-item">
+                <i class="icon custom-menu-icon" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"
+                   ng-click="toggleGroup(group)"></i>
+                <a nav-direction="forward"
+                   ng-href="{{group.url}}">
+                   <span class="button-icon custom-icon" ng-class="group.groupIcon"></span>
+                   {{group.name}}
+                </a>
+            </ion-item>
+          
+          
+          <a nav-direction="forward" class="item-accordion custom-menu-sub-items"
+             ng-repeat="item in group.items" ng-show="isGroupShown(group)"
+             ng-href="{{item.url}}">
+            <ion-item>
+               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{item.name}}
+            </ion-item>
+          </a>
+          
+        </div>
         
       </ion-list>
 
