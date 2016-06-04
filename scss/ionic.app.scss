@@ -22,6 +22,7 @@ $light: rgba(214, 214, 214, 0.1);
 $item-default-active-bg: rgba(168,0,220, 0.3);
 $button-height: 30px;
 $popup-button-min-height: 30px;
+$bar-height: 50px;
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
@@ -282,37 +283,6 @@ a.button-positive{
     padding-right: 5px;
     color: #FFF;
 }
-.custom-manager-group{
-    background: rgba(0, 0, 0, 0);
-}
-.custom-manager-group .icon{
-    color: #E6E6E6;
-    font-size: 20px;
-    padding-right: 10px;
-}
-.custom-manager-group a{
-    text-decoration: none;
-    color: #E6E6E6;
-    font-size: 18px;
-    font-weight: bold;
-}
-.custom-manager-group .button-icon{
-    color: #FFF;
-    font-size: 28px;
-    padding-right: 15px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-}
-a.custom-manager-item{
-    text-decoration: none; 
-}
-.custom-manager-item .item{
-    color: #E6E6E6;
-    font-weight: bold;
-    font-size: 14px;  
-    padding-left: 70px;
-    background: rgba(0, 0, 0, 0);
-}
 .list .item.item-accordion {
   line-height: 38px;
   padding-top: 0;
@@ -352,14 +322,14 @@ a.custom-manager-item{
 label.item-floating-label{
     height: 70px;
 }
+.bar.bar-header .button.button-icon.ion-ios-arrow-back{
+    position: relative;
+    top: 3px;
+}
 .icon.ion-plus-circled, .icon.ion-arrow-move{
-    margin-top: -2px;
+    margin-top: 0px;
     margin-left: 0px;
     padding-left: 0px;
-}
-.icon.ion-ios-arrow-back{
-    margin-left: 0px;
-    padding-left: 1px;
 }
 .icon.ion-plus-circled.activated{
     color: #A800DC !important;

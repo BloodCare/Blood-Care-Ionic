@@ -478,6 +478,8 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
   
   $scope.medicineIntakeObject.MinDate = $filter('date')($scope.minimunDate, "yyyy-MM-dd");
   $scope.medicineIntakeObject.MaxDate = $filter('date')($scope.currentDate, "yyyy-MM-dd");
+  $scope.medicineIntakeObject.date = new Date();
+  $scope.medicineIntakeObject.time = new Date();
   
   $scope.showMeds = function () {
       
@@ -527,6 +529,8 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
   
   $scope.medicineIntakeObject.MinDate = $filter('date')($scope.minimunDate, "yyyy-MM-dd");
   $scope.mealIntakeObject.MaxDate = $filter('date')($scope.currentDate, "yyyy-MM-dd");
+  $scope.mealIntakeObject.date = new Date();
+  $scope.mealIntakeObject.time = new Date();
   
   $scope.showMealCategory = function () {
       
@@ -573,6 +577,8 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
 
     $scope.bloodSugarObject.MinDate = $filter('date')($scope.minimunDate, "yyyy-MM-dd");
     $scope.bloodSugarObject.MaxDate = $filter('date')($scope.currentDate, "yyyy-MM-dd");
+    $scope.bloodSugarObject.date = new Date();
+    $scope.bloodSugarObject.time = new Date();
     
     $scope.showConfirm = function () {
       
@@ -600,6 +606,8 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
   
   $scope.phyWorkoutObject.MinDate = $filter('date')($scope.minimunDate, "yyyy-MM-dd");
   $scope.phyWorkoutObject.MaxDate = $filter('date')($scope.currentDate, "yyyy-MM-dd");
+  $scope.phyWorkoutObject.date = new Date();
+  $scope.phyWorkoutObject.time = new Date();
   
   $scope.showWorkoutType = function () {
       
@@ -667,6 +675,8 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
   
   $scope.weightObject.MaxDate = $filter('date')($scope.currentDate, "yyyy-MM-dd");
   $scope.weightObject.MinDate = $filter('date')($scope.minimunDate, "yyyy-MM-dd");
+  $scope.weightObject.date = new Date();
+  $scope.weightObject.time = new Date();
   
   $scope.showConfirm = function () {
       
