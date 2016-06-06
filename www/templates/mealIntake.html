@@ -52,7 +52,7 @@
             <div class="item custom-input" ng-click="showMealCategory()">
                  <input type="text" class="custom-popup-text" 
                            ng-model="mealIntakeObject.name" 
-                           name="name" required>
+                           name="name" required disabled>
             </div>
         </div>
         
@@ -67,7 +67,7 @@
                           ng-pattern="/^[0-9]{1,5}$/" 
                           name="value" required>
                    <input type="text" ng-model="mealIntakeObject.unit" class="custom-unit" 
-                           name="unit" required>
+                           name="unit" required disabled>
                 </label>
             </div>
         </div>
