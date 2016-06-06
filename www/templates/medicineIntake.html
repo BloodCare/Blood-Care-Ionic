@@ -31,7 +31,7 @@
                     <i class="icon ion-calendar placeholder-icon"></i>
                     <input type="date" min="{{medicineIntakeObject.MinDate}}" 
                         max="{{medicineIntakeObject.MaxDate}}"
-                        ng-model="medicineIntakeObject.date" 
+                        ng-model="medicineIntakeObject.date"
                         name="date" required>
                 </ion-item>
                 <ion-item class="item-input custom-datetime-item">
@@ -52,7 +52,7 @@
                 <div class="item custom-input" ng-click="showMeds()">
                     <input type="text" class="custom-popup-text" 
                            ng-model="medicineIntakeObject.name" 
-                           name="name" required>
+                           name="name" required disabled>
                 </div>
             </div>
             
@@ -67,7 +67,7 @@
                            ng-pattern="/^[0-9]{1,5}$/" 
                            name="value" required>
                     <input type="text" ng-model="medicineIntakeObject.unit" class="custom-unit" 
-                           name="unit" required>
+                           name="unit" required disabled>
                     </label>
                 </div>
             </div>

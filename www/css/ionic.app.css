@@ -9970,6 +9970,7 @@ a.custom-menu-sub-items .item:visited {
   top: -6px; }
 
 .item.custom-input input.custom-unit {
+  background: transparent;
   position: relative;
   right: -20px;
   text-align: right; }
