@@ -405,6 +405,12 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
     return reminderDateTime;
   };
   
+  $scope.getCurrentTime = function () {
+    var hours = new Date().getHours();
+    var mins = new Date().getMinutes();
+    return new Date(1970, 0, 1, hours, mins, 0);
+  }
+  
 })
 
 .controller('HomeCtrl', function($scope, $ionicSlideBoxDelegate){
@@ -522,7 +528,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
   $scope.medicineIntakeObject.MinDate = $filter('date')($scope.minimunDate, "yyyy-MM-dd");
   $scope.medicineIntakeObject.MaxDate = $filter('date')($scope.currentDate, "yyyy-MM-dd");
   $scope.medicineIntakeObject.date = new Date();
-  $scope.medicineIntakeObject.time = new Date();
+  $scope.medicineIntakeObject.time = $scope.getCurrentTime();
   
   $scope.showMeds = function () {
       
@@ -573,7 +579,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
   $scope.medicineIntakeObject.MinDate = $filter('date')($scope.minimunDate, "yyyy-MM-dd");
   $scope.mealIntakeObject.MaxDate = $filter('date')($scope.currentDate, "yyyy-MM-dd");
   $scope.mealIntakeObject.date = new Date();
-  $scope.mealIntakeObject.time = new Date();
+  $scope.mealIntakeObject.time = $scope.getCurrentTime();
   
   $scope.showMealCategory = function () {
       
@@ -621,7 +627,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
     $scope.bloodSugarObject.MinDate = $filter('date')($scope.minimunDate, "yyyy-MM-dd");
     $scope.bloodSugarObject.MaxDate = $filter('date')($scope.currentDate, "yyyy-MM-dd");
     $scope.bloodSugarObject.date = new Date();
-    $scope.bloodSugarObject.time = new Date();
+    $scope.bloodSugarObject.time = $scope.getCurrentTime();
     
     $scope.showConfirm = function () {
       
@@ -650,7 +656,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
   $scope.phyWorkoutObject.MinDate = $filter('date')($scope.minimunDate, "yyyy-MM-dd");
   $scope.phyWorkoutObject.MaxDate = $filter('date')($scope.currentDate, "yyyy-MM-dd");
   $scope.phyWorkoutObject.date = new Date();
-  $scope.phyWorkoutObject.time = new Date();
+  $scope.phyWorkoutObject.time = $scope.getCurrentTime();
   
   $scope.showWorkoutType = function () {
       
@@ -718,7 +724,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
   $scope.weightObject.MaxDate = $filter('date')($scope.currentDate, "yyyy-MM-dd");
   $scope.weightObject.MinDate = $filter('date')($scope.minimunDate, "yyyy-MM-dd");
   $scope.weightObject.date = new Date();
-  $scope.weightObject.time = new Date();
+  $scope.weightObject.time = $scope.getCurrentTime();
   
   $scope.showConfirm = function () {
       
@@ -741,17 +747,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
 })
 
 .controller('MealCategoryCtrl', function($scope, IonicClosePopupService, $ionicPopup){
-    
-  $scope.editMealCategory = function (item) {
-    $scope.mealCategories.$loaded().
-      then(function (categories) {
-        var mealCategoryIndex = $scope.mealCategories.$keyAt(item);
-        var mealCategory = categories.$getRecord(mealCategoryIndex);
-        mealCategory.name = $scope.mealIntakeObject.name;
-        $scope.mealCategories.$save(mealCategory);
-      });
-  }
-  
+
   var addMealCatPopup;
   var editMealCatPopup;
   var deleteMealCatPopup;
@@ -809,7 +805,8 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
               if (!$scope.mealIntakeObject.name) {
                 e.preventDefault();
               } else {
-                $scope.editMealCategory(item);
+                item.name = $scope.mealIntakeObject.name;
+                $scope.mealCategories.$save(item);
                 return false;
               }
             }
@@ -847,25 +844,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
 })
 
 .controller('MedicineNameCtrl', function($scope, IonicClosePopupService, $ionicPopup){
- 
-  $scope.addMedicineName = function (name, unit) {
-    $scope.medicineList.$add({
-      name: name,
-      unit: unit
-    });
-  };
-  
-  $scope.editMedicineName = function (item) {
-    $scope.medicineList.$loaded().
-       then(function (medicines) {
-          var medicineIndex = $scope.medicineList.$keyAt(item);
-          var medicine = medicines.$getRecord(medicineIndex);
-          medicine.name = $scope.medicineIntakeObject.name;
-          medicine.unit = $scope.medicineIntakeObject.unit;
-          $scope.medicineList.$save(medicine);
-    });
-  }
-  
+
   var addMedsPopup;
   var editMedsPopup;
   var deleteMedsPopup;
@@ -892,7 +871,10 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
               if (!$scope.medicineIntakeObject.name || !$scope.medicineIntakeObject.unit) {
                 e.preventDefault();
               } else {
-                $scope.addMedicineName($scope.medicineIntakeObject.name, $scope.medicineIntakeObject.unit);
+                $scope.medicineList.$add({
+                  name: $scope.medicineIntakeObject.name,
+                  unit: $scope.medicineIntakeObject.unit
+                });
                 return false;
               }
               
@@ -925,7 +907,9 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
               if (!$scope.medicineIntakeObject.name || !$scope.medicineIntakeObject.unit) {
                 e.preventDefault();
               } else {
-                $scope.editMedicineName(item);
+                item.name = $scope.medicineIntakeObject.name;
+                item.unit = $scope.medicineIntakeObject.unit;
+                $scope.medicineList.$save(item);
                 return false;
               }
             }
@@ -963,17 +947,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
 })
 
 .controller('WorkoutTypeCtrl', function($scope, IonicClosePopupService, $ionicPopup){
-  
-  $scope.editWorkoutType = function (item) {
-    $scope.workoutTypes.$loaded().
-      then(function (types) {
-        var workoutTypeIndex = $scope.workoutTypes.$keyAt(item);
-        var workoutType = types.$getRecord(workoutTypeIndex);
-        workoutType.name = $scope.phyWorkoutObject.name;
-        $scope.workoutTypes.$save(workoutType);
-      });
-  }
-  
+
   var addWorkoutTypePopup;
   var editWorkoutTypePopup;
   var deleteWorkoutTypePopup;
@@ -1031,7 +1005,8 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
               if (!$scope.phyWorkoutObject.name) {
                 e.preventDefault();
               } else {
-                $scope.editWorkoutType(item);
+                item.name = $scope.phyWorkoutObject.name;
+                $scope.workoutTypes.$save(item);
                 return false;
               }
             }
