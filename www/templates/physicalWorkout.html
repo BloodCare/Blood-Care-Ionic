@@ -75,39 +75,13 @@
             </div>
         </div>
         
-        <!--
-        <div class="card custom-card">
-            <div class="item">
-                <span>Before Workout: Blood Sugar</span>
-            </div>
-            <div class="item custom-input">
-                <label class="item-input item-icon-right">
-                   <input type="number" placeholder="50">
-                   <span type="text" ng-bind="selectedBloodSugarUnit" style="text-align: right"></span>
-                </label>
-            </div>
-        </div>
-        
-        <div class="card custom-card">
-            <div class="item">
-                <span>After Workout: Blood Sugar</span>
-            </div>
-            <div class="item custom-input">
-                <label class="item-input item-icon-right">
-                   <input type="number" placeholder="50"> 
-                   <span type="text" ng-bind="selectedBloodSugarUnit" style="text-align: right"></span>
-                </label>
-            </div>
-        </div>
-        -->
-        
     </ion-content>
 </ion-pane>
 
 <script type="text/ng-template" id="workout-popup.html">
     <ion-list>
-        <ion-item ng-repeat="workout in workoutTypes" ng-click="closeWorkout(workout)" class="select-item">
-            <a class="custom-selectbox">{{workout}}</a>
+        <ion-item ng-repeat="workout in workoutTypes" ng-click="closeWorkout(workout.name)" class="select-item">
+            <a class="custom-selectbox">{{workout.name}}</a>
         </ion-item>
     </ion-list>
 </script>
