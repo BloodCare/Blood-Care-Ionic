@@ -524,6 +524,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
 .controller('MedicineIntakeCtrl', function($scope, IonicClosePopupService, $ionicPopup, $filter, $ionicViewSwitcher, $firebaseArray){
 
   var medsPopup;
+  var confirmPopup;
   
   $scope.medicineIntakeObject.MinDate = $filter('date')($scope.minimunDate, "yyyy-MM-dd");
   $scope.medicineIntakeObject.MaxDate = $filter('date')($scope.currentDate, "yyyy-MM-dd");
@@ -553,20 +554,20 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
   }
   
   $scope.showConfirm = function () {
-      
-      var confirmPopup = $ionicPopup.confirm({
-        title: 'Save Appointment',
-        template: 'Are you sure?',
-        buttons: [
-          { text: '<i class="icon ion-close-circled"></i>',
-            onTap: function(e) { return false; }
-          },
-          { text: '<i class="icon ion-checkmark-circled""></i>',
-            onTap: function(e) { $ionicViewSwitcher.nextDirection('back'); $scope.appGoBack(); }
-          }
-        ]
-      });
-      
+     
+       confirmPopup = $ionicPopup.confirm({
+          title: 'Save Appointment',
+          template: 'Are you sure?',
+          buttons: [
+            { text: '<i class="icon ion-close-circled"></i>',
+              onTap: function(e) { return false; }
+            },
+            { text: '<i class="icon ion-checkmark-circled""></i>',
+              onTap: function(e) { $ionicViewSwitcher.nextDirection('back'); $scope.appGoBack(); }
+            }
+          ]
+        });
+
       IonicClosePopupService.register(confirmPopup);
   };
   

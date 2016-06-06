@@ -1,4 +1,7 @@
 <ion-pane>
+    
+    <form name="weightForm" novalidate>
+        
     <ion-header-bar class="custom-bar-bg" align-title="center">
         <div class="buttons">
             <a class="button button-icon ion-ios-arrow-back" ng-click="appGoBack()" nav-direction="back">
@@ -7,10 +10,17 @@
         <h1 class="title">Weight</h1>
         <div class="buttons">
             <button class="button button-icon ion-checkmark-circled" 
-                    ng-click="showConfirm()">
+                    ng-click="showConfirm()" type="submit"
+                    form="weightForm"
+                    ng-show="!weightForm.value.$error.required &&
+                             !weightForm.date.$error.required &&
+                             !weightForm.time.$error.required &&
+                             !weightForm.unit.$error.required &&
+                             !weightForm.value.$invalid">
             </button>
         </div>
     </ion-header-bar>
+    
     <ion-content class="custom-content">
         
         <ion-list class="custom-datetime-list">
@@ -19,12 +29,14 @@
                 <i class="icon ion-calendar placeholder-icon"></i>
                 <input type="date" min="{{weightObject.MinDate}}" 
                        max="{{weightObject.MaxDate}}"
-                       ng-model="weightObject.date">
+                       ng-model="weightObject.date"
+                       name="date" required>
             </ion-item>
             <ion-item class="item-input custom-datetime-item">
                 &nbsp; &nbsp; Time:
                 <i class="icon ion-ios-time placeholder-icon"></i>
-                <input type="time" ng-model="weightObject.time">
+                <input type="time" ng-model="weightObject.time"
+                       name="time" required>
             </ion-item>
         </ion-list>
         
@@ -34,8 +46,12 @@
             </div>
             <div class="item custom-input">
                 <label class="item-input">
-                   <input type="number" placeholder="50" ng-model="weightObject.value">
-                   <span type="text" ng-bind="weightObject.unit" style="text-align: right"></span>
+                   <input type="number" placeholder="50" 
+                          ng-model="weightObject.value"
+                          ng-pattern="/^[0-9]{1,5}$/"
+                          name="value" required>
+                   <input type="text" ng-model="weightObject.unit" class="custom-unit" 
+                          name="unit" required>
                 </label>
             </div>
         </div>
@@ -46,10 +62,13 @@
             </div>
             <div class="item">
                 <label class="item-input">
-                   <textarea placeholder="..." rows="2" ng-model="weightObject.notes"></textarea>
+                   <textarea placeholder="..." rows="2" ng-model="weightObject.notes" name="notes"></textarea>
                 </label>
             </div>
         </div>
         
     </ion-content>
+    
+    </form>
+    
 </ion-pane>

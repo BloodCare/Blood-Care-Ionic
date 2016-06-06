@@ -1,4 +1,7 @@
 <ion-pane>
+    
+    <form name="phyWorkoutForm" novalidate>
+        
     <ion-header-bar class="custom-bar-bg" align-title="center">
         <div class="buttons">
             <a class="button button-icon ion-ios-arrow-back" ng-click="appGoBack()" nav-direction="back">
@@ -7,10 +10,17 @@
         <h1 class="title">Physical Workout</h1>
         <div class="buttons">
             <button class="button button-icon ion-checkmark-circled" 
-                    ng-click="showConfirm()">
+                    ng-click="showConfirm()" type="submit"
+                    form="phyWorkoutForm"
+                    ng-show="!phyWorkoutForm.date.$error.required &&
+                             !phyWorkoutForm.time.$error.required &&
+                             !phyWorkoutForm.name.$error.required &&
+                             !phyWorkoutForm.startTime.$error.required &&
+                             !phyWorkoutForm.endTime.$error.required">
             </button>
         </div>
     </ion-header-bar>
+    
     <ion-content class="custom-content">
         
         <ion-list class="custom-datetime-list">
@@ -19,12 +29,14 @@
                 <i class="icon ion-calendar placeholder-icon"></i>
                 <input type="date" min="{{phyWorkoutObject.MinDate}}" 
                        max="{{phyWorkoutObject.MaxDate}}"
-                       ng-model="phyWorkoutObject.date">
+                       ng-model="phyWorkoutObject.date"
+                       name="date" required>
             </ion-item>
             <ion-item class="item-input custom-datetime-item">
                 &nbsp; &nbsp; Time:
                 <i class="icon ion-ios-time placeholder-icon"></i>
-                <input type="time" ng-model="phyWorkoutObject.time">
+                <input type="time" ng-model="phyWorkoutObject.time"
+                       name="time" required>
             </ion-item>
         </ion-list>
         
@@ -35,8 +47,10 @@
                    ui-sref="workoutType">
                 </i>
             </div>
-            <div class="item" ng-click="showWorkoutType()">
-                 <a class="custom-popup-text" ng-bind="phyWorkoutObject.name">{{phyWorkoutObject.name}}</a>
+            <div class="item custom-input" ng-click="showWorkoutType()">
+                 <input type="text" class="custom-popup-text" 
+                           ng-model="phyWorkoutObject.name" 
+                           name="name" required>
             </div>
         </div>
         
@@ -47,7 +61,8 @@
             <div class="item custom-input">
                 <label class="item-input">
                    <i class="icon ion-ios-time placeholder-icon"></i>
-                   <input type="time" ng-model="phyWorkoutObject.startTime"> 
+                   <input type="time" ng-model="phyWorkoutObject.startTime"
+                          name="startTime" required> 
                 </label>
             </div>
         </div>
@@ -59,7 +74,8 @@
             <div class="item custom-input">
                 <label class="item-input">
                    <i class="icon ion-ios-time placeholder-icon"></i>
-                   <input type="time" ng-model="phyWorkoutObject.endTime"> 
+                   <input type="time" ng-model="phyWorkoutObject.endTime"
+                          name="endTime" required> 
                 </label>
             </div>
         </div>
@@ -70,12 +86,15 @@
             </div>
             <div class="item">
                 <label class="item-input">
-                   <textarea placeholder="..." rows="2" ng-model="phyWorkoutObject.notes"></textarea>
+                   <textarea placeholder="..." rows="2" ng-model="phyWorkoutObject.notes" name="notes"></textarea>
                 </label>
             </div>
         </div>
         
     </ion-content>
+    
+    </form>
+    
 </ion-pane>
 
 <script type="text/ng-template" id="workout-popup.html">

@@ -178,6 +178,17 @@ a.custom-menu-sub-items .item:visited{
 .item-input textarea{
     resize: none;
 }
+.item input.custom-popup-text{
+    background: rgba(0, 0, 0, 0);
+    color: #5A00FF;
+    position: relative;
+    top: -6px;
+}
+.item.custom-input input.custom-unit{
+    position: relative;
+    right: -20px;
+    text-align: right;
+}
 .button-bar{
     height: 60px;
 }
