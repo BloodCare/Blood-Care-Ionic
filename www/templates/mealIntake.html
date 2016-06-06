@@ -1,4 +1,7 @@
 <ion-pane>
+    
+    <form name="mealIntakeForm" novalidate>
+    
     <ion-header-bar class="custom-bar-bg" align-title="center">
         <div class="buttons">
             <a class="button button-icon ion-ios-arrow-back" ng-click="appGoBack()" nav-direction="back">
@@ -7,10 +10,19 @@
         <h1 class="title">Meal Intake</h1>
         <div class="buttons">
             <button class="button button-icon ion-checkmark-circled" 
-                    ng-click="showConfirm()">
+                    ng-click="showConfirm()"
+                    type="submit"
+                    form="mealIntakeForm"
+                    ng-show="!mealIntakeForm.value.$error.required &&
+                             !mealIntakeForm.date.$error.required &&
+                             !mealIntakeForm.time.$error.required &&
+                             !mealIntakeForm.name.$error.required &&
+                             !mealIntakeForm.unit.$error.required &&
+                             !mealIntakeForm.value.$invalid">
             </button>
         </div>
     </ion-header-bar>
+    
     <ion-content class="custom-content">
         
         <ion-list class="custom-datetime-list">
@@ -19,12 +31,14 @@
                 <i class="icon ion-calendar placeholder-icon"></i>
                 <input type="date" min="{{mealIntakeObject.MinDate}}" 
                         max="{{mealIntakeObject.MaxDate}}"
-                        ng-model="mealIntakeObject.date">
+                        ng-model="mealIntakeObject.date"
+                        name="date" required>
             </ion-item>
             <ion-item class="item-input custom-datetime-item">
                 &nbsp; &nbsp; Time:
                 <i class="icon ion-ios-time placeholder-icon"></i>
-                <input type="time" ng-model="mealIntakeObject.time">
+                <input type="time" ng-model="mealIntakeObject.time"
+                       name="time" required>
             </ion-item>
         </ion-list>
 
@@ -35,8 +49,10 @@
                    ui-sref="mealCategory">
                 </i>
             </div>
-            <div class="item" ng-click="showMealCategory()">
-                 <a class="custom-popup-text" ng-bind="mealIntakeObject.name">{{mealIntakeObject.name}}</a>
+            <div class="item custom-input" ng-click="showMealCategory()">
+                 <input type="text" class="custom-popup-text" 
+                           ng-model="mealIntakeObject.name" 
+                           name="name" required>
             </div>
         </div>
         
@@ -46,8 +62,12 @@
             </div>
             <div class="item custom-input">
                 <label class="item-input">
-                   <input type="number" placeholder="30" style="width: 100px" ng-model="mealIntakeObject.value">
-                   <span type="text" ng-bind="mealIntakeObject.unit" style="text-align: right"></span>
+                   <input type="number" placeholder="30" 
+                          ng-model="mealIntakeObject.value"
+                          ng-pattern="/^[0-9]{1,5}$/" 
+                          name="value" required>
+                   <input type="text" ng-model="mealIntakeObject.unit" class="custom-unit" 
+                           name="unit" required>
                 </label>
             </div>
         </div>
@@ -58,12 +78,15 @@
             </div>
             <div class="item">
                 <label class="item-input">
-                   <textarea placeholder="Salad, Tomato Soup" rows="2" ng-model="mealIntakeObject.notes"></textarea>
+                   <textarea placeholder="Salad, Tomato Soup" rows="2" ng-model="mealIntakeObject.notes" name="notes"></textarea>
                 </label>
             </div>
         </div>
         
     </ion-content>
+    
+    </form>
+    
 </ion-pane>
 
 <script type="text/ng-template" id="meal-popup.html">
