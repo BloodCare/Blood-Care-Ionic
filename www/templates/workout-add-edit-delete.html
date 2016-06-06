@@ -4,28 +4,25 @@
         <div class="buttons">
             <a class="button button-icon ion-ios-arrow-back" ng-click="appGoBack()" nav-direction="back">
             </a>
-            <a class="button button-icon icon ion-plus-circled"
-               ng-click="showAddWorkoutType()">
-            </a>
         </div>
         
         <h1 class="title">Workout Type</h1>
         
         <div class="buttons">
-            <a ng-click="listData.showReorder = !listData.showReorder"
-               class="button button-icon icon ion-arrow-move">
+            <a class="button button-icon icon ion-plus-circled"
+               ng-click="showAddWorkoutType()">
             </a>
         </div>
         
     </ion-header-bar>
     <ion-content class="custom-medicine-list">
         
-        <ion-list show-reorder="listData.showReorder">
+        <ion-list>
                   
             <ion-item ng-repeat="typ in workoutTypes"
                       item="typ"
                       class="item-remove-animate custom-medicine-list-item"">
-                      {{typ}}
+                      {{typ.name}}
                       
                       <ion-option-button class="ion-edit"
                                 ng-click="showEditWorkoutType(typ)">
@@ -35,9 +32,6 @@
                                  ng-click="showDeleteWorkoutType(typ)">
                       </ion-option-button>
                       
-                      <ion-reorder-button class="ion-arrow-move"
-                            on-reorder="moveItem(typ, $fromIndex, $toIndex)">
-                      </ion-reorder-button>
             </ion-item>
             
         </ion-list>

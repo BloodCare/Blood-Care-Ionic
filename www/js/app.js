@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
+angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase'])
 
 .run(function($ionicPlatform, $rootScope, $cordovaVibration) {
   $ionicPlatform.ready(function() {
@@ -140,7 +140,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
   $urlRouterProvider.otherwise('/app/home');
 })
 
-.controller('AppCtrl', function($scope, $ionicHistory, $ionicViewSwitcher, $filter){
+.controller('AppCtrl', function($scope, $ionicHistory, $ionicViewSwitcher, $filter, $firebaseArray){
   
   /*-------------------------- Navigation Data --------------------------*/
   
@@ -260,87 +260,140 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
   $scope.feedbackObject = {};
   
   /*-------------------- Medicine Intake Data -------------*/
-  $scope.medicineList = [
-    {
-      name: 'Insulin',
-      unit: 'mg'
-    },
-    {
-      name: 'Humalin',
-      unit: 'qty2'
-    },
-    {
-      name: 'Humalog',
-      unit: 'qty3'
-    },
-    {
-      name: 'Asder',
-      unit: 'cdf'
-    }
-  ];
+  
+  var medicineNameRef = new Firebase("https://blood-care-ionic.firebaseio.com/medicineList");
+  
+  $scope.medicineList = $firebaseArray(medicineNameRef);
   
   $scope.medicineIntakeObject = {};
   $scope.medicineIntakeObject.title = "Medicine Intake";
-  $scope.medicineIntakeObject.name = $scope.medicineList[0].name;
-  $scope.medicineIntakeObject.unit = $scope.medicineList[0].unit;
+  
+  $scope.loadDefaultMedicineName = function () {
+    
+    $scope.medicineList.$loaded().
+    then(function (medicines) {
+      
+      var defaultMedicineIndex = $scope.medicineList.$keyAt(0);
+      var defaultMedicine = medicines.$getRecord(defaultMedicineIndex);
+
+      $scope.medicineIntakeObject.name = defaultMedicine.name;
+      $scope.medicineIntakeObject.unit = defaultMedicine.unit;
+      
+    });
+    
+  };
+  
+  $scope.loadDefaultMedicineName();
+  
   /*------------------------------------------------------------------*/
   
   /*------------------------ Meal Intake Data -----------------*/
   
-  $scope.mealCategories = [
-    'Breakfast',
-    'Lunch',
-    'Dinner',
-    'Supper'
-  ];
+  var mealCategoriesRef = new Firebase("https://blood-care-ionic.firebaseio.com/mealCategories");
   
+  $scope.mealCategories = $firebaseArray(mealCategoriesRef);
+
   $scope.mealIntakeObject = {}; 
   $scope.mealIntakeObject.title = "Meal Intake";
-  $scope.mealIntakeObject.name = $scope.mealCategories[0];
+  
+  $scope.loadDefaultMealCategories = function () {
+    
+    $scope.mealCategories.$loaded().
+    then(function (categories) {
+      
+      var defaultMealCategoryIndex = $scope.mealCategories.$keyAt(0);
+      var defaultMealCategory = categories.$getRecord(defaultMealCategoryIndex);
+
+      $scope.mealIntakeObject.name = defaultMealCategory.name;
+    });
+    
+  };
+  
+  $scope.loadDefaultMealCategories();
+  
+  //$scope.mealIntakeObject.name = $scope.mealCategories[0];
   $scope.mealIntakeObject.unit = "gm of Carbs";
   
   /*------------------------------------------------------------------*/
   
   /*------------------------ Blood Sugar Data ---------------------*/
   
-  $scope.bloodSugarUnits = [
-    'mmo/l',
-    'mg/dL'
-  ];
+  var bloodSugarUnitsRef = new Firebase("https://blood-care-ionic.firebaseio.com/bloodSugarUnits");
+  
+  $scope.bloodSugarUnits = $firebaseArray(bloodSugarUnitsRef);
   
   $scope.bloodSugarObject = {};
   $scope.bloodSugarObject.title = "Blood Sugar";
   $scope.bloodSugarObject.name = "Blood Sugar";
-  $scope.bloodSugarObject.unit = $scope.bloodSugarUnits[0];
+  
+  $scope.loadDefaultBloodSugarUnits = function () {
+    
+    $scope.bloodSugarUnits.$loaded().
+    then(function (units) {
+      
+      var defaultBloodSugarUnitIndex = $scope.bloodSugarUnits.$keyAt(0);
+      var defaultBloodSugarUnit = units.$getRecord(defaultBloodSugarUnitIndex);
+
+      $scope.bloodSugarObject.unit = defaultBloodSugarUnit.name;
+    });
+    
+  };
+  
+  $scope.loadDefaultBloodSugarUnits();
   
   /*------------------------------------------------------------------*/
   
   /*------------------------------ Weight Data ---------------------------*/
   
-  $scope.weightUnits = [
-    'Kgs',
-    'Pounds'
-  ];
+  var weightUnitsRef = new Firebase("https://blood-care-ionic.firebaseio.com/weightUnits");
+  
+  $scope.weightUnits = $firebaseArray(weightUnitsRef);
   
   $scope.weightObject = {};
   $scope.weightObject.title ="Weight";
   $scope.weightObject.name = "Weight";
-  $scope.weightObject.unit = $scope.weightUnits[0];
+  
+  $scope.loadDefaultWeightUnits = function () {
+    
+    $scope.weightUnits.$loaded().
+    then(function (units) {
+      
+      var defaultWeightUnitIndex = $scope.weightUnits.$keyAt(0);
+      var defaultWeightUnit = units.$getRecord(defaultWeightUnitIndex);
+
+      $scope.weightObject.unit = defaultWeightUnit.name;
+    });
+    
+  };
+  
+  $scope.loadDefaultWeightUnits();
   
   /*----------------------------------------------------------------------*/
   
   /*------------------------- Physical Workout Data ----------------------*/
   
-  $scope.workoutTypes = [
-    'Running',
-    'Walking',
-    'Sit-ups'
-  ];
+  var workoutTypesRef = new Firebase("https://blood-care-ionic.firebaseio.com/workoutTypes");
   
+  $scope.workoutTypes = $firebaseArray(workoutTypesRef);
+
   $scope.phyWorkoutObject = {};
   $scope.phyWorkoutObject.title = "Physical Workout";
-  $scope.phyWorkoutObject.name = $scope.workoutTypes[0];
   $scope.phyWorkoutObject.unit = "";
+  
+  $scope.loadDefaultWorkoutTypes = function () {
+    
+    $scope.workoutTypes.$loaded().
+    then(function (types) {
+      
+      var defaultWorkoutTypeIndex = $scope.workoutTypes.$keyAt(0);
+      var defaultWorkoutType = types.$getRecord(defaultWorkoutTypeIndex);
+
+      $scope.phyWorkoutObject.name = defaultWorkoutType.name;
+    });
+    
+  };
+  
+  $scope.loadDefaultWorkoutTypes();
   
   /*------------------------------------------------------------------------------*/
 
@@ -368,16 +421,6 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
    
    $scope.profileObject.MinDate = $filter('date')($scope.minimunDate, "yyyy-MM-dd");
    $scope.profileObject.MaxDate = $filter('date')($scope.currentDate, "yyyy-MM-dd");
-   
-  /*
-   $scope.dateOptions = {
-      dateFormat: 'dd-mm-yy',
-      changeMonth:true,
-      changeYear:true,
-      minDate: new Date(1900, 01 - 1, 01),
-      maxDate: 'today',
-      yearRange: '1900:c' 
-    };*/
     
     $scope.showConfirm = function () {
       
@@ -472,7 +515,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
   
 })
 
-.controller('MedicineIntakeCtrl', function($scope, IonicClosePopupService, $ionicPopup, $filter, $ionicViewSwitcher){
+.controller('MedicineIntakeCtrl', function($scope, IonicClosePopupService, $ionicPopup, $filter, $ionicViewSwitcher, $firebaseArray){
 
   var medsPopup;
   
@@ -658,7 +701,6 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
               var endTime = new Date($scope.phyWorkoutObject.endTime).getTime();
               var totalTime = msToTime(endTime - startTime);
               $scope.phyWorkoutObject.value = totalTime;
-              //console.log("totalTime : " + totalTime);
               $ionicViewSwitcher.nextDirection('back'); 
               $scope.appGoBack(); 
             }
@@ -699,18 +741,20 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
 })
 
 .controller('MealCategoryCtrl', function($scope, IonicClosePopupService, $ionicPopup){
+    
+  $scope.editMealCategory = function (item) {
+    $scope.mealCategories.$loaded().
+      then(function (categories) {
+        var mealCategoryIndex = $scope.mealCategories.$keyAt(item);
+        var mealCategory = categories.$getRecord(mealCategoryIndex);
+        mealCategory.name = $scope.mealIntakeObject.name;
+        $scope.mealCategories.$save(mealCategory);
+      });
+  }
   
-  $scope.mealCatObj = {};
   var addMealCatPopup;
-  
-  $scope.listData = {
-    showReorder: false
-  };
-  
-  $scope.moveItem = function(item, fromIndex, toIndex) {
-    $scope.mealCategories.splice(fromIndex, 1);
-    $scope.mealCategories.splice(toIndex, 0, item);
-  };
+  var editMealCatPopup;
+  var deleteMealCatPopup;
   
    $scope.showAddMealCategory = function () {
       
@@ -723,7 +767,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
         buttons: [
           { text: '<i class="icon ion-close-circled"></i>',
             onTap: function(e) { 
-              $scope.mealIntakeObject.name = $scope.mealCategories[0];
+              $scope.loadDefaultMealCategories();
               return false; 
             }
           },
@@ -732,7 +776,9 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
               if (!$scope.mealIntakeObject.name) {
                 e.preventDefault();
               } else {
-                $scope.mealCategories.push($scope.mealIntakeObject.name);
+                $scope.mealCategories.$add({
+                  name: $scope.mealIntakeObject.name
+                });
                 return false;
               }
             }
@@ -745,7 +791,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
     
     $scope.showEditMealCat = function (item) {
       
-      $scope.mealIntakeObject.name = item;
+      $scope.mealIntakeObject.name = item.name;
       
      editMealCatPopup = $ionicPopup.show({
         title: 'Edit Meal Category',
@@ -754,7 +800,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
         buttons: [
           { text: '<i class="icon ion-close-circled"></i>',
             onTap: function(e) { 
-              $scope.mealIntakeObject.name = $scope.mealCategories[0];
+              $scope.loadDefaultMealCategories();
               return false; 
             }
           },
@@ -763,14 +809,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
               if (!$scope.mealIntakeObject.name) {
                 e.preventDefault();
               } else {
-                /*
-                if ($scope.selectedMedicineName == item.name && $scope.selectedMedicineUnit == item.unit) {
-                  $scope.selectedMedicineName = $scope.medsObj.editMedsName;
-                  $scope.selectedMedicineUnit = $scope.medsObj.editMedsUnit;
-                }*/
-                
-                var index = $scope.mealCategories.indexOf(item);
-                $scope.mealCategories[index] = $scope.mealIntakeObject.name;
+                $scope.editMealCategory(item);
                 return false;
               }
             }
@@ -783,7 +822,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
     
     $scope.showDeleteMealCat = function (item) {
       
-      $scope.mealIntakeObject.name = item;
+      $scope.mealIntakeObject.name = item.name;
       
      deleteMealCatPopup = $ionicPopup.show({
         title: 'Delete Meal Category',
@@ -795,8 +834,8 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
           },
           { text: '<i class="icon ion-checkmark-circled""></i>',
             onTap: function(e) { 
-                $scope.mealCategories.splice($scope.mealCategories.indexOf(item), 1);
-                $scope.mealIntakeObject.name = $scope.mealCategories[0];
+                $scope.mealCategories.$remove(item);
+                $scope.loadDefaultMealCategories();
             }
           }
         ]
@@ -808,20 +847,28 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
 })
 
 .controller('MedicineNameCtrl', function($scope, IonicClosePopupService, $ionicPopup){
+ 
+  $scope.addMedicineName = function (name, unit) {
+    $scope.medicineList.$add({
+      name: name,
+      unit: unit
+    });
+  };
   
-  $scope.medsObj = {};
+  $scope.editMedicineName = function (item) {
+    $scope.medicineList.$loaded().
+       then(function (medicines) {
+          var medicineIndex = $scope.medicineList.$keyAt(item);
+          var medicine = medicines.$getRecord(medicineIndex);
+          medicine.name = $scope.medicineIntakeObject.name;
+          medicine.unit = $scope.medicineIntakeObject.unit;
+          $scope.medicineList.$save(medicine);
+    });
+  }
+  
   var addMedsPopup;
   var editMedsPopup;
   var deleteMedsPopup;
-  
-  $scope.listData = {
-    showReorder: false
-  };
-  
-  $scope.moveItem = function(item, fromIndex, toIndex) {
-    $scope.medicineList.splice(fromIndex, 1);
-    $scope.medicineList.splice(toIndex, 0, item);
-  };
   
   $scope.showAddMeds = function () {
       
@@ -835,21 +882,20 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
         buttons: [
           { text: '<i class="icon ion-close-circled"></i>',
             onTap: function(e) { 
-              $scope.medicineIntakeObject.name = $scope.medicineList[0].name;
-              $scope.medicineIntakeObject.unit = $scope.medicineList[0].unit;
+              $scope.loadDefaultMedicineName();
               return false; 
             }
           },
           { text: '<i class="icon ion-checkmark-circled""></i>',
             onTap: function(e) { 
+              
               if (!$scope.medicineIntakeObject.name || !$scope.medicineIntakeObject.unit) {
                 e.preventDefault();
               } else {
-                var obj = { name: $scope.medicineIntakeObject.name,
-                            unit: $scope.medicineIntakeObject.unit};
-                $scope.medicineList.push(obj);
+                $scope.addMedicineName($scope.medicineIntakeObject.name, $scope.medicineIntakeObject.unit);
                 return false;
               }
+              
             }
           }
         ]
@@ -870,8 +916,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
         buttons: [
           { text: '<i class="icon ion-close-circled"></i>',
             onTap: function(e) { 
-              $scope.medicineIntakeObject.name = $scope.medicineList[0].name;
-              $scope.medicineIntakeObject.unit = $scope.medicineList[0].unit;
+              $scope.loadDefaultMedicineName();
               return false; 
             }
           },
@@ -880,9 +925,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
               if (!$scope.medicineIntakeObject.name || !$scope.medicineIntakeObject.unit) {
                 e.preventDefault();
               } else {
-                var index = $scope.medicineList.indexOf(item);
-                $scope.medicineList[index].name = $scope.medicineIntakeObject.name;
-                $scope.medicineList[index].unit = $scope.medicineIntakeObject.unit;
+                $scope.editMedicineName(item);
                 return false;
               }
             }
@@ -908,9 +951,8 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
           },
           { text: '<i class="icon ion-checkmark-circled""></i>',
             onTap: function(e) { 
-                $scope.medicineList.splice($scope.medicineList.indexOf(item), 1);
-                $scope.medicineIntakeObject.name = $scope.medicineList[0].name;
-                $scope.medicineIntakeObject.unit = $scope.medicineList[0].unit;
+                $scope.medicineList.$remove(item);
+                $scope.loadDefaultMedicineName();
             }
           }
         ]
@@ -922,19 +964,19 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
 
 .controller('WorkoutTypeCtrl', function($scope, IonicClosePopupService, $ionicPopup){
   
-  $scope.workoutObj = {};
+  $scope.editWorkoutType = function (item) {
+    $scope.workoutTypes.$loaded().
+      then(function (types) {
+        var workoutTypeIndex = $scope.workoutTypes.$keyAt(item);
+        var workoutType = types.$getRecord(workoutTypeIndex);
+        workoutType.name = $scope.phyWorkoutObject.name;
+        $scope.workoutTypes.$save(workoutType);
+      });
+  }
+  
   var addWorkoutTypePopup;
   var editWorkoutTypePopup;
   var deleteWorkoutTypePopup;
-  
-  $scope.listData = {
-    showReorder: false
-  };
-  
-  $scope.moveItem = function(item, fromIndex, toIndex) {
-    $scope.workoutTypes.splice(fromIndex, 1);
-    $scope.workoutTypes.splice(toIndex, 0, item);
-  };
   
   $scope.showAddWorkoutType = function () {
       
@@ -947,7 +989,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
         buttons: [
           { text: '<i class="icon ion-close-circled"></i>',
             onTap: function(e) { 
-              $scope.phyWorkoutObject.name = $scope.workoutTypes[0];
+              $scope.loadDefaultWorkoutTypes();
               return false; 
             }
           },
@@ -956,7 +998,9 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
               if (!$scope.phyWorkoutObject.name) {
                 e.preventDefault();
               } else {
-                $scope.workoutTypes.push($scope.phyWorkoutObject.name);
+                $scope.workoutTypes.$add({
+                  name: $scope.phyWorkoutObject.name
+                });
                 return false;
               }
             }
@@ -969,7 +1013,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
     
     $scope.showEditWorkoutType = function (item) {
       
-      $scope.phyWorkoutObject.name = item;
+      $scope.phyWorkoutObject.name = item.name;
       
      editWorkoutTypePopup = $ionicPopup.show({
         title: 'Edit Workout Type',
@@ -978,7 +1022,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
         buttons: [
           { text: '<i class="icon ion-close-circled"></i>',
             onTap: function(e) { 
-              $scope.phyWorkoutObject.name = $scope.workoutTypes[0];
+              $scope.loadDefaultWorkoutTypes();
               return false; 
             }
           },
@@ -987,8 +1031,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
               if (!$scope.phyWorkoutObject.name) {
                 e.preventDefault();
               } else {
-                var index = $scope.workoutTypes.indexOf(item);
-                $scope.workoutTypes[index] = $scope.phyWorkoutObject.name;
+                $scope.editWorkoutType(item);
                 return false;
               }
             }
@@ -1001,7 +1044,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
     
     $scope.showDeleteWorkoutType = function (item) {
       
-      $scope.phyWorkoutObject.name = item;
+      $scope.phyWorkoutObject.name = item.name;
       
      deleteWorkoutTypePopup = $ionicPopup.show({
         title: 'Delete Workout Type',
@@ -1013,8 +1056,8 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova'])
           },
           { text: '<i class="icon ion-checkmark-circled""></i>',
             onTap: function(e) { 
-                $scope.workoutTypes.splice($scope.workoutTypes.indexOf(item), 1);
-                $scope.phyWorkoutObject.name = $scope.workoutTypes[0];
+                $scope.workoutTypes.$remove(item);
+                $scope.loadDefaultWorkoutTypes();
             }
           }
         ]

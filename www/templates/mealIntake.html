@@ -68,8 +68,8 @@
 
 <script type="text/ng-template" id="meal-popup.html">
     <ion-list>
-        <ion-item ng-repeat="meal in mealCategories" ng-click="closeMealCat(meal)" class="select-item">
-            <a class="custom-selectbox">{{meal}}</a>
+        <ion-item ng-repeat="meal in mealCategories" ng-click="closeMealCat(meal.name)" class="select-item">
+            <a class="custom-selectbox">{{meal.name}}</a>
         </ion-item>
     </ion-list>
 </script>
