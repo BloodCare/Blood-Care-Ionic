@@ -2,3 +2,4 @@
 
 ###Following are the details:
 * **Frontend:** Ionic, Angular JS
+* **Backend:** Firebase (Angular Fire)
