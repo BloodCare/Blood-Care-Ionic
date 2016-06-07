@@ -551,3 +551,19 @@ a.item.item-thumbnail-left.custom-monitor-item h2{
     position: absolute;
     top: 28px;
 }
+div.item.item-divider.custom-item-divider{
+    margin-top: 10px;
+    background: rgba(230, 230, 230, 0.3);
+    border: 2px solid rgba(230, 230, 230, 0.3);
+    color: #E6E6E6;
+    font-size: 18px;
+    font-weight: bold;
+}
+div.item.custom-history-item p.custom-history-value{
+    color: #5A00FF;
+    font-size: 16px;
+}
+div.item.custom-history-item p.custom-history-label{
+    color: #A800DC;
+    font-size: 16px;
+}

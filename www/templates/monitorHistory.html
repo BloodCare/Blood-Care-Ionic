@@ -10,7 +10,25 @@
     
     <ion-content class="padding">
         
-       <h3>History</h3>
+       <div class="list">
+           
+           <div ng-repeat="(key, items) in monitor">
+               
+               <div class="item item-divider custom-item-divider">
+                   {{monitor.$keyAt(key) | date : "longDate"}}
+               </div>
+               
+               <div ng-repeat="item in items" class="item custom-history-item">
+                   <p class="custom-history-label">
+                       {{item.title}} &nbsp; at &nbsp;
+                       {{toJsDate(item.time) | date : "hh:mm a"}}
+                   </p>
+                   <p class="custom-history-value">{{item.name}} : {{item.value}} {{item.unit}}</p>
+               </div>
+               
+           </div>
+           
+       </div>
         
     </ion-content>
     
