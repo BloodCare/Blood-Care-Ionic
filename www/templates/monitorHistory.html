@@ -22,7 +22,9 @@
                    {{monitor.$keyAt(key) | date : "longDate"}}
                </div>
                
-               <ion-item ng-repeat="item in items" item="item" class="item item-remove-animate custom-history-item">
+               <ion-item ng-repeat="item in items" item="item" 
+                         class="item item-remove-animate custom-history-item"
+                         ng-click="editHistoryItem(item.state, key, $index)">
                    <p class="custom-history-label">
                        {{item.title}}
                        
@@ -30,7 +32,7 @@
                    <p class="custom-history-value">{{item.name}} : {{item.value}} {{item.unit}}</p>
                    <span class="badge icon-badge custom-history-badge">{{toJsDate(item.time) | date : "hh:mm a"}}</span>
                    <ion-delete-button class="ion-minus-circled custom-history-delete" 
-                             ng-click="deleteHistoryItem(key, item, $index)">
+                             ng-click="deleteHistoryItem(key, $index)">
                    </ion-delete-button>
                </ion-item>
                

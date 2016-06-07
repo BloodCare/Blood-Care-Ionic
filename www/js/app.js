@@ -145,6 +145,31 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
     url: '/app/monitor/history',
     templateUrl: 'templates/monitorHistory.html',
     controller: 'HistoryCtrl'
+  })
+  .state('editMedicineIntake', {
+    url: '/app/monitor/medicine-intake/:date/:id',
+    templateUrl: 'templates/medicineIntake.html',
+    controller: 'EditMedicineIntakeCtrl'
+  })
+  .state('editMealIntake', {
+    url: '/app/monitor/meal-intake/:date/:id',
+    templateUrl: 'templates/mealIntake.html',
+    controller: 'EditMealIntakeCtrl'
+  })
+  .state('editBloodSugar', {
+    url: '/app/monitor/blood-sugar/:date/:id',
+    templateUrl: 'templates/bloodSugar.html',
+    controller: 'EditBloodSugarCtrl'
+  })
+  .state('editPhysicalWorkout', {
+    url: '/app/monitor/physical-workout/:date/:id',
+    templateUrl: 'templates/physicalWorkout.html',
+    controller: 'EditPhysicalWorkoutCtrl'
+  })
+  .state('editWeight', {
+    url: '/app/monitor/weight/:date/:id',
+    templateUrl: 'templates/weight.html',
+    controller: 'EditWeightCtrl'
   });
 
   $urlRouterProvider.otherwise('/app/home');
@@ -536,8 +561,9 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
   $scope.medicineIntakeObject.MaxDate = $filter('date')($scope.currentDate, "yyyy-MM-dd");
   $scope.medicineIntakeObject.date = new Date((new Date()).getFullYear(), (new Date()).getMonth(), (new Date()).getDate());
   $scope.medicineIntakeObject.time = $scope.getCurrentTime();
+  $scope.medicineIntakeObject.state = 'editMedicineIntake';
   
-  var addMedicineIntake = function (medicineTitle, medicineName, medicineValue, medicineUnit, medicineDate, medicineTime, medicineNotes) {
+  var addMedicineIntake = function (medicineTitle, medicineName, medicineValue, medicineUnit, medicineDate, medicineTime, medicineNotes, medicineState) {
     var medsDate = $filter('date')(medicineDate, "yyyy-MM-dd");
     var medicineIntakeRef = new Firebase("https://blood-care-ionic.firebaseio.com/monitor/" + medsDate);
     $scope.medicineIntake = $firebaseArray(medicineIntakeRef);
@@ -548,7 +574,8 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
       unit: medicineUnit,
       date: new Date(medicineDate).toDateString(),
       time: new Date(medicineTime).toString(),
-      notes: medicineNotes
+      notes: medicineNotes,
+      state: medicineState
     });
   };
   
@@ -591,7 +618,8 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
                                   $scope.medicineIntakeObject.unit,
                                   $scope.medicineIntakeObject.date,
                                   $scope.medicineIntakeObject.time,
-                                  $scope.medicineIntakeObject.notes);
+                                  $scope.medicineIntakeObject.notes,
+                                  $scope.medicineIntakeObject.state);
                 $ionicViewSwitcher.nextDirection('back'); $scope.appGoBack();
               }
             }
@@ -613,8 +641,9 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
   $scope.mealIntakeObject.MaxDate = $filter('date')($scope.currentDate, "yyyy-MM-dd");
   $scope.mealIntakeObject.date = new Date((new Date()).getFullYear(), (new Date()).getMonth(), (new Date()).getDate());
   $scope.mealIntakeObject.time = $scope.getCurrentTime();
+  $scope.mealIntakeObject.state = 'editMealIntake';
   
-  var addMealIntake = function (mealTitle, mealName, mealValue, mealUnit, mealDate, mealTime, mealNotes) {
+  var addMealIntake = function (mealTitle, mealName, mealValue, mealUnit, mealDate, mealTime, mealNotes, mealState) {
     var mealsDate = $filter('date')(mealDate, "yyyy-MM-dd");
     var mealIntakeRef = new Firebase("https://blood-care-ionic.firebaseio.com/monitor/" + mealsDate);
     $scope.mealIntake = $firebaseArray(mealIntakeRef);
@@ -625,7 +654,8 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
       unit: mealUnit,
       date: new Date(mealDate).toDateString(),
       time: new Date(mealTime).toString(),
-      notes: mealNotes
+      notes: mealNotes,
+      state: mealState
     });
   };
   
@@ -667,7 +697,8 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
                             $scope.mealIntakeObject.unit,
                             $scope.mealIntakeObject.date,
                             $scope.mealIntakeObject.time,
-                            $scope.mealIntakeObject.notes);
+                            $scope.mealIntakeObject.notes,
+                            $scope.mealIntakeObject.state);
               $ionicViewSwitcher.nextDirection('back'); $scope.appGoBack();
             }
           }
@@ -688,8 +719,11 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
     $scope.bloodSugarObject.MaxDate = $filter('date')($scope.currentDate, "yyyy-MM-dd");
     $scope.bloodSugarObject.date = new Date((new Date()).getFullYear(), (new Date()).getMonth(), (new Date()).getDate());
     $scope.bloodSugarObject.time = $scope.getCurrentTime();
+    $scope.bloodSugarObject.state = 'editBloodSugar';
     
-    var addBloodSugar = function (bloodSugarTitle, bloodSugarName, bloodSugarValue, bloodSugarUnit, bloodSugarDate, bloodSugarTime, bloodSugarNotes) {
+    var addBloodSugar = function (bloodSugarTitle, bloodSugarName, bloodSugarValue, 
+                                  bloodSugarUnit, bloodSugarDate, bloodSugarTime, 
+                                  bloodSugarNotes, bloodSugarState) {
       var bsDate = $filter('date')(bloodSugarDate, "yyyy-MM-dd");
       var bloodSugarRef = new Firebase("https://blood-care-ionic.firebaseio.com/monitor/" + bsDate);
       $scope.bloodSugar = $firebaseArray(bloodSugarRef);
@@ -700,7 +734,8 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
         unit: bloodSugarUnit,
         date: new Date(bloodSugarDate).toDateString(),
         time: new Date(bloodSugarTime).toString(),
-        notes: bloodSugarNotes
+        notes: bloodSugarNotes,
+        state: bloodSugarState
       });
     };
     
@@ -721,7 +756,8 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
                             $scope.bloodSugarObject.unit,
                             $scope.bloodSugarObject.date,
                             $scope.bloodSugarObject.time,
-                            $scope.bloodSugarObject.notes);
+                            $scope.bloodSugarObject.notes,
+                            $scope.bloodSugarObject.state);
               $ionicViewSwitcher.nextDirection('back'); $scope.appGoBack();
             }
           }
@@ -768,9 +804,10 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
   $scope.phyWorkoutObject.time = $scope.getCurrentTime();
   $scope.phyWorkoutObject.startTime = $scope.getCurrentTime();
   $scope.phyWorkoutObject.endTime = $scope.getCurrentTime();
+  $scope.phyWorkoutObject.state = 'editPhysicalWorkout';
   
   var addPhysicalWorkout = function (phyWorkoutTitle, phyWorkoutName, phyWorkoutValue, phyWorkoutUnit, phyWorkoutStartTime,
-                                     phyWorkoutEndTime, phyWorkoutDate, phyWorkoutTime, phyWorkoutNotes) {
+                                     phyWorkoutEndTime, phyWorkoutDate, phyWorkoutTime, phyWorkoutNotes, phyWorkoutState) {
     var workoutDate = $filter('date')(phyWorkoutDate, "yyyy-MM-dd");
     var phyWorkoutRef = new Firebase("https://blood-care-ionic.firebaseio.com/monitor/" + workoutDate);
     $scope.phyWorkout = $firebaseArray(phyWorkoutRef);
@@ -783,7 +820,8 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
       endTime: new Date(phyWorkoutEndTime).toString(),
       date: new Date(phyWorkoutDate).toDateString(),
       time: new Date(phyWorkoutTime).toString(),
-      notes:phyWorkoutNotes
+      notes:phyWorkoutNotes,
+      state: phyWorkoutState
     });
   };
   
@@ -824,7 +862,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
                                  $scope.phyWorkoutObject.value, $scope.phyWorkoutObject.unit,
                                  $scope.phyWorkoutObject.startTime, $scope.phyWorkoutObject.endTime,
                                  $scope.phyWorkoutObject.date, $scope.phyWorkoutObject.time,
-                                 $scope.phyWorkoutObject.notes);
+                                 $scope.phyWorkoutObject.notes, $scope.phyWorkoutObject.state);
               $ionicViewSwitcher.nextDirection('back'); 
               $scope.appGoBack(); 
             }
@@ -846,8 +884,10 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
   $scope.weightObject.MinDate = $filter('date')($scope.minimunDate, "yyyy-MM-dd");
   $scope.weightObject.date = new Date((new Date()).getFullYear(), (new Date()).getMonth(), (new Date()).getDate());
   $scope.weightObject.time = $scope.getCurrentTime();
+  $scope.weightObject.state = 'editWeight';
   
-  var addWeight = function (weightTitle, weightName, weightValue, weightUnit, weightDate, weightTime, weightNotes) {
+  var addWeight = function (weightTitle, weightName, weightValue, weightUnit, 
+                            weightDate, weightTime, weightNotes, weightState) {
       var wtDate = $filter('date')(weightDate, "yyyy-MM-dd");
       var weightRef = new Firebase("https://blood-care-ionic.firebaseio.com/monitor/" + wtDate);
       $scope.weight = $firebaseArray(weightRef);
@@ -858,7 +898,8 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
         unit: weightUnit,
         date: new Date(weightDate).toDateString(),
         time: new Date(weightTime).toString(),
-        notes: weightNotes
+        notes: weightNotes,
+        state: weightState
       });
   };
   
@@ -879,7 +920,8 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
                         $scope.weightObject.unit,
                         $scope.weightObject.date,
                         $scope.weightObject.time,
-                        $scope.weightObject.notes);
+                        $scope.weightObject.notes,
+                        $scope.weightObject.state);
               $ionicViewSwitcher.nextDirection('back'); $scope.appGoBack();
             }
           }
@@ -1334,7 +1376,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
   
 })
 
-.controller('HistoryCtrl', function($scope, $firebaseArray, IonicClosePopupService, $ionicPopup){
+.controller('HistoryCtrl', function($scope, $firebaseArray, IonicClosePopupService, $ionicPopup, $state){
    
    var monitorPopup;
    var monitorRef = new Firebase("https://blood-care-ionic.firebaseio.com/monitor");
@@ -1392,7 +1434,19 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
       monitorPopup.close();
    };
   
-   $scope.deleteHistoryItem = function (key, item, index) {
+  $scope.editHistoryItem = function (state, key, index) {
+    var dateKey = $scope.monitor.$keyAt(key);
+    var monitorItemRef = new Firebase("https://blood-care-ionic.firebaseio.com/monitor/" + dateKey);
+    $scope.monitorItem = $firebaseArray(monitorItemRef);
+    $scope.monitorItem.$loaded().then(function () {
+      var idKey = $scope.monitorItem.$keyAt(index);
+      //var record = $scope.monitorItem.$getRecord(idKey);
+      //console.log(record);
+      $state.go(state, {date: dateKey, id: idKey});
+    });
+  }
+  
+   $scope.deleteHistoryItem = function (key, index) {
      var keyText = $scope.monitor.$keyAt(key);
      var monitorItemRef = new Firebase("https://blood-care-ionic.firebaseio.com/monitor/" + keyText);
      $scope.monitorItem = $firebaseArray(monitorItemRef);
@@ -1406,6 +1460,26 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
         });
      });
    }
+})
+
+.controller('EditMedicineIntakeCtrl', function($scope){
+  
+})
+
+.controller('EditMealIntakeCtrl', function($scope){
+  
+})
+
+.controller('EditBloodSugarCtrl', function($scope){
+  
+})
+
+.controller('EditPhysicalWorkoutCtrl', function($scope){
+  
+})
+
+.controller('EditWeightCtrl', function($scope){
+  
 })
 
 .directive('groupedRadio', function() {
