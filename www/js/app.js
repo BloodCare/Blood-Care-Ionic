@@ -547,7 +547,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
       value: medicineValue,
       unit: medicineUnit,
       date: new Date(medicineDate).toDateString(),
-      time: new Date(medicineTime).toTimeString(),
+      time: new Date(medicineTime).toString(),
       notes: medicineNotes
     });
   };
@@ -624,7 +624,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
       value: mealValue,
       unit: mealUnit,
       date: new Date(mealDate).toDateString(),
-      time: new Date(mealTime).toTimeString(),
+      time: new Date(mealTime).toString(),
       notes: mealNotes
     });
   };
@@ -699,7 +699,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
         value: bloodSugarValue,
         unit: bloodSugarUnit,
         date: new Date(bloodSugarDate).toDateString(),
-        time: new Date(bloodSugarTime).toTimeString(),
+        time: new Date(bloodSugarTime).toString(),
         notes: bloodSugarNotes
       });
     };
@@ -779,10 +779,10 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
       name: phyWorkoutName,
       value: phyWorkoutValue,
       unit: phyWorkoutUnit,
-      startTime: new Date(phyWorkoutStartTime).toTimeString(),
-      endTime: new Date(phyWorkoutEndTime).toTimeString(),
+      startTime: new Date(phyWorkoutStartTime).toString(),
+      endTime: new Date(phyWorkoutEndTime).toString(),
       date: new Date(phyWorkoutDate).toDateString(),
-      time: new Date(phyWorkoutTime).toTimeString(),
+      time: new Date(phyWorkoutTime).toString(),
       notes:phyWorkoutNotes
     });
   };
@@ -857,7 +857,7 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
         value: weightValue,
         unit: weightUnit,
         date: new Date(weightDate).toDateString(),
-        time: new Date(weightTime).toTimeString(),
+        time: new Date(weightTime).toString(),
         notes: weightNotes
       });
   };
@@ -1334,8 +1334,13 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
   
 })
 
-.controller('HistoryCtrl', function($scope){
-  
+.controller('HistoryCtrl', function($scope, $firebaseArray){
+   var monitorRef = new Firebase("https://blood-care-ionic.firebaseio.com/monitor");
+   $scope.monitor = $firebaseArray(monitorRef);
+   $scope.toJsDate = function(str){
+      if(!str)return null;
+      return new Date(str);
+   };
 })
 
 .directive('groupedRadio', function() {
