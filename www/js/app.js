@@ -1334,13 +1334,78 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
   
 })
 
-.controller('HistoryCtrl', function($scope, $firebaseArray){
+.controller('HistoryCtrl', function($scope, $firebaseArray, IonicClosePopupService, $ionicPopup){
+   
+   var monitorPopup;
    var monitorRef = new Firebase("https://blood-care-ionic.firebaseio.com/monitor");
    $scope.monitor = $firebaseArray(monitorRef);
+   
    $scope.toJsDate = function(str){
       if(!str)return null;
       return new Date(str);
    };
+   
+   $scope.data = {
+    showDelete: false
+   };
+   
+   $scope.monitorFunctions = [
+     {
+       name: 'Medicine Intake',
+       url: '#/app/monitor/medicine-intake'
+     },
+     {
+       name: 'Meal Intake',
+       url: '#/app/monitor/meal-intake'
+     },
+     {
+       name: 'Blood Sugar',
+       url: '#/app/monitor/blood-sugar'
+     },
+     {
+       name: 'Physical Workout',
+       url: '#/app/monitor/physical-workout'
+     },
+     {
+       name: 'Weight',
+       url: '#/app/monitor/weight'
+     }
+   ];
+   
+   $scope.showAddMonitorPopup = function () {
+      
+   monitorPopup = $ionicPopup.show({
+        title: 'Add',
+        templateUrl: 'add-monitor-popup.html',
+        scope: $scope,
+         buttons: [
+          { text: 'Cancel',
+            onTap: function(e) { return false; }
+          },
+        ]
+      });
+      
+      IonicClosePopupService.register(monitorPopup);
+   };
+   
+   $scope.closeMonitorPopup = function () {
+      monitorPopup.close();
+   };
+  
+   $scope.deleteHistoryItem = function (key, item, index) {
+     var keyText = $scope.monitor.$keyAt(key);
+     var monitorItemRef = new Firebase("https://blood-care-ionic.firebaseio.com/monitor/" + keyText);
+     $scope.monitorItem = $firebaseArray(monitorItemRef);
+     $scope.monitorItem.$loaded().then(function () {
+       $scope.monitorItem.$remove(index)
+        .then(function() {
+          console.log('item removed')
+        })
+        .catch(function(error) {
+          console.log('error', error);
+        });
+     });
+   }
 })
 
 .directive('groupedRadio', function() {
