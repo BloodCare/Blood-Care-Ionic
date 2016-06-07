@@ -135,6 +135,16 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
     url: '/app/monitor/medicine-intake/workout-type',
     templateUrl: 'templates/workout-add-edit-delete.html',
     controller: 'WorkoutTypeCtrl'
+  })
+  .state('graphs', {
+    url: '/app/monitor/graphs',
+    templateUrl: 'templates/monitorGraphs.html',
+    controller: 'GraphsCtrl'
+  })
+  .state('history', {
+    url: '/app/monitor/history',
+    templateUrl: 'templates/monitorHistory.html',
+    controller: 'HistoryCtrl'
   });
 
   $urlRouterProvider.otherwise('/app/home');
@@ -508,8 +518,11 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
   
 })
 
-.controller('MonitorCtrl', function($scope){
-  
+.controller('MonitorCtrl', function($scope, $state, $ionicViewSwitcher){
+  $scope.navigate = function () {
+    $ionicViewSwitcher.nextDirection('back');
+    $state.go('app.home');
+  }
 })
 
 .controller('MedicineIntakeCtrl', function($scope, IonicClosePopupService, $ionicPopup, $filter, $ionicViewSwitcher, $firebaseArray){
@@ -1314,6 +1327,14 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
       
       IonicClosePopupService.register(confirmPopup);
   };
+  
+})
+
+.controller('GraphsCtrl', function($scope){
+  
+})
+
+.controller('HistoryCtrl', function($scope){
   
 })
 
