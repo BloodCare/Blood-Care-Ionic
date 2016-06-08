@@ -10374,3 +10374,6 @@ div.item-left-edit.item-delete.enable-pointer-events.visible.active ion-delete-b
 
 div.buttons .button.button-icon.icon.ion-minus-circled.custom-header-delete {
   padding: 0px; }
+
+ion-footer-bar h1.title {
+  font-size: 17px !important; }
