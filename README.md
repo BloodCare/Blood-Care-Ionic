@@ -5,3 +5,4 @@
 
 ###Details:
 * **Frontend**: Ionic Framework, AngularJS
+* **Backend**: Firebase, Angular Fire
