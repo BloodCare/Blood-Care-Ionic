@@ -10152,10 +10152,11 @@ label.item-floating-label {
 
 ion-option-button.button {
   background: rgba(90, 0, 255, 0.5);
-  color: #E6E6E6;
+  color: #FFF;
   font-size: 24px; }
 
-ion-option-button.button:hover {
+ion-option-button.button:hover, ion-option-button.button:active {
+  background: rgba(168, 0, 220, 0.6);
   color: #FFF;
   font-size: 26px; }
 
@@ -10319,7 +10320,7 @@ div.item.item-text-wrap.custom-inteval-wrap {
 a.item.item-thumbnail-left.custom-monitor-item {
   background: rgba(230, 230, 230, 0.3);
   border: 2px solid rgba(230, 230, 230, 0.3);
-  width: 70%;
+  width: 64%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 40px;
@@ -10331,10 +10332,10 @@ a.item.item-thumbnail-left.custom-monitor-item img {
 
 a.item.item-thumbnail-left.custom-monitor-item h2 {
   color: #E6E6E6;
-  font-size: 32px;
+  font-size: 26px;
   font-weight: bold;
   position: absolute;
-  top: 28px; }
+  top: 32px; }
 
 div.item.item-divider.custom-item-divider {
   margin-top: 10px;
@@ -10344,10 +10345,32 @@ div.item.item-divider.custom-item-divider {
   font-size: 18px;
   font-weight: bold; }
 
-div.item.custom-history-item p.custom-history-value {
+ion-item.item-remove-animate.custom-history-item p.custom-history-value {
   color: #5A00FF;
   font-size: 16px; }
 
-div.item.custom-history-item p.custom-history-label {
+ion-item.item-remove-animate.custom-history-item p.custom-history-label {
   color: #A800DC;
   font-size: 16px; }
+
+.item span.badge.icon-badge.custom-history-badge {
+  background-color: rgba(168, 0, 220, 0.5);
+  border: 1px solid rgba(168, 0, 220, 0.3);
+  color: #FFF;
+  font-size: 14px;
+  font-weight: bold;
+  position: absolute;
+  right: 6px; }
+
+div.item-left-edit.item-delete.enable-pointer-events.visible.active ion-delete-button.ion-minus-circled.button.icon.button-icon {
+  position: absolute;
+  top: 10px;
+  color: #5A00FF; }
+
+div.item-left-edit.item-delete.enable-pointer-events.visible.active ion-delete-button.ion-minus-circled.button.icon.button-icon.activated,
+div.item-left-edit.item-delete.enable-pointer-events.visible.active ion-delete-button.ion-minus-circled.button.icon.button-icon:hover {
+  color: rgba(168, 0, 220, 0.4);
+  opacity: 1; }
+
+div.buttons .button.button-icon.icon.ion-minus-circled.custom-header-delete {
+  padding: 0px; }

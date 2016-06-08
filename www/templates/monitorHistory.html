@@ -4,13 +4,17 @@
         <div class="buttons">
             <a class="button button-icon ion-ios-arrow-back" href="#/app/monitor" nav-direction="back">
             </a>
+            <button class="button button-icon icon ion-minus-circled custom-header-delete"
+             ng-click="data.showDelete = !data.showDelete"></button>
         </div>
         <h1 class="title">History</h1>
+        <button class="button button-icon icon ion-plus-circled"
+             ng-click="showAddMonitorPopup()"></button>
     </ion-header-bar>
     
     <ion-content class="padding">
         
-       <div class="list">
+       <ion-list show-delete="data.showDelete">
            
            <div ng-repeat="(key, items) in monitor">
                
@@ -18,18 +22,32 @@
                    {{monitor.$keyAt(key) | date : "longDate"}}
                </div>
                
-               <div ng-repeat="item in items" class="item custom-history-item">
+               <ion-item ng-repeat="item in items" item="item" 
+                         class="item item-remove-animate custom-history-item"
+                         ng-click="editHistoryItem(item.state, key, $index)">
                    <p class="custom-history-label">
-                       {{item.title}} &nbsp; at &nbsp;
-                       {{toJsDate(item.time) | date : "hh:mm a"}}
+                       {{item.title}}
+                       
                    </p>
                    <p class="custom-history-value">{{item.name}} : {{item.value}} {{item.unit}}</p>
-               </div>
+                   <span class="badge icon-badge custom-history-badge">{{toJsDate(item.time) | date : "hh:mm a"}}</span>
+                   <ion-delete-button class="ion-minus-circled custom-history-delete" 
+                             ng-click="deleteHistoryItem(key, $index)">
+                   </ion-delete-button>
+               </ion-item>
                
            </div>
            
-       </div>
+       </ion-list>
         
     </ion-content>
     
 </ion-pane>
+
+<script type="text/ng-template" id="add-monitor-popup.html">
+    <ion-list>
+        <ion-item ng-repeat="opt in monitorFunctions" ng-click="closeMonitorPopup()" class="select-item">
+            <a class="custom-selectbox" href="{{opt.url}}">{{opt.name}}</a>
+        </ion-item>
+    </ion-list>
+</script>
