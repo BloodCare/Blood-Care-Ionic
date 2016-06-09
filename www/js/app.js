@@ -1388,9 +1388,51 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
   
 })
 
-.controller('HistoryCtrl', function($scope, $firebaseArray, IonicClosePopupService, $ionicPopup, $state){
+.controller('HistoryCtrl', function($scope, $firebaseArray, IonicClosePopupService, $ionicPopup, $state, $filter){
    
    var monitorPopup;
+   
+   $scope.monitorObject = {};
+   
+   $scope.monitorObject.date = $filter('date')($scope.currentDate, "longDate");
+   $scope.monitorObject.fromDate = new Date((new Date($scope.monitorObject.date)).getFullYear(), (new Date($scope.monitorObject.date)).getMonth(), (new Date($scope.monitorObject.date)).getDate() - 7);
+   $scope.monitorObject.toDate = new Date((new Date($scope.monitorObject.date)).getFullYear(), (new Date($scope.monitorObject.date)).getMonth(), (new Date($scope.monitorObject.date)).getDate() + 7);
+   
+   $scope.getLastWeekDate = function (todaysDate) {
+     var lastWeekDate = new Date((new Date(todaysDate)).getFullYear(), (new Date(todaysDate)).getMonth(), (new Date(todaysDate)).getDate() - 7);
+     $scope.monitorObject.date =  $filter('date')(lastWeekDate, "longDate");
+     $scope.monitorObject.fromDate = new Date((new Date($scope.monitorObject.date)).getFullYear(), (new Date($scope.monitorObject.date)).getMonth(), (new Date($scope.monitorObject.date)).getDate() - 7);
+     $scope.monitorObject.toDate = new Date((new Date($scope.monitorObject.date)).getFullYear(), (new Date($scope.monitorObject.date)).getMonth(), (new Date($scope.monitorObject.date)).getDate() + 7); 
+  };
+  
+  $scope.getNextWeekDate = function (todaysDate) {
+     var nextWeekDate = new Date((new Date(todaysDate)).getFullYear(), (new Date(todaysDate)).getMonth(), (new Date(todaysDate)).getDate() + 7);
+     $scope.monitorObject.date =  $filter('date')(nextWeekDate, "longDate");
+     $scope.monitorObject.toDate = new Date((new Date($scope.monitorObject.date)).getFullYear(), (new Date($scope.monitorObject.date)).getMonth(), (new Date($scope.monitorObject.date)).getDate() + 7); 
+     $scope.monitorObject.fromDate = new Date((new Date($scope.monitorObject.date)).getFullYear(), (new Date($scope.monitorObject.date)).getMonth(), (new Date($scope.monitorObject.date)).getDate() - 7); 
+  };
+  
+  $scope.hideNextWeekDate = function () {
+    var todaysDate = $filter('date')($scope.currentDate, "longDate");
+    if (todaysDate === $scope.monitorObject.date) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+   
+   $scope.filterData = function (key, fromD, toD) {
+     var keyText = $scope.monitor.$keyAt(key);
+     var keyDate = new Date((new Date(keyText)).getFullYear(), (new Date(keyText)).getMonth(), (new Date(keyText)).getDate());
+     var fromDate = new Date((new Date(fromD)).getFullYear(), (new Date(fromD)).getMonth(), (new Date(fromD)).getDate());
+     var toDate = new Date((new Date(toD)).getFullYear(), (new Date(toD)).getMonth(), (new Date(toD)).getDate());
+     if (fromDate <= keyDate && keyDate <= toDate) {
+       return true;
+     } else {
+       return false;
+     }
+     
+   }
    
    $scope.toJsDate = function(str){
       if(!str)return null;
@@ -1945,3 +1987,4 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
     }
   };
 })
+
