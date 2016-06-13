@@ -1,7 +1,8 @@
-# Blood-Care - Ionic App
+# Blood-Care-Ionic 
+##Advanced Computer Science 2016
 
 ![Alt text] (https://github.com/BloodCare/Blood-Care-Ionic/blob/master/www/img/menu.gif)
 
-###Following are the details:
-* **Frontend:** Ionic, Angular JS
-* **Backend:** Firebase (Angular Fire)
+###Details:
+* **Frontend**: Ionic Framework, AngularJS
+* **Backend**: Firebase, Angular Fire
