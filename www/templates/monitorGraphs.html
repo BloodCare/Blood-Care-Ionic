@@ -8,10 +8,26 @@
         <h1 class="title">Graphs</h1>
     </ion-header-bar>
     
-    <ion-content class="padding">
+    <ion-content class="padding" overflow-scroll="false">
         
-       <h3>Graphs</h3>
+       <zingchart id="myChart" zc-json="getJSON(monitorObject.date)" zc-height="100%" zc-width="100%" ng-show="hideGraph(monitorObject.date)">
+           
+       </zingchart>
         
     </ion-content>
+    
+    <ion-footer-bar align-title="center">
+       <div class="buttons">
+            <button class="button button-icon icon ion-arrow-left-c"
+             ng-click="getPreviousDate(monitorObject.date)"></button>
+        </div>
+        <h1 class="title">
+            <span ng-bind="monitorObject.date"></span>
+        </h1>
+        <div class="buttons">
+            <button class="button button-icon icon ion-arrow-right-c"
+             ng-click="getNextDate(monitorObject.date)"></button>
+        </div>
+    </ion-footer-bar>
     
 </ion-pane>

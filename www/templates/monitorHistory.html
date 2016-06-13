@@ -12,11 +12,11 @@
              ng-click="showAddMonitorPopup()"></button>
     </ion-header-bar>
     
-    <ion-content class="padding">
+    <ion-content class="padding" overflow-scroll="false">
         
        <ion-list show-delete="data.showDelete">
            
-           <div ng-repeat="(key, items) in monitor" ng-show="filterData(key, monitorObject.fromDate, monitorObject.toDate)">
+           <div ng-repeat="(key, items) in monitor" ng-show="filterData(key, monitorObject.fromDate, monitorObject.date)">
                
                <div class="item item-divider custom-item-divider">
                    {{monitor.$keyAt(key) | date : "longDate"}}

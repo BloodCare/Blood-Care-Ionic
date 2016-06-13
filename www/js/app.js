@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase'])
+angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase', 'zingchart-angularjs'])
 
 .run(function($ionicPlatform, $rootScope, $cordovaVibration) {
   $ionicPlatform.ready(function() {
@@ -1384,8 +1384,119 @@ angular.module('starter', ['ionic', 'ionic.closePopup', 'ngCordova', 'firebase']
   
 })
 
-.controller('GraphsCtrl', function($scope){
+.controller('GraphsCtrl', function($scope, $filter, $firebaseArray, $firebaseObject){
+  /* 
+  $scope.monitorObject = {};
+  $scope.monitorObject.date = $filter('date')($scope.currentDate, "longDate");
   
+  $scope.getPreviousDate = function (todaysDate) {
+     var previousDate =  new Date((new Date(todaysDate)).getFullYear(), (new Date(todaysDate)).getMonth(), (new Date(todaysDate)).getDate() - 1);
+     $scope.monitorObject.date = $filter('date')(previousDate, "longDate");
+  };
+  
+  $scope.getNextDate = function (todaysDate) {
+     var nextDate =  new Date((new Date(todaysDate)).getFullYear(), (new Date(todaysDate)).getMonth(), (new Date(todaysDate)).getDate() + 1);
+     $scope.monitorObject.date = $filter('date')(nextDate, "longDate");
+  };
+  
+  var getBloodSugarData = function (date) {
+    var bloodSugarKeys = [];
+    var bloodSugarValues = [];
+    var selectedDate = new Date((new Date(date)).getFullYear(), (new Date(date)).getMonth(), (new Date(date)).getDate());
+    
+    var keyDate = $filter('date')(selectedDate, "yyyy-MM-dd");
+    var monitorItemRef = new Firebase("https://blood-care-ionic.firebaseio.com/monitor/" + keyDate);
+    $scope.monitorItem = $firebaseArray(monitorItemRef);
+    monitorItemRef.orderByChild(keyDate + "/title").on("child_added", function(snapshot) {
+      if (snapshot.val().title == "Blood Sugar") {
+        bloodSugarKeys.push(snapshot.key());
+        var time = $filter('date')(new Date(snapshot.val().time), "hh:mm a");
+        var value = snapshot.val().value;
+        bloodSugarValues.push([time, value]);
+      }
+    });
+    
+    return bloodSugarValues;
+  }
+  
+  console.log(getBloodSugarData($scope.monitorObject.date));
+
+  ZC.mobile = true;
+ 
+  $scope.getJSON = function (date) {
+    
+    var myJson = {
+      gui:{
+        "behaviors":[ 
+            {
+              id: "Reload", 
+              text:"Reload", 
+              enabled:"all" 
+            },
+            {
+              id: "SaveAsImage",
+              text:"View as PNG",
+              enabled:"none"
+            },
+            {
+              id: "DownloadPDF", 
+              text:"Download PDF",
+              enabled: "none" 
+            },
+            {
+              id: "DownloadSVG",
+              enabled: "none"
+            },
+            {
+              id: "Print",
+              enabled: "none"
+            },
+            {
+              id: "ViewSource", 
+              enabled: "none"
+            },
+            {
+              id: "ViewAll",
+              enabled: "none"
+            },
+            {
+              id: "About ZingChart", 
+              enabled: "none"
+            }
+        ],
+      },
+      graphset:[
+        {
+          "type": "mixed",
+          "plot": {
+            "tooltip": {
+              "text": "%vt"
+            }
+          },
+          "scale-x": {
+            "zooming":true,
+          },
+          "scale-y": {
+            "zooming":true
+          },
+          "series": [
+          {
+            "type": "line",
+            "values": getBloodSugarData(date),
+            "text": "Blood Sugar"
+          },
+          {
+            "type": "scatter",
+            "values": [],
+            "text": "Scatter"
+          }]
+        }
+      ]
+    };
+    
+    return myJson;
+  }
+  */
 })
 
 .controller('HistoryCtrl', function($scope, $firebaseArray, IonicClosePopupService, $ionicPopup, $state, $filter){
