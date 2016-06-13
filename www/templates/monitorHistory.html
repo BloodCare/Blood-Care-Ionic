@@ -12,27 +12,26 @@
              ng-click="showAddMonitorPopup()"></button>
     </ion-header-bar>
     
-    <ion-content class="padding">
+    <ion-content class="padding" overflow-scroll="false">
         
        <ion-list show-delete="data.showDelete">
            
-           <div ng-repeat="(key, items) in monitor" ng-show="filterData(key, monitorObject.fromDate, monitorObject.date)">
+           <div ng-repeat="item in monitor | orderBy : ['-date', 'time']"
+                ng-click="editHistoryItem(item)"
+                ng-show="filterData(item, monitorObject.fromDate, monitorObject.date)">
                
                <div class="item item-divider custom-item-divider">
-                   {{monitor.$keyAt(key) | date : "longDate"}}
+                   {{toJsDate(item.date) | date : "longDate"}}
                </div>
                
-               <ion-item ng-repeat="item in items" item="item" 
-                         class="item item-remove-animate custom-history-item"
-                         ng-click="editHistoryItem(item.state, key, $index)">
+               <ion-item class="item item-remove-animate custom-history-item">
                    <p class="custom-history-label">
                        {{item.title}}
-                       
                    </p>
                    <p class="custom-history-value">{{item.name}} : {{item.value}} {{item.unit}}</p>
                    <span class="badge icon-badge custom-history-badge">{{toJsDate(item.time) | date : "hh:mm a"}}</span>
-                   <ion-delete-button class="ion-minus-circled custom-history-delete" 
-                             ng-click="deleteHistoryItem(key, $index)">
+                   <ion-delete-button class="ion-minus-circled custom-history-delete"
+                                      ng-click="deleteHistoryItem(item)">
                    </ion-delete-button>
                </ion-item>
                
