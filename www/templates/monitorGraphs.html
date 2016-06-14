@@ -10,7 +10,7 @@
     
     <ion-content class="padding" overflow-scroll="false">
         
-       <zingchart id="myChart" zc-json="getJSON(monitorObject.date)" zc-height="100%" zc-width="100%" ng-show="hideGraph(monitorObject.date)">
+       <zingchart id="myChart" zc-json="myJson" zc-height="100%" zc-width="100%">
            
        </zingchart>
         
@@ -26,7 +26,7 @@
         </h1>
         <div class="buttons">
             <button class="button button-icon icon ion-arrow-right-c"
-             ng-click="getNextDate(monitorObject.date)"></button>
+             ng-click="getNextDate(monitorObject.date)" ng-show="hideNextDate()"></button>
         </div>
     </ion-footer-bar>
     
