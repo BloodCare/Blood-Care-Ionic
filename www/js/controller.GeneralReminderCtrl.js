@@ -17,7 +17,6 @@ angular.module('starter')
           },
           { text: '<i class="icon ion-checkmark-circled""></i>',
             onTap: function(e) { 
-              console.log($scope.getReminderDateTime($scope.genReminderObj.Date, $scope.genReminderObj.Time));
               $scope.addGeneralReminder();
               $ionicViewSwitcher.nextDirection('back'); 
               $scope.appGoBack(); 
@@ -42,6 +41,7 @@ angular.module('starter')
       }).then(function () {
         console.log("General Reminder is Set.");
       });
+      
     }
     
   });

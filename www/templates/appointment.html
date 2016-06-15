@@ -1,79 +1,71 @@
 <ion-pane>
-    <ion-header-bar class="custom-bar-bg" align-title="center">
-        <div class="buttons">
-            <a class="button button-icon ion-ios-arrow-back" 
-                    ng-click="appGoBack()" nav-direction="back"></a>
-        </div>
-        <h1 class="title">Appointment</h1>
-        <div class="buttons">
-            <button class="button button-icon ion-checkmark-circled" 
-                    ng-click="showConfirm()">
-            </button>
-        </div>
-    </ion-header-bar>
-    <ion-content class="custom-content">
+    
+    <form name="appointmentForm" novalidate>
         
-        <ion-list class="custom-datetime-list">
-            <ion-item class="item-input custom-datetime-item">
-                &nbsp;  &nbsp; Date:
-                <i class="icon ion-calendar placeholder-icon"></i>
-                <input type="date" min="{{appointmentObj.MinDate}}" ng-model="appointmentObj.Date">
-            </ion-item>
-            <ion-item class="item-input custom-datetime-item">
-                &nbsp; &nbsp; Time:
-                <i class="icon ion-ios-time placeholder-icon"></i>
-                <input type="time" ng-model="appointmentObj.Time">
-            </ion-item>
-        </ion-list>
+        <ion-header-bar class="custom-bar-bg" align-title="center">
+            
+            <div class="buttons">
+                <a class="button button-icon ion-ios-arrow-back" 
+                        ng-click="appGoBack()" nav-direction="back"></a>
+            </div>
+            
+            <h1 class="title">Appointment</h1>
+            
+            <div class="buttons">
+                <button class="button button-icon ion-checkmark-circled" 
+                        ng-click="showConfirm()"
+                        form="appointmentForm"
+                        ng-show="!appointmentForm.date.$error.required &&
+                                 !appointmentForm.time.$error.required &&
+                                 !appointmentForm.name.$error.required">
+                </button>
+            </div>
+            
+        </ion-header-bar>
         
-        <div class="card custom-card">
-            <div class="item">
-                <span>Name</span>
+        <ion-content class="custom-content">
+            
+            <ion-list class="custom-datetime-list">
+                <ion-item class="item-input custom-datetime-item">
+                    &nbsp;  &nbsp; Date:
+                    <i class="icon ion-calendar placeholder-icon"></i>
+                    <input type="date" min="{{appointmentObj.MinDate}}" 
+                           ng-model="appointmentObj.Date" name="date" required>
+                </ion-item>
+                <ion-item class="item-input custom-datetime-item">
+                    &nbsp; &nbsp; Time:
+                    <i class="icon ion-ios-time placeholder-icon"></i>
+                    <input type="time" ng-model="appointmentObj.Time" name="time" required>
+                </ion-item>
+            </ion-list>
+            
+            <div class="card custom-card">
+                <div class="item">
+                    <span>Name</span>
+                </div>
+                <div class="item custom-input">
+                    <label class="item-input">
+                    <input type="text" placeholder="eg. Meeting with Doctor" 
+                           name="name" required
+                           ng-model="appointmentObj.Name"> 
+                    </label>
+                </div>
             </div>
-            <div class="item custom-input">
-                <label class="item-input">
-                   <input type="text" placeholder="eg. Meeting with Doctor"> 
-                </label>
+            
+            <div class="card custom-card">
+                <div class="item">
+                    <span>Description</span>
+                </div>
+                <div class="item">
+                    <label class="item-input">
+                        <textarea placeholder="About High Blood Sugar Level Problem" 
+                                  rows="2" name="notes"
+                                  ng-model="appointmentObj.notes"></textarea>
+                    </label>
+                </div>
             </div>
-        </div>
+            
+        </ion-content>
         
-        <div class="card custom-card">
-            <div class="item">
-                <span>Description</span>
-            </div>
-            <div class="item">
-                <label class="item-input">
-                    <textarea placeholder="About High Blood Sugar Level Problem" rows="2"></textarea>
-                </label>
-            </div>
-        </div>
-        
-        <!--
-        <div class="card custom-card">
-            <div class="item">
-                <span>Date</span>
-            </div>
-            <div class="item custom-input">
-                <label class="item-input">
-                   <input type="date" ng-model="appointmentObj.Date" 
-                          min="{{appointmentObj.MinDate}}"
-                          placeholder="mm/dd/yyyy"> 
-                </label>
-            </div>
-        </div>
-        
-        <div class="card custom-card">
-            <div class="item">
-                <span>Time</span>
-            </div>
-            <div class="item custom-input">
-                <label class="item-input">
-                   <input type="time" ng-model="appointmentObj.Time"
-                          placeholder="HH:mm AM/PM"> 
-                </label>
-            </div>
-        </div>
-        --> 
-        
-    </ion-content>
+    </form>
 </ion-pane>

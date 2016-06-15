@@ -10387,8 +10387,6 @@ div.item.custom-graph-average {
   margin-left: auto;
   margin-right: auto;
   width: 40%;
-  position: relative;
-  top: -36px;
   color: #FFF772;
   background: rgba(255, 255, 255, 0.3);
   border: none;
@@ -10397,7 +10395,3 @@ div.item.custom-graph-average {
 div.item.custom-graph-average span {
   font-size: 14px;
   color: #FFF772; }
-
-#myChart-top {
-  position: relative;
-  top: -40px; }

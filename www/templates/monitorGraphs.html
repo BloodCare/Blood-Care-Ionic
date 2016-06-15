@@ -9,15 +9,15 @@
     </ion-header-bar>
     
     <ion-content class="padding" overflow-scroll="false">
-       <ion-scroll zooming="true" direction="y">
-            <zingchart id="myChart" zc-json="myJson" zc-height="100%" zc-width="100%">
-                
-            </zingchart>
-            
-            <div class="item custom-graph-average">
-                Average : <span>{{avgBloodSugar}}</span>
-            </div>
-        </ion-scroll>
+        
+       <zingchart id="myChart" zc-json="myJson" zc-height="100%" zc-width="100%">
+           
+       </zingchart>
+       
+       <div class="item custom-graph-average">
+           Average : <span>{{avgBloodSugar}}</span>
+       </div>
+        
     </ion-content>
     
     <ion-footer-bar align-title="center">
