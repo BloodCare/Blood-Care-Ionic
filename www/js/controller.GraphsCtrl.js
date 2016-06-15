@@ -27,6 +27,15 @@ angular.module('starter')
     }
   };
   
+  var getAverage = function (fullData) {
+    var total = 0;
+    for (var i = 0; i < fullData.length; i++) {
+      total = total + fullData[i][1];
+    }
+    var avg = total / fullData.length;
+    return avg.toFixed(2);
+  }
+  
   var getBloodSugarData = function (data, date) {
     
     var dataSeries = [];
@@ -39,12 +48,16 @@ angular.module('starter')
           dataSeries.push([recordTime, record.value]);
         }
     })
-   
+
+   if (isNaN(dataSeries)) {
+     $scope.avgBloodSugar = getAverage(dataSeries);
+   } else {
+     $scope.avgBloodSugar = 0;
+   }
+    
    return dataSeries;
    
   }
-
-  //console.log(getBloodSugarData($scope.monitorGraphs, $scope.monitorObject.date));
   
   ZC.mobile = true;
     
