@@ -6,3 +6,6 @@
 ###Details:
 * **Frontend**: Ionic Framework, AngularJS
 * **Backend**: Firebase, Angular Fire
+
+**Following is the link for Demo Video:**
+https://www.youtube.com/watch?v=zJT83qlBls8
